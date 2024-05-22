@@ -21,9 +21,9 @@
 
 {%- macro attribute_name(attribute) -%}
     {%- if attribute | is_template -%}
-    {{attribute.fqn | to_const_name}}_TEMPLATE
+    {{common.to_const_name_v2(attribute.fqn)}}_TEMPLATE
     {%- else -%}
-    {{attribute.fqn | to_const_name}}
+    {{common.to_const_name_v2(attribute.fqn)}}
     {%- endif -%}
 {%- endmacro -%}
 
@@ -81,7 +81,7 @@ from enum import Enum
     {%- endif %}
 class {{class_name}}(Enum):
     {%- for member in attribute.attr_type.members %}
-    {{ member.member_id | to_const_name }} = {{ attribute | print_member_value(member) }}
+    {{common.to_const_name_v2(member.member_id)}} = {{ attribute | print_member_value(member) }}
     """{{ common.to_docstring(member.brief) }}."""
     {%- endfor %}
 {%- endfor -%}

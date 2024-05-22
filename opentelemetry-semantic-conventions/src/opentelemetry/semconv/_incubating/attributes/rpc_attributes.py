@@ -15,18 +15,18 @@
 
 from enum import Enum
 
-RPC_CONNECT_RPC_ERROR_CODE = "rpc.connect_rpc.error_code"
+RPC_CONNECT__RPC_ERROR__CODE = "rpc.connect_rpc.error_code"
 """
 The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
 """
 
-RPC_CONNECT_RPC_REQUEST_METADATA_TEMPLATE = "rpc.connect_rpc.request.metadata"
+RPC_CONNECT__RPC_REQUEST_METADATA_TEMPLATE = "rpc.connect_rpc.request.metadata"
 """
 Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
 Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 """
 
-RPC_CONNECT_RPC_RESPONSE_METADATA_TEMPLATE = (
+RPC_CONNECT__RPC_RESPONSE_METADATA_TEMPLATE = (
     "rpc.connect_rpc.response.metadata"
 )
 """
@@ -46,22 +46,22 @@ gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercas
 Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 """
 
-RPC_GRPC_STATUS_CODE = "rpc.grpc.status_code"
+RPC_GRPC_STATUS__CODE = "rpc.grpc.status_code"
 """
 The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
 """
 
-RPC_JSONRPC_ERROR_CODE = "rpc.jsonrpc.error_code"
+RPC_JSONRPC_ERROR__CODE = "rpc.jsonrpc.error_code"
 """
 `error.code` property of response if it is an error response.
 """
 
-RPC_JSONRPC_ERROR_MESSAGE = "rpc.jsonrpc.error_message"
+RPC_JSONRPC_ERROR__MESSAGE = "rpc.jsonrpc.error_message"
 """
 `error.message` property of response if it is an error response.
 """
 
-RPC_JSONRPC_REQUEST_ID = "rpc.jsonrpc.request_id"
+RPC_JSONRPC_REQUEST__ID = "rpc.jsonrpc.request_id"
 """
 `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
 """
@@ -94,23 +94,23 @@ class RpcConnectRpcErrorCodeValues(Enum):
     """cancelled."""
     UNKNOWN = "unknown"
     """unknown."""
-    INVALID_ARGUMENT = "invalid_argument"
+    INVALID__ARGUMENT = "invalid_argument"
     """invalid_argument."""
-    DEADLINE_EXCEEDED = "deadline_exceeded"
+    DEADLINE__EXCEEDED = "deadline_exceeded"
     """deadline_exceeded."""
-    NOT_FOUND = "not_found"
+    NOT__FOUND = "not_found"
     """not_found."""
-    ALREADY_EXISTS = "already_exists"
+    ALREADY__EXISTS = "already_exists"
     """already_exists."""
-    PERMISSION_DENIED = "permission_denied"
+    PERMISSION__DENIED = "permission_denied"
     """permission_denied."""
-    RESOURCE_EXHAUSTED = "resource_exhausted"
+    RESOURCE__EXHAUSTED = "resource_exhausted"
     """resource_exhausted."""
-    FAILED_PRECONDITION = "failed_precondition"
+    FAILED__PRECONDITION = "failed_precondition"
     """failed_precondition."""
     ABORTED = "aborted"
     """aborted."""
-    OUT_OF_RANGE = "out_of_range"
+    OUT__OF__RANGE = "out_of_range"
     """out_of_range."""
     UNIMPLEMENTED = "unimplemented"
     """unimplemented."""
@@ -118,7 +118,7 @@ class RpcConnectRpcErrorCodeValues(Enum):
     """internal."""
     UNAVAILABLE = "unavailable"
     """unavailable."""
-    DATA_LOSS = "data_loss"
+    DATA__LOSS = "data_loss"
     """data_loss."""
     UNAUTHENTICATED = "unauthenticated"
     """unauthenticated."""
@@ -131,23 +131,23 @@ class RpcGrpcStatusCodeValues(Enum):
     """CANCELLED."""
     UNKNOWN = 2
     """UNKNOWN."""
-    INVALID_ARGUMENT = 3
+    INVALID__ARGUMENT = 3
     """INVALID_ARGUMENT."""
-    DEADLINE_EXCEEDED = 4
+    DEADLINE__EXCEEDED = 4
     """DEADLINE_EXCEEDED."""
-    NOT_FOUND = 5
+    NOT__FOUND = 5
     """NOT_FOUND."""
-    ALREADY_EXISTS = 6
+    ALREADY__EXISTS = 6
     """ALREADY_EXISTS."""
-    PERMISSION_DENIED = 7
+    PERMISSION__DENIED = 7
     """PERMISSION_DENIED."""
-    RESOURCE_EXHAUSTED = 8
+    RESOURCE__EXHAUSTED = 8
     """RESOURCE_EXHAUSTED."""
-    FAILED_PRECONDITION = 9
+    FAILED__PRECONDITION = 9
     """FAILED_PRECONDITION."""
     ABORTED = 10
     """ABORTED."""
-    OUT_OF_RANGE = 11
+    OUT__OF__RANGE = 11
     """OUT_OF_RANGE."""
     UNIMPLEMENTED = 12
     """UNIMPLEMENTED."""
@@ -155,7 +155,7 @@ class RpcGrpcStatusCodeValues(Enum):
     """INTERNAL."""
     UNAVAILABLE = 14
     """UNAVAILABLE."""
-    DATA_LOSS = 15
+    DATA__LOSS = 15
     """DATA_LOSS."""
     UNAUTHENTICATED = 16
     """UNAUTHENTICATED."""
@@ -164,11 +164,11 @@ class RpcGrpcStatusCodeValues(Enum):
 class RpcSystemValues(Enum):
     GRPC = "grpc"
     """gRPC."""
-    JAVA_RMI = "java_rmi"
+    JAVA__RMI = "java_rmi"
     """Java RMI."""
-    DOTNET_WCF = "dotnet_wcf"
+    DOTNET__WCF = "dotnet_wcf"
     """.NET WCF."""
-    APACHE_DUBBO = "apache_dubbo"
+    APACHE__DUBBO = "apache_dubbo"
     """Apache Dubbo."""
-    CONNECT_RPC = "connect_rpc"
+    CONNECT__RPC = "connect_rpc"
     """Connect RPC."""

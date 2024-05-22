@@ -25,12 +25,12 @@ OTEL_SCOPE_VERSION = "otel.scope.version"
 The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
 """
 
-OTEL_STATUS_CODE = "otel.status_code"
+OTEL_STATUS__CODE = "otel.status_code"
 """
 Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
 """
 
-OTEL_STATUS_DESCRIPTION = "otel.status_description"
+OTEL_STATUS__DESCRIPTION = "otel.status_description"
 """
 Description of the Status if it has a value, otherwise not set.
 """

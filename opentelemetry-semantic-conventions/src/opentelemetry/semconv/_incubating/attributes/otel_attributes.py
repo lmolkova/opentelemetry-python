@@ -37,14 +37,14 @@ OTEL_SCOPE_VERSION = "otel.scope.version"
 Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_SCOPE_VERSION`.
 """
 
-OTEL_STATUS_CODE = "otel.status_code"
+OTEL_STATUS__CODE = "otel.status_code"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_STATUS_CODE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_STATUS__CODE`.
 """
 
-OTEL_STATUS_DESCRIPTION = "otel.status_description"
+OTEL_STATUS__DESCRIPTION = "otel.status_description"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_STATUS_DESCRIPTION`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_STATUS__DESCRIPTION`.
 """
 
 

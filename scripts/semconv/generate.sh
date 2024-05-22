@@ -14,8 +14,7 @@ rm -rf semantic-conventions || true
 mkdir semantic-conventions
 cd semantic-conventions
 
-git init
-git remote add origin https://github.com/open-telemetry/semantic-conventions.git
+git clone https://github.com/open-telemetry/semantic-conventions.git
 git fetch origin "$SEMCONV_VERSION"
 git reset --hard FETCH_HEAD
 cd ${SCRIPT_DIR}

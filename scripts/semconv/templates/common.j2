@@ -24,3 +24,8 @@
 from deprecated import deprecated
     {%- endif %}
 {%- endmacro-%}
+
+
+{%- macro to_const_name_v2(attribute_name) -%}
+{{attribute_name | replace("_", "__") | to_const_name}}
+{%- endmacro %}

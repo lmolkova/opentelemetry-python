@@ -100,8 +100,8 @@ from opentelemetry.metrics import Counter
 
   {%- for metric in filtered_metrics %}
 
-{{metric.metric_name | to_const_name}} = "{{metric.metric_name}}"
-{{metric_brief(metric, metric.metric_name | to_const_name) }}
+{{common.to_const_name_v2(metric.metric_name)}} = "{{metric.metric_name}}"
+{{metric_brief(metric, common.to_const_name_v2(metric.metric_name))}}
 
     {% if filter == "any" %}
       {% set metric_name = metric.metric_name | replace(".", "_") %}
