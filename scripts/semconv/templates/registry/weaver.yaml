@@ -1,0 +1,25 @@
+templates:
+  - pattern: attributes2/semantic_attributes.j2
+    filter: >
+      ["ios", "aspnetcore", "signalr", "android", "dotnet"] as $excluded |
+      .groups
+      | map(select(.type == "attribute_group"))
+      | map(select(.id | startswith("registry")))
+      | map({ id: .id, group_id: .id | split(".") | .[1], attributes: .attributes})
+      | group_by(.group_id)
+      | map({ id: .[0].group_id, attributes: [.[].attributes[]] | map(select(.stability == "stable")) | sort_by(.id) })
+      | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
+      | map(select(.attributes | length > 0))
+    application_mode: each
+  - pattern: metrics/semantic_metrics.j2
+    filter: >
+      ["ios", "aspnetcore", "signalr", "android", "dotnet"] as $excluded |
+      .groups
+      | map(select(.type == "metric"))
+      | map(select(.stability == "stable"))
+      | group_by(.id | split(".") | .[1])
+      | map({
+        id: .[0].id | split(".") | .[1],
+        metrics: .
+      })
+    application_mode: each

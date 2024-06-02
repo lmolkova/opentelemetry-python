@@ -1,0 +1,62 @@
+{%- set file_name = ctx.id | kebab_case | replace('-', '_') ~ "_metrics.py" -%}
+{{- template.set_file_name(file_name) -}}
+
+# Copyright The OpenTelemetry Authors
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+{%- macro metric_brief(metric, const_name) -%}
+"""
+    {%- if metric | is_deprecated %}
+Deprecated: {{ common.to_docstring(metric.deprecated)}}.
+    {%- elif metric | is_stable and filter == "any" %}
+Deprecated in favor of stable :py:const:`{{stable_class_ref(const_name, '.')}}`.
+    {%- else -%}
+    {%- set brief = common.to_docstring(metric.brief) -%}
+    {%- if brief != "" %}
+{{brief}}
+    {%- endif %}
+Instrument: {{ metric.instrument }}
+Unit: {{ metric.unit }}
+      {%- if metric.note %}
+Note: {{ common.to_docstring(metric.note | indent) }}.
+      {%- endif -%}
+    {%- endif %}
+"""
+{%- endmacro -%}
+
+{%- macro to_const_name(attr_name) -%}
+{{attr_name | upper | replace('_', '__') | replace('.', '_')}}
+{%- endmacro %}
+
+{%- macro write_docstring(metric, prefix) -%}
+    {%- if metric.deprecated is defined and metric.deprecated is not none and metric.deprecated|length %}
+{{prefix}}Deprecated: {{metric.deprecated | comment_with_prefix(prefix)}}
+    {%- elif ctx.const_package_name is defined and stability == "stable" %}
+{{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
+    {%- elif metric.brief is defined and metric.brief is not none and metric.brief|length %}
+{{metric.brief | comment_with_prefix(prefix)}}
+{{prefix}}Instrument: {{ metric.instrument }}
+{{prefix}}Unit: {{ metric.unit }}
+      {%- if metric.note is defined and metric.note is not none and metric.note|length  %}
+{{prefix}}Note: {{note | comment_with_prefix(prefix)}}
+      {%- endif -%}
+    {%- endif -%}
+{%- endmacro -%}
+
+
+{%- for metric in ctx.metrics %}
+{{to_const_name(metric.metric_name)}} = "{{metric.metric_name}}"
+{%- set doc_string=write_docstring(metric, "")-%}{%- if doc_string %}
+"""{{doc_string}}
+"""{%- endif %}
+{%- endfor -%}

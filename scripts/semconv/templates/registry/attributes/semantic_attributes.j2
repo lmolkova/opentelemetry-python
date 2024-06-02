@@ -1,4 +1,5 @@
-{%- macro file_header() -%}
+{%- set file_name = ctx.id | kebab_case | replace('-', '_') ~ "_attributes.py" -%}
+{{- template.set_file_name(file_name) -}}
 # Copyright The OpenTelemetry Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-{% endmacro -%}
+
+from enum import Enum
 
 {%- macro to_const_name(attr_name) -%}
 {{attr_name | upper | replace('_', '__') | replace('.', '_')}}
@@ -52,17 +54,25 @@
     {%- endif -%}
 {%- endmacro -%}
 
-{%- macro to_docstring(str) -%}
-{{ str | to_doc_brief | replace("\\", "\\\\") }}
-{%- endmacro -%}
+{% for attribute in ctx.attributes | sort(attribute="name") %}
+{% set attr_name = attribute_name(attribute) %}
+{%- set doc_string=write_docstring(attr_name, attribute.brief, attribute.note, attribute.deprecated, attribute.stability, "")-%}
+{{attr_name}} = "{{attribute.name}}"
+{%- if doc_string %}
+"""{{doc_string}}
+"""{%- endif %}
+{% endfor %}
 
-{%- macro import_deprecated(semconv) -%}
-    {%- if (semconv | select("is_deprecated") | list | count > 0) or (filter == "any" and semconv | select("is_stable") | list | count > 0) %}
-from deprecated import deprecated
-    {%- endif %}
-{%- endmacro-%}
-
-
-{%- macro to_const_name_v2(attribute_name) -%}
-{{attribute_name | replace("_", "__") | to_const_name}}
-{%- endmacro %}
+{% for attribute in ctx.attributes | sort(attribute="name") %}{% if attribute.type is mapping %}
+{%- set class_name = to_class_name(attribute.name) ~ "Values" -%}
+class {{class_name}}(Enum):
+    {%- for member in attribute.type.members %}
+    {% set member_name = to_const_name(member.id) %}
+    {%- set doc_string=write_docstring(class_name + '.' + member_name, member.brief, "", member.deprecated, member.stability, "    ")-%}
+    {{member_name}} = "{{ member.value }}"
+    {%- if doc_string %}
+    """{{doc_string}}
+    """{%- endif %}
+    {% endfor %}
+{% endif %}
+{% endfor %}
