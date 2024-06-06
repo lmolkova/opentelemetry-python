@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 LOG_FILE_NAME = "log.file.name"
 """
@@ -44,12 +45,17 @@ LOG_RECORD_UID = "log.record.uid"
 """
 A unique identifier for the Log Record.
 Note: If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
-    The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
+The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
 """
 
 
 class LogIostreamValues(Enum):
     STDOUT = "stdout"
-    """Logs from stdout stream."""
+    """
+    Logs from stdout stream
+    """
+
     STDERR = "stderr"
-    """Events from stderr stream."""
+    """
+    Events from stderr stream
+    """

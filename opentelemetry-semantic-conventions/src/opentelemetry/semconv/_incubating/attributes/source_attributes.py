@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+
+from deprecated import deprecated
 
 SOURCE_ADDRESS = "source.address"
 """
@@ -21,5 +24,5 @@ Note: When observed from the destination side, and when communicating through an
 
 SOURCE_PORT = "source.port"
 """
-Source port number.
+Source port number
 """

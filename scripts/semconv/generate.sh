@@ -6,7 +6,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="${SCRIPT_DIR}/../.."
 
 # freeze the spec version to make SemanticAttributes generation reproducible
-SEMCONV_VERSION=v1.25.0
+SEMCONV_VERSION=v1.26.0
 OTEL_WEAVER_IMG_VERSION=0.2.0
 INCUBATING_DIR=_incubating
 cd ${SCRIPT_DIR}
@@ -41,23 +41,12 @@ generate() {
     --registry=/source \
     --templates=/templates \
     ${TARGET} \
-    /output/${TARGET}
+    /output${TARGET}
 }
 
 # stable attributes and metrics
-TARGET=${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/attributes2
-mkdir -p ${TARGET}
-generate "attributes2/"
-
-#mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/metrics
-#generate "semantic_metrics.j2" "metrics/{{snake_prefix}}_metrics.py" "is_stable" ""
-
-# all attributes and metrics
-mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/$INCUBATING_DIR/attributes2
-generate "$INCUBATING_DIR/attributes2/"
-
-#mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/$INCUBATING_DIR/metrics
-#generate "semantic_metrics.j2" "$INCUBATING_DIR/metrics/{{snake_prefix}}_metrics.py" "any" "opentelemetry.semconv.metrics"
+mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/attributes
+generate "/"
 
 cd "$ROOT_DIR"
 ${ROOT_DIR}/.tox/lint/bin/black --config pyproject.toml ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv

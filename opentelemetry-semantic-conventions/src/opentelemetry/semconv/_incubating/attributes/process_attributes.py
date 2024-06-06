@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 PROCESS_COMMAND = "process.command"
 """
@@ -37,7 +38,12 @@ Specifies whether the context switches for this data point were voluntary or inv
 
 PROCESS_CPU_STATE = "process.cpu.state"
 """
-The CPU state for this data point. A process SHOULD be characterized _either_ by data points with no `state` labels, _or only_ data points with `state` labels.
+The CPU state of the process.
+"""
+
+PROCESS_CREATION_TIME = "process.creation.time"
+"""
+The date and time the process was created, in ISO 8601 format.
 """
 
 PROCESS_EXECUTABLE_NAME = "process.executable.name"
@@ -48,6 +54,26 @@ The name of the process executable. On Linux based systems, can be set to the `N
 PROCESS_EXECUTABLE_PATH = "process.executable.path"
 """
 The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
+"""
+
+PROCESS_EXIT_CODE = "process.exit.code"
+"""
+The exit code of the process.
+"""
+
+PROCESS_EXIT_TIME = "process.exit.time"
+"""
+The date and time the process exited, in ISO 8601 format.
+"""
+
+PROCESS_GROUP__LEADER_PID = "process.group_leader.pid"
+"""
+The PID of the process's group leader. This is also the process group ID (PGID) of the process.
+"""
+
+PROCESS_INTERACTIVE = "process.interactive"
+"""
+Whether the process is connected to an interactive shell.
 """
 
 PROCESS_OWNER = "process.owner"
@@ -70,6 +96,16 @@ PROCESS_PID = "process.pid"
 Process identifier (PID).
 """
 
+PROCESS_REAL__USER_ID = "process.real_user.id"
+"""
+The real user ID (RUID) of the process.
+"""
+
+PROCESS_REAL__USER_NAME = "process.real_user.name"
+"""
+The username of the real user of the process.
+"""
+
 PROCESS_RUNTIME_DESCRIPTION = "process.runtime.description"
 """
 An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.
@@ -85,25 +121,53 @@ PROCESS_RUNTIME_VERSION = "process.runtime.version"
 The version of the runtime of this process, as returned by the runtime without modification.
 """
 
+PROCESS_SAVED__USER_ID = "process.saved_user.id"
+"""
+The saved user ID (SUID) of the process.
+"""
 
-class ProcessContextSwitchTypeValues(Enum):
+PROCESS_SAVED__USER_NAME = "process.saved_user.name"
+"""
+The username of the saved user.
+"""
+
+PROCESS_SESSION__LEADER_PID = "process.session_leader.pid"
+"""
+The PID of the process's session leader. This is also the session ID (SID) of the process.
+"""
+
+PROCESS_USER_ID = "process.user.id"
+"""
+The effective user ID (EUID) of the process.
+"""
+
+PROCESS_USER_NAME = "process.user.name"
+"""
+The username of the effective user of the process.
+"""
+
+PROCESS_VPID = "process.vpid"
+"""
+Virtual process identifier.
+Note: The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+"""
+
+
+class ProcessContext_Switch_TypeValues(Enum):
     VOLUNTARY = "voluntary"
-    """voluntary."""
+
     INVOLUNTARY = "involuntary"
-    """involuntary."""
 
 
 class ProcessCpuStateValues(Enum):
     SYSTEM = "system"
-    """system."""
+
     USER = "user"
-    """user."""
+
     WAIT = "wait"
-    """wait."""
 
 
-class ProcessPagingFaultTypeValues(Enum):
+class ProcessPagingFault_TypeValues(Enum):
     MAJOR = "major"
-    """major."""
+
     MINOR = "minor"
-    """minor."""

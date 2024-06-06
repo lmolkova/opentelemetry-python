@@ -12,18 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 OPENTRACING_REF__TYPE = "opentracing.ref_type"
 """
-Parent-child Reference type.
+Parent-child Reference type
 Note: The causal relationship between a child Span and a parent Span.
 """
 
 
-class OpentracingRefTypeValues(Enum):
+class OpentracingRef_TypeValues(Enum):
     CHILD__OF = "child_of"
-    """The parent Span depends on the child Span in some capacity."""
+    """
+    The parent Span depends on the child Span in some capacity
+    """
+
     FOLLOWS__FROM = "follows_from"
-    """The parent Span doesn't depend in any way on the result of the child Span."""
+    """
+    The parent Span doesn't depend in any way on the result of the child Span
+    """

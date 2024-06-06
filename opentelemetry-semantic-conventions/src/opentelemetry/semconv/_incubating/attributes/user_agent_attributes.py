@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+
+from deprecated import deprecated
 
 USER__AGENT_NAME = "user_agent.name"
 """
 Name of the user-agent extracted from original. Usually refers to the browser's name.
-Note: [Example](https://www.whatsmyua.info) of extracting browser's name from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant name SHOULD be selected. In such a scenario it should align with `user_agent.version`.
+Note: [Example](https://www.whatsmyua.info) of extracting browser's name from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant name SHOULD be selected. In such a scenario it should align with `user_agent.version`
 """
 
 USER__AGENT_ORIGINAL = "user_agent.original"
@@ -26,6 +29,6 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.user_a
 
 USER__AGENT_VERSION = "user_agent.version"
 """
-Version of the user-agent extracted from original. Usually refers to the browser's version.
-Note: [Example](https://www.whatsmyua.info) of extracting browser's version from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant version SHOULD be selected. In such a scenario it should align with `user_agent.name`.
+Version of the user-agent extracted from original. Usually refers to the browser's version
+Note: [Example](https://www.whatsmyua.info) of extracting browser's version from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant version SHOULD be selected. In such a scenario it should align with `user_agent.name`
 """

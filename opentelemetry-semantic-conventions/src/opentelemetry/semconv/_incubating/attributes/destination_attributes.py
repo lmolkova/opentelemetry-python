@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+
+from deprecated import deprecated
 
 DESTINATION_ADDRESS = "destination.address"
 """
@@ -21,5 +24,5 @@ Note: When observed from the source side, and when communicating through an inte
 
 DESTINATION_PORT = "destination.port"
 """
-Destination port number.
+Destination port number
 """

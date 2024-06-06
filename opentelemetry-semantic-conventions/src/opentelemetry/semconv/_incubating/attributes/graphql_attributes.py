@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 GRAPHQL_DOCUMENT = "graphql.document"
 """
@@ -34,8 +35,16 @@ The type of the operation being executed.
 
 class GraphqlOperationTypeValues(Enum):
     QUERY = "query"
-    """GraphQL query."""
+    """
+    GraphQL query
+    """
+
     MUTATION = "mutation"
-    """GraphQL mutation."""
+    """
+    GraphQL mutation
+    """
+
     SUBSCRIPTION = "subscription"
-    """GraphQL subscription."""
+    """
+    GraphQL subscription
+    """

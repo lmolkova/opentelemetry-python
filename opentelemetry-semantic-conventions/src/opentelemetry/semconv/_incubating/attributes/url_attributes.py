@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+
+from deprecated import deprecated
 
 URL_DOMAIN = "url.domain"
 """
@@ -39,7 +42,7 @@ URL_ORIGINAL = "url.original"
 """
 Unmodified original URL as seen in the event source.
 Note: In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
-    `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
+`url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
 """
 
 URL_PATH = "url.path"
@@ -49,7 +52,7 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_at
 
 URL_PORT = "url.port"
 """
-Port extracted from the `url.full`.
+Port extracted from the `url.full`
 """
 
 URL_QUERY = "url.query"
@@ -72,6 +75,11 @@ URL_SUBDOMAIN = "url.subdomain"
 """
 The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
 Note: The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain, such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
+"""
+
+URL_TEMPLATE = "url.template"
+"""
+The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
 """
 
 URL_TOP__LEVEL__DOMAIN = "url.top_level_domain"

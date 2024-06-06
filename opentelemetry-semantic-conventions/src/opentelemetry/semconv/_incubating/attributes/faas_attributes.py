@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 FAAS_COLDSTART = "faas.coldstart"
 """
@@ -84,21 +85,21 @@ FAAS_NAME = "faas.name"
 """
 The name of the single function that this runtime instance executes.
 Note: This is the name of the function as configured/deployed on the FaaS
-    platform and is usually different from the name of the callback
-    function (which may be stored in the
-    [`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
-    span attributes).
+platform and is usually different from the name of the callback
+function (which may be stored in the
+[`code.namespace`/`code.function`](/docs/general/attributes.md#source-code-attributes)
+span attributes).
 
-    For some cloud providers, the above definition is ambiguous. The following
-    definition of function name MUST be used for this attribute
-    (and consequently the span name) for the listed cloud providers/products:
+For some cloud providers, the above definition is ambiguous. The following
+definition of function name MUST be used for this attribute
+(and consequently the span name) for the listed cloud providers/products:
 
-    * **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
-      followed by a forward slash followed by the function name (this form
-      can also be seen in the resource JSON for the function).
-      This means that a span attribute MUST be used, as an Azure function
-      app can host multiple functions that would usually share
-      a TracerProvider (see also the `cloud.resource_id` attribute).
+* **Azure:**  The full name `<FUNCAPP>/<FUNC>`, i.e., function app name
+  followed by a forward slash followed by the function name (this form
+  can also be seen in the resource JSON for the function).
+  This means that a span attribute MUST be used, as an Azure function
+  app can host multiple functions that would usually share
+  a TracerProvider (see also the `cloud.resource_id` attribute).
 """
 
 FAAS_TIME = "faas.time"
@@ -116,46 +117,82 @@ FAAS_VERSION = "faas.version"
 The immutable version of the function being executed.
 Note: Depending on the cloud provider and platform, use:
 
-    * **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
-      (an integer represented as a decimal string).
-    * **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
-      (i.e., the function name plus the revision suffix).
-    * **Google Cloud Functions:** The value of the
-      [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-    * **Azure Functions:** Not applicable. Do not set this attribute.
+* **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
+  (an integer represented as a decimal string).
+* **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
+  (i.e., the function name plus the revision suffix).
+* **Google Cloud Functions:** The value of the
+  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+* **Azure Functions:** Not applicable. Do not set this attribute.
 """
 
 
 class FaasDocumentOperationValues(Enum):
     INSERT = "insert"
-    """When a new object is created."""
+    """
+    When a new object is created.
+    """
+
     EDIT = "edit"
-    """When an object is modified."""
+    """
+    When an object is modified.
+    """
+
     DELETE = "delete"
-    """When an object is deleted."""
+    """
+    When an object is deleted.
+    """
 
 
-class FaasInvokedProviderValues(Enum):
+class FaasInvoked_ProviderValues(Enum):
     ALIBABA__CLOUD = "alibaba_cloud"
-    """Alibaba Cloud."""
+    """
+    Alibaba Cloud
+    """
+
     AWS = "aws"
-    """Amazon Web Services."""
+    """
+    Amazon Web Services
+    """
+
     AZURE = "azure"
-    """Microsoft Azure."""
+    """
+    Microsoft Azure
+    """
+
     GCP = "gcp"
-    """Google Cloud Platform."""
+    """
+    Google Cloud Platform
+    """
+
     TENCENT__CLOUD = "tencent_cloud"
-    """Tencent Cloud."""
+    """
+    Tencent Cloud
+    """
 
 
 class FaasTriggerValues(Enum):
     DATASOURCE = "datasource"
-    """A response to some data source operation such as a database or filesystem read/write."""
+    """
+    A response to some data source operation such as a database or filesystem read/write
+    """
+
     HTTP = "http"
-    """To provide an answer to an inbound HTTP request."""
+    """
+    To provide an answer to an inbound HTTP request
+    """
+
     PUBSUB = "pubsub"
-    """A function is set to be executed when messages are sent to a messaging system."""
+    """
+    A function is set to be executed when messages are sent to a messaging system
+    """
+
     TIMER = "timer"
-    """A function is scheduled to be executed regularly."""
+    """
+    A function is scheduled to be executed regularly
+    """
+
     OTHER = "other"
-    """If none of the others apply."""
+    """
+    If none of the others apply
+    """

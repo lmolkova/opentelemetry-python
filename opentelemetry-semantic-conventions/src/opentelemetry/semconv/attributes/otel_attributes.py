@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 OTEL_SCOPE_NAME = "otel.scope.name"
 """
@@ -36,8 +37,13 @@ Description of the Status if it has a value, otherwise not set.
 """
 
 
-class OtelStatusCodeValues(Enum):
+class OtelStatus_CodeValues(Enum):
     OK = "OK"
-    """The operation has been validated by an Application developer or Operator to have completed successfully."""
+    """
+    The operation has been validated by an Application developer or Operator to have completed successfully.
+    """
+
     ERROR = "ERROR"
-    """The operation contains an error."""
+    """
+    The operation contains an error.
+    """

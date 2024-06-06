@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 TLS_CIPHER = "tls.cipher"
 """
@@ -83,7 +84,7 @@ Array of ciphers offered by the client during the client hello.
 
 TLS_CURVE = "tls.curve"
 """
-String indicating the curve used for the given cipher, when applicable.
+String indicating the curve used for the given cipher, when applicable
 """
 
 TLS_ESTABLISHED = "tls.established"
@@ -98,12 +99,12 @@ String indicating the protocol being tunneled. Per the values in the [IANA regis
 
 TLS_PROTOCOL_NAME = "tls.protocol.name"
 """
-Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES).
+Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
 """
 
 TLS_PROTOCOL_VERSION = "tls.protocol.version"
 """
-Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES).
+Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://www.openssl.org/docs/man1.1.1/man3/SSL_get_version.html#RETURN-VALUES)
 """
 
 TLS_RESUMED = "tls.resumed"
@@ -164,6 +165,5 @@ Distinguished name of subject of the x.509 certificate presented by the server.
 
 class TlsProtocolNameValues(Enum):
     SSL = "ssl"
-    """ssl."""
+
     TLS = "tls"
-    """tls."""

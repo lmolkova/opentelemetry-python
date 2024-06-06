@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 DB_CASSANDRA_CONSISTENCY__LEVEL = "db.cassandra.consistency_level"
 """
@@ -49,13 +50,29 @@ The number of times a query was speculatively executed. Not set or `0` if the qu
 
 DB_CASSANDRA_TABLE = "db.cassandra.table"
 """
-The name of the primary Cassandra table that the operation is acting upon, including the keyspace name (if applicable).
-Note: This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+Deprecated: Replaced by `db.collection.name`.
+"""
+
+DB_CLIENT_CONNECTIONS_POOL_NAME = "db.client.connections.pool.name"
+"""
+The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation should use a combination of `server.address` and `server.port` attributes formatted as `server.address:server.port`.
+"""
+
+DB_CLIENT_CONNECTIONS_STATE = "db.client.connections.state"
+"""
+The state of a connection in the pool
+"""
+
+DB_COLLECTION_NAME = "db.collection.name"
+"""
+The name of a collection (table, container) within the database.
+Note: If the collection name is parsed from the query, it SHOULD match the value provided in the query and may be qualified with the schema and database name.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 """
 
 DB_CONNECTION__STRING = "db.connection_string"
 """
-Deprecated: "Replaced by `server.address` and `server.port`.".
+Deprecated: "Replaced by `server.address` and `server.port`."
 """
 
 DB_COSMOSDB_CLIENT__ID = "db.cosmosdb.client_id"
@@ -70,7 +87,7 @@ Cosmos client connection mode.
 
 DB_COSMOSDB_CONTAINER = "db.cosmosdb.container"
 """
-Cosmos DB container name.
+Deprecated: Replaced by `db.collection.name`.
 """
 
 DB_COSMOSDB_OPERATION__TYPE = "db.cosmosdb.operation_type"
@@ -80,12 +97,12 @@ CosmosDB Operation Type.
 
 DB_COSMOSDB_REQUEST__CHARGE = "db.cosmosdb.request_charge"
 """
-RU consumed for that operation.
+RU consumed for that operation
 """
 
 DB_COSMOSDB_REQUEST__CONTENT__LENGTH = "db.cosmosdb.request_content_length"
 """
-Request payload size in bytes.
+Request payload size in bytes
 """
 
 DB_COSMOSDB_STATUS__CODE = "db.cosmosdb.status_code"
@@ -105,7 +122,7 @@ Represents the identifier of an Elasticsearch cluster.
 
 DB_ELASTICSEARCH_NODE_NAME = "db.elasticsearch.node.name"
 """
-Deprecated: Replaced by `db.instance.id`.
+Represents the human-readable identifier of the node/instance to which a request was routed.
 """
 
 DB_ELASTICSEARCH_PATH__PARTS_TEMPLATE = "db.elasticsearch.path_parts"
@@ -116,7 +133,7 @@ Note: Many Elasticsearch url paths allow dynamic values. These SHOULD be recorde
 
 DB_INSTANCE_ID = "db.instance.id"
 """
-An identifier (address, unique name, or any other identifier) of the database instance that is executing queries or mutations on the current connection. This is useful in cases where the database is running in a clustered environment and the instrumentation is able to record the node executing the query. The client may obtain this value in databases like MySQL using queries like `select @@hostname`.
+Deprecated: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
 """
 
 DB_JDBC_DRIVER__CLASSNAME = "db.jdbc.driver_classname"
@@ -126,221 +143,424 @@ Deprecated: Removed as not used.
 
 DB_MONGODB_COLLECTION = "db.mongodb.collection"
 """
-The MongoDB collection being accessed within the database stated in `db.name`.
+Deprecated: Replaced by `db.collection.name`.
 """
 
 DB_MSSQL_INSTANCE__NAME = "db.mssql.instance_name"
 """
-The Microsoft SQL Server [instance name](https://docs.microsoft.com/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15) connecting to. This name is used to determine the port of a named instance.
-Note: If setting a `db.mssql.instance_name`, `server.port` is no longer required (but still recommended if non-standard).
+Deprecated: Deprecated, no replacement at this time.
 """
 
 DB_NAME = "db.name"
 """
-This attribute is used to report the name of the database being accessed. For commands that switch the database, this should be set to the target database (even if the command fails).
-Note: In some SQL databases, the database name to be used is called "schema name". In case there are multiple layers that could be considered for database name (e.g. Oracle instance name and schema name), the database name to be used is the more specific layer (e.g. Oracle schema name).
+Deprecated: Replaced by `db.namespace`.
+"""
+
+DB_NAMESPACE = "db.namespace"
+"""
+The name of the database, fully qualified within the server address and port.
+Note: If a database system has multiple namespace components, they SHOULD be concatenated (potentially using database system specific conventions) from most general to most specific namespace component, and more specific namespaces SHOULD NOT be captured without the more general namespaces, to ensure that "startswith" queries for the more general namespaces will be valid.
+Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 """
 
 DB_OPERATION = "db.operation"
 """
-The name of the operation being executed, e.g. the [MongoDB command name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as `findAndModify`, or the SQL keyword.
-Note: When setting this to an SQL keyword, it is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if the operation name is provided by the library being instrumented. If the SQL statement has an ambiguous operation, or performs more than one operation, this value may be omitted.
+Deprecated: Replaced by `db.operation.name`.
+"""
+
+DB_OPERATION_NAME = "db.operation.name"
+"""
+The name of the operation or command being executed.
+Note: It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+"""
+
+DB_QUERY_PARAMETER_TEMPLATE = "db.query.parameter"
+"""
+The query parameters used in `db.query.text`, with `<key>` being the parameter name, and the attribute value being the parameter value.
+Note: Query parameters should only be captured when `db.query.text` is parameterized with placeholders.
+If a parameter has no name and instead is referenced only by index, then `<key>` SHOULD be the 0-based index.
+"""
+
+DB_QUERY_TEXT = "db.query.text"
+"""
+The database query being executed.
 """
 
 DB_REDIS_DATABASE__INDEX = "db.redis.database_index"
 """
-The index of the database being accessed as used in the [`SELECT` command](https://redis.io/commands/select), provided as an integer. To be used instead of the generic `db.name` attribute.
+Deprecated: Replaced by `db.namespace`.
 """
 
 DB_SQL_TABLE = "db.sql.table"
 """
-The name of the primary table that the operation is acting upon, including the database name (if applicable).
-Note: It is not recommended to attempt any client-side parsing of `db.statement` just to get this property, but it should be set if it is provided by the library being instrumented. If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT be set.
+Deprecated: Replaced by `db.collection.name`.
 """
 
 DB_STATEMENT = "db.statement"
 """
-The database statement being executed.
+Deprecated: Replaced by `db.query.text`.
 """
 
 DB_SYSTEM = "db.system"
 """
-An identifier for the database management system (DBMS) product being used. See below for a list of well-known identifiers.
+The database management system (DBMS) product as identified by the client instrumentation.
+Note: The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge.
 """
 
 DB_USER = "db.user"
 """
-Username for accessing the database.
+Deprecated: No replacement at this time.
+"""
+
+POOL_NAME = "pool.name"
+"""
+Deprecated: Replaced by `db.client.connections.pool.name`.
+"""
+
+STATE = "state"
+"""
+Deprecated: Replaced by `db.client.connections.state`.
 """
 
 
-class DbCassandraConsistencyLevelValues(Enum):
+class DbCassandraConsistency_LevelValues(Enum):
     ALL = "all"
-    """all."""
+
     EACH__QUORUM = "each_quorum"
-    """each_quorum."""
+
     QUORUM = "quorum"
-    """quorum."""
+
     LOCAL__QUORUM = "local_quorum"
-    """local_quorum."""
+
     ONE = "one"
-    """one."""
+
     TWO = "two"
-    """two."""
+
     THREE = "three"
-    """three."""
+
     LOCAL__ONE = "local_one"
-    """local_one."""
+
     ANY = "any"
-    """any."""
+
     SERIAL = "serial"
-    """serial."""
+
     LOCAL__SERIAL = "local_serial"
-    """local_serial."""
 
 
-class DbCosmosdbConnectionModeValues(Enum):
+class DbClientConnectionsStateValues(Enum):
+    IDLE = "idle"
+
+    USED = "used"
+
+
+class DbCosmosdbConnection_ModeValues(Enum):
     GATEWAY = "gateway"
-    """Gateway (HTTP) connections mode."""
+    """
+    Gateway (HTTP) connections mode
+    """
+
     DIRECT = "direct"
-    """Direct connection."""
+    """
+    Direct connection.
+    """
 
 
-class DbCosmosdbOperationTypeValues(Enum):
+class DbCosmosdbOperation_TypeValues(Enum):
     INVALID = "Invalid"
-    """invalid."""
+
     CREATE = "Create"
-    """create."""
+
     PATCH = "Patch"
-    """patch."""
+
     READ = "Read"
-    """read."""
+
     READ__FEED = "ReadFeed"
-    """read_feed."""
+
     DELETE = "Delete"
-    """delete."""
+
     REPLACE = "Replace"
-    """replace."""
+
     EXECUTE = "Execute"
-    """execute."""
+
     QUERY = "Query"
-    """query."""
+
     HEAD = "Head"
-    """head."""
+
     HEAD__FEED = "HeadFeed"
-    """head_feed."""
+
     UPSERT = "Upsert"
-    """upsert."""
+
     BATCH = "Batch"
-    """batch."""
+
     QUERY__PLAN = "QueryPlan"
-    """query_plan."""
+
     EXECUTE__JAVASCRIPT = "ExecuteJavaScript"
-    """execute_javascript."""
 
 
 class DbSystemValues(Enum):
     OTHER__SQL = "other_sql"
-    """Some other SQL database. Fallback only. See notes."""
+    """
+    Some other SQL database. Fallback only. See notes.
+    """
+
     MSSQL = "mssql"
-    """Microsoft SQL Server."""
+    """
+    Microsoft SQL Server
+    """
+
     MSSQLCOMPACT = "mssqlcompact"
-    """Microsoft SQL Server Compact."""
+    """
+    Microsoft SQL Server Compact
+    """
+
     MYSQL = "mysql"
-    """MySQL."""
+    """
+    MySQL
+    """
+
     ORACLE = "oracle"
-    """Oracle Database."""
+    """
+    Oracle Database
+    """
+
     DB2 = "db2"
-    """IBM Db2."""
+    """
+    IBM Db2
+    """
+
     POSTGRESQL = "postgresql"
-    """PostgreSQL."""
+    """
+    PostgreSQL
+    """
+
     REDSHIFT = "redshift"
-    """Amazon Redshift."""
+    """
+    Amazon Redshift
+    """
+
     HIVE = "hive"
-    """Apache Hive."""
+    """
+    Apache Hive
+    """
+
     CLOUDSCAPE = "cloudscape"
-    """Cloudscape."""
+    """
+    Cloudscape
+    """
+
     HSQLDB = "hsqldb"
-    """HyperSQL DataBase."""
+    """
+    HyperSQL DataBase
+    """
+
     PROGRESS = "progress"
-    """Progress Database."""
+    """
+    Progress Database
+    """
+
     MAXDB = "maxdb"
-    """SAP MaxDB."""
+    """
+    SAP MaxDB
+    """
+
     HANADB = "hanadb"
-    """SAP HANA."""
+    """
+    SAP HANA
+    """
+
     INGRES = "ingres"
-    """Ingres."""
+    """
+    Ingres
+    """
+
     FIRSTSQL = "firstsql"
-    """FirstSQL."""
+    """
+    FirstSQL
+    """
+
     EDB = "edb"
-    """EnterpriseDB."""
+    """
+    EnterpriseDB
+    """
+
     CACHE = "cache"
-    """InterSystems Caché."""
+    """
+    InterSystems Caché
+    """
+
     ADABAS = "adabas"
-    """Adabas (Adaptable Database System)."""
+    """
+    Adabas (Adaptable Database System)
+    """
+
     FIREBIRD = "firebird"
-    """Firebird."""
+    """
+    Firebird
+    """
+
     DERBY = "derby"
-    """Apache Derby."""
+    """
+    Apache Derby
+    """
+
     FILEMAKER = "filemaker"
-    """FileMaker."""
+    """
+    FileMaker
+    """
+
     INFORMIX = "informix"
-    """Informix."""
+    """
+    Informix
+    """
+
     INSTANTDB = "instantdb"
-    """InstantDB."""
+    """
+    InstantDB
+    """
+
     INTERBASE = "interbase"
-    """InterBase."""
+    """
+    InterBase
+    """
+
     MARIADB = "mariadb"
-    """MariaDB."""
+    """
+    MariaDB
+    """
+
     NETEZZA = "netezza"
-    """Netezza."""
+    """
+    Netezza
+    """
+
     PERVASIVE = "pervasive"
-    """Pervasive PSQL."""
+    """
+    Pervasive PSQL
+    """
+
     POINTBASE = "pointbase"
-    """PointBase."""
+    """
+    PointBase
+    """
+
     SQLITE = "sqlite"
-    """SQLite."""
+    """
+    SQLite
+    """
+
     SYBASE = "sybase"
-    """Sybase."""
+    """
+    Sybase
+    """
+
     TERADATA = "teradata"
-    """Teradata."""
+    """
+    Teradata
+    """
+
     VERTICA = "vertica"
-    """Vertica."""
+    """
+    Vertica
+    """
+
     H2 = "h2"
-    """H2."""
+    """
+    H2
+    """
+
     COLDFUSION = "coldfusion"
-    """ColdFusion IMQ."""
+    """
+    ColdFusion IMQ
+    """
+
     CASSANDRA = "cassandra"
-    """Apache Cassandra."""
+    """
+    Apache Cassandra
+    """
+
     HBASE = "hbase"
-    """Apache HBase."""
+    """
+    Apache HBase
+    """
+
     MONGODB = "mongodb"
-    """MongoDB."""
+    """
+    MongoDB
+    """
+
     REDIS = "redis"
-    """Redis."""
+    """
+    Redis
+    """
+
     COUCHBASE = "couchbase"
-    """Couchbase."""
+    """
+    Couchbase
+    """
+
     COUCHDB = "couchdb"
-    """CouchDB."""
+    """
+    CouchDB
+    """
+
     COSMOSDB = "cosmosdb"
-    """Microsoft Azure Cosmos DB."""
+    """
+    Microsoft Azure Cosmos DB
+    """
+
     DYNAMODB = "dynamodb"
-    """Amazon DynamoDB."""
+    """
+    Amazon DynamoDB
+    """
+
     NEO4J = "neo4j"
-    """Neo4j."""
+    """
+    Neo4j
+    """
+
     GEODE = "geode"
-    """Apache Geode."""
+    """
+    Apache Geode
+    """
+
     ELASTICSEARCH = "elasticsearch"
-    """Elasticsearch."""
+    """
+    Elasticsearch
+    """
+
     MEMCACHED = "memcached"
-    """Memcached."""
+    """
+    Memcached
+    """
+
     COCKROACHDB = "cockroachdb"
-    """CockroachDB."""
+    """
+    CockroachDB
+    """
+
     OPENSEARCH = "opensearch"
-    """OpenSearch."""
+    """
+    OpenSearch
+    """
+
     CLICKHOUSE = "clickhouse"
-    """ClickHouse."""
+    """
+    ClickHouse
+    """
+
     SPANNER = "spanner"
-    """Cloud Spanner."""
+    """
+    Cloud Spanner
+    """
+
     TRINO = "trino"
-    """Trino."""
+    """
+    Trino
+    """
+
+
+class StateValues(Enum):
+    IDLE = "idle"
+
+    USED = "used"

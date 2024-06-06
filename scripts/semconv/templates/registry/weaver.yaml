@@ -1,25 +1,39 @@
 templates:
-  - pattern: attributes2/semantic_attributes.j2
+  - pattern: semantic_attributes.j2
     filter: >
-      ["ios", "aspnetcore", "signalr", "android", "dotnet"] as $excluded |
+      ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"] as $excluded |
       .groups
       | map(select(.type == "attribute_group"))
       | map(select(.id | startswith("registry")))
       | map({ id: .id, group_id: .id | split(".") | .[1], attributes: .attributes})
       | group_by(.group_id)
-      | map({ id: .[0].group_id, attributes: [.[].attributes[]] | map(select(.stability == "stable")) | sort_by(.id) })
+      | map({ id: .[0].group_id, attributes: [.[].attributes[]] | sort_by(.id), output: "_incubating/attributes/", stable_package_name: "opentelemetry.semconv.attributes" })
       | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
       | map(select(.attributes | length > 0))
     application_mode: each
-  - pattern: metrics/semantic_metrics.j2
+  - pattern: semantic_attributes.j2
     filter: >
-      ["ios", "aspnetcore", "signalr", "android", "dotnet"] as $excluded |
+      ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"] as $excluded |
+      .groups
+      | map(select(.type == "attribute_group"))
+      | map(select(.id | startswith("registry")))
+      | map({ id: .id, group_id: .id | split(".") | .[1], attributes: .attributes})
+      | group_by(.group_id)
+      | map({ id: .[0].group_id, attributes: [.[].attributes[]] | map(select(.stability == "stable")) | sort_by(.id), output: "attributes/" })
+      | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
+      | map(select(.attributes | length > 0))
+    application_mode: each
+  - pattern: semantic_metrics.j2
+    filter: >
+      ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"] as $excluded |
       .groups
       | map(select(.type == "metric"))
       | map(select(.stability == "stable"))
       | group_by(.id | split(".") | .[1])
+      | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
       | map({
         id: .[0].id | split(".") | .[1],
-        metrics: .
+        metrics: .,
+        output: "metrics/"
       })
     application_mode: each

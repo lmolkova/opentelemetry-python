@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 NETWORK_LOCAL_ADDRESS = "network.local.address"
 """
@@ -52,9 +53,9 @@ NETWORK_TRANSPORT = "network.transport"
 [OSI transport layer](https://osi-model.com/transport-layer/) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
 Note: The value SHOULD be normalized to lowercase.
 
-    Consider always setting the transport when setting a port number, since
-    a port number is ambiguous without knowing the transport. For example
-    different processes could be listening on TCP port 12345 and UDP port 12345.
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport. For example
+different processes could be listening on TCP port 12345 and UDP port 12345.
 """
 
 NETWORK_TYPE = "network.type"
@@ -66,17 +67,33 @@ Note: The value SHOULD be normalized to lowercase.
 
 class NetworkTransportValues(Enum):
     TCP = "tcp"
-    """TCP."""
+    """
+    TCP
+    """
+
     UDP = "udp"
-    """UDP."""
+    """
+    UDP
+    """
+
     PIPE = "pipe"
-    """Named or anonymous pipe."""
+    """
+    Named or anonymous pipe.
+    """
+
     UNIX = "unix"
-    """Unix domain socket."""
+    """
+    Unix domain socket
+    """
 
 
 class NetworkTypeValues(Enum):
     IPV4 = "ipv4"
-    """IPv4."""
+    """
+    IPv4
+    """
+
     IPV6 = "ipv6"
-    """IPv6."""
+    """
+    IPv6
+    """

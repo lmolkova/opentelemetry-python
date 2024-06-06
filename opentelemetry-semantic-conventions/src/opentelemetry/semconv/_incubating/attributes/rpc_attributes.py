@@ -12,8 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
+
+MESSAGE_COMPRESSED__SIZE = "message.compressed_size"
+"""
+Deprecated: Replaced by `rpc.message.compressed_size`.
+"""
+
+MESSAGE_ID = "message.id"
+"""
+Deprecated: Replaced by `rpc.message.id`.
+"""
+
+MESSAGE_TYPE = "message.type"
+"""
+Deprecated: Replaced by `rpc.message.type`.
+"""
+
+MESSAGE_UNCOMPRESSED__SIZE = "message.uncompressed_size"
+"""
+Deprecated: Replaced by `rpc.message.uncompressed_size`.
+"""
 
 RPC_CONNECT__RPC_ERROR__CODE = "rpc.connect_rpc.error_code"
 """
@@ -71,6 +92,27 @@ RPC_JSONRPC_VERSION = "rpc.jsonrpc.version"
 Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
 """
 
+RPC_MESSAGE_COMPRESSED__SIZE = "rpc.message.compressed_size"
+"""
+Compressed size of the message in bytes.
+"""
+
+RPC_MESSAGE_ID = "rpc.message.id"
+"""
+MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
+Note: This way we guarantee that the values will be consistent between different implementations.
+"""
+
+RPC_MESSAGE_TYPE = "rpc.message.type"
+"""
+Whether this is a received or sent message.
+"""
+
+RPC_MESSAGE_UNCOMPRESSED__SIZE = "rpc.message.uncompressed_size"
+"""
+Uncompressed size of the message in bytes.
+"""
+
 RPC_METHOD = "rpc.method"
 """
 The name of the (logical) method being called, must be equal to the $method part in the span name.
@@ -89,86 +131,161 @@ A string identifying the remoting system. See below for a list of well-known ide
 """
 
 
-class RpcConnectRpcErrorCodeValues(Enum):
+class MessageTypeValues(Enum):
+    SENT = "SENT"
+
+    RECEIVED = "RECEIVED"
+
+
+class RpcConnect_RpcError_CodeValues(Enum):
     CANCELLED = "cancelled"
-    """cancelled."""
+
     UNKNOWN = "unknown"
-    """unknown."""
+
     INVALID__ARGUMENT = "invalid_argument"
-    """invalid_argument."""
+
     DEADLINE__EXCEEDED = "deadline_exceeded"
-    """deadline_exceeded."""
+
     NOT__FOUND = "not_found"
-    """not_found."""
+
     ALREADY__EXISTS = "already_exists"
-    """already_exists."""
+
     PERMISSION__DENIED = "permission_denied"
-    """permission_denied."""
+
     RESOURCE__EXHAUSTED = "resource_exhausted"
-    """resource_exhausted."""
+
     FAILED__PRECONDITION = "failed_precondition"
-    """failed_precondition."""
+
     ABORTED = "aborted"
-    """aborted."""
+
     OUT__OF__RANGE = "out_of_range"
-    """out_of_range."""
+
     UNIMPLEMENTED = "unimplemented"
-    """unimplemented."""
+
     INTERNAL = "internal"
-    """internal."""
+
     UNAVAILABLE = "unavailable"
-    """unavailable."""
+
     DATA__LOSS = "data_loss"
-    """data_loss."""
+
     UNAUTHENTICATED = "unauthenticated"
-    """unauthenticated."""
 
 
-class RpcGrpcStatusCodeValues(Enum):
-    OK = 0
-    """OK."""
-    CANCELLED = 1
-    """CANCELLED."""
-    UNKNOWN = 2
-    """UNKNOWN."""
-    INVALID__ARGUMENT = 3
-    """INVALID_ARGUMENT."""
-    DEADLINE__EXCEEDED = 4
-    """DEADLINE_EXCEEDED."""
-    NOT__FOUND = 5
-    """NOT_FOUND."""
-    ALREADY__EXISTS = 6
-    """ALREADY_EXISTS."""
-    PERMISSION__DENIED = 7
-    """PERMISSION_DENIED."""
-    RESOURCE__EXHAUSTED = 8
-    """RESOURCE_EXHAUSTED."""
-    FAILED__PRECONDITION = 9
-    """FAILED_PRECONDITION."""
-    ABORTED = 10
-    """ABORTED."""
-    OUT__OF__RANGE = 11
-    """OUT_OF_RANGE."""
-    UNIMPLEMENTED = 12
-    """UNIMPLEMENTED."""
-    INTERNAL = 13
-    """INTERNAL."""
-    UNAVAILABLE = 14
-    """UNAVAILABLE."""
-    DATA__LOSS = 15
-    """DATA_LOSS."""
-    UNAUTHENTICATED = 16
-    """UNAUTHENTICATED."""
+class RpcGrpcStatus_CodeValues(Enum):
+    OK = "0"
+    """
+    OK
+    """
+
+    CANCELLED = "1"
+    """
+    CANCELLED
+    """
+
+    UNKNOWN = "2"
+    """
+    UNKNOWN
+    """
+
+    INVALID__ARGUMENT = "3"
+    """
+    INVALID_ARGUMENT
+    """
+
+    DEADLINE__EXCEEDED = "4"
+    """
+    DEADLINE_EXCEEDED
+    """
+
+    NOT__FOUND = "5"
+    """
+    NOT_FOUND
+    """
+
+    ALREADY__EXISTS = "6"
+    """
+    ALREADY_EXISTS
+    """
+
+    PERMISSION__DENIED = "7"
+    """
+    PERMISSION_DENIED
+    """
+
+    RESOURCE__EXHAUSTED = "8"
+    """
+    RESOURCE_EXHAUSTED
+    """
+
+    FAILED__PRECONDITION = "9"
+    """
+    FAILED_PRECONDITION
+    """
+
+    ABORTED = "10"
+    """
+    ABORTED
+    """
+
+    OUT__OF__RANGE = "11"
+    """
+    OUT_OF_RANGE
+    """
+
+    UNIMPLEMENTED = "12"
+    """
+    UNIMPLEMENTED
+    """
+
+    INTERNAL = "13"
+    """
+    INTERNAL
+    """
+
+    UNAVAILABLE = "14"
+    """
+    UNAVAILABLE
+    """
+
+    DATA__LOSS = "15"
+    """
+    DATA_LOSS
+    """
+
+    UNAUTHENTICATED = "16"
+    """
+    UNAUTHENTICATED
+    """
+
+
+class RpcMessageTypeValues(Enum):
+    SENT = "SENT"
+
+    RECEIVED = "RECEIVED"
 
 
 class RpcSystemValues(Enum):
     GRPC = "grpc"
-    """gRPC."""
+    """
+    gRPC
+    """
+
     JAVA__RMI = "java_rmi"
-    """Java RMI."""
+    """
+    Java RMI
+    """
+
     DOTNET__WCF = "dotnet_wcf"
-    """.NET WCF."""
+    """
+    .NET WCF
+    """
+
     APACHE__DUBBO = "apache_dubbo"
-    """Apache Dubbo."""
+    """
+    Apache Dubbo
+    """
+
     CONNECT__RPC = "connect_rpc"
-    """Connect RPC."""
+    """
+    Connect RPC
+    """

@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 MESSAGING_BATCH_MESSAGE__COUNT = "messaging.batch.message_count"
 """
@@ -21,9 +22,14 @@ The number of messages sent, received, or processed in the scope of the batching
 Note: Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 """
 
-MESSAGING_CLIENT__ID = "messaging.client_id"
+MESSAGING_CLIENT_ID = "messaging.client.id"
 """
 A unique identifier for the client that consumes or produces a message.
+"""
+
+MESSAGING_CLIENT__ID = "messaging.client_id"
+"""
+Deprecated: Replaced by `messaging.client.id`.
 """
 
 MESSAGING_DESTINATION_ANONYMOUS = "messaging.destination.anonymous"
@@ -33,9 +39,9 @@ A boolean that is true if the message destination is anonymous (could be unnamed
 
 MESSAGING_DESTINATION_NAME = "messaging.destination.name"
 """
-The message destination name.
+The message destination name
 Note: Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-    the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 """
 
 MESSAGING_DESTINATION_PARTITION_ID = "messaging.destination.partition.id"
@@ -45,7 +51,7 @@ The identifier of the partition messages are sent to or received from, unique wi
 
 MESSAGING_DESTINATION_TEMPLATE = "messaging.destination.template"
 """
-Low cardinality representation of the messaging destination name.
+Low cardinality representation of the messaging destination name
 Note: Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 """
 
@@ -63,9 +69,9 @@ A boolean that is true if the publish message destination is anonymous (could be
 
 MESSAGING_DESTINATION__PUBLISH_NAME = "messaging.destination_publish.name"
 """
-The name of the original destination the message was published to.
+The name of the original destination the message was published to
 Note: The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
-    the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
+the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
 """
 
 MESSAGING_EVENTHUBS_CONSUMER_GROUP = "messaging.eventhubs.consumer.group"
@@ -78,6 +84,25 @@ MESSAGING_EVENTHUBS_MESSAGE_ENQUEUED__TIME = (
 )
 """
 The UTC epoch seconds at which the message has been accepted and stored in the entity.
+"""
+
+MESSAGING_GCP__PUBSUB_MESSAGE_ACK__DEADLINE = (
+    "messaging.gcp_pubsub.message.ack_deadline"
+)
+"""
+The ack deadline in seconds set for the modify ack deadline request.
+"""
+
+MESSAGING_GCP__PUBSUB_MESSAGE_ACK__ID = "messaging.gcp_pubsub.message.ack_id"
+"""
+The ack id for a given message.
+"""
+
+MESSAGING_GCP__PUBSUB_MESSAGE_DELIVERY__ATTEMPT = (
+    "messaging.gcp_pubsub.message.delivery_attempt"
+)
+"""
+The delivery attempt for a given message.
 """
 
 MESSAGING_GCP__PUBSUB_MESSAGE_ORDERING__KEY = (
@@ -117,7 +142,7 @@ MESSAGING_MESSAGE_BODY_SIZE = "messaging.message.body.size"
 """
 The size of the message body in bytes.
 Note: This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
-    body size should be used.
+body size should be used.
 """
 
 MESSAGING_MESSAGE_CONVERSATION__ID = "messaging.message.conversation_id"
@@ -129,7 +154,7 @@ MESSAGING_MESSAGE_ENVELOPE_SIZE = "messaging.message.envelope.size"
 """
 The size of the message body and metadata in bytes.
 Note: This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
-    size should be used.
+size should be used.
 """
 
 MESSAGING_MESSAGE_ID = "messaging.message.id"
@@ -139,7 +164,17 @@ A value used by the messaging system as an identifier for the message, represent
 
 MESSAGING_OPERATION = "messaging.operation"
 """
-A string identifying the kind of messaging operation.
+Deprecated: Replaced by `messaging.operation.type`.
+"""
+
+MESSAGING_OPERATION_NAME = "messaging.operation.name"
+"""
+The system-specific name of the messaging operation.
+"""
+
+MESSAGING_OPERATION_TYPE = "messaging.operation.type"
+"""
+A string identifying the type of the messaging operation.
 Note: If a custom value is used, it MUST be of low cardinality.
 """
 
@@ -154,7 +189,7 @@ MESSAGING_RABBITMQ_MESSAGE_DELIVERY__TAG = (
     "messaging.rabbitmq.message.delivery_tag"
 )
 """
-RabbitMQ message delivery tag.
+RabbitMQ message delivery tag
 """
 
 MESSAGING_ROCKETMQ_CLIENT__GROUP = "messaging.rocketmq.client_group"
@@ -236,70 +271,141 @@ The UTC epoch seconds at which the message has been accepted and stored in the e
 
 MESSAGING_SYSTEM = "messaging.system"
 """
-An identifier for the messaging system being used. See below for a list of well-known identifiers.
+The messaging system as identified by the client instrumentation.
+Note: The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 """
 
 
-class MessagingOperationValues(Enum):
+class MessagingOperationTypeValues(Enum):
     PUBLISH = "publish"
-    """One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created."""
+    """
+    One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created.
+    """
+
     CREATE = "create"
-    """A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios."""
+    """
+    A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios.
+    """
+
     RECEIVE = "receive"
-    """One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages."""
+    """
+    One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
+    """
+
     DELIVER = "process"
-    """One or more messages are delivered to or processed by a consumer."""
+    """
+    One or more messages are delivered to or processed by a consumer.
+    """
+
     SETTLE = "settle"
-    """One or more messages are settled."""
+    """
+    One or more messages are settled.
+    """
 
 
-class MessagingRocketmqConsumptionModelValues(Enum):
+class MessagingRocketmqConsumption_ModelValues(Enum):
     CLUSTERING = "clustering"
-    """Clustering consumption model."""
+    """
+    Clustering consumption model
+    """
+
     BROADCASTING = "broadcasting"
-    """Broadcasting consumption model."""
+    """
+    Broadcasting consumption model
+    """
 
 
 class MessagingRocketmqMessageTypeValues(Enum):
     NORMAL = "normal"
-    """Normal message."""
+    """
+    Normal message
+    """
+
     FIFO = "fifo"
-    """FIFO message."""
+    """
+    FIFO message
+    """
+
     DELAY = "delay"
-    """Delay message."""
+    """
+    Delay message
+    """
+
     TRANSACTION = "transaction"
-    """Transaction message."""
+    """
+    Transaction message
+    """
 
 
-class MessagingServicebusDispositionStatusValues(Enum):
+class MessagingServicebusDisposition_StatusValues(Enum):
     COMPLETE = "complete"
-    """Message is completed."""
+    """
+    Message is completed
+    """
+
     ABANDON = "abandon"
-    """Message is abandoned."""
+    """
+    Message is abandoned
+    """
+
     DEAD__LETTER = "dead_letter"
-    """Message is sent to dead letter queue."""
+    """
+    Message is sent to dead letter queue
+    """
+
     DEFER = "defer"
-    """Message is deferred."""
+    """
+    Message is deferred
+    """
 
 
 class MessagingSystemValues(Enum):
     ACTIVEMQ = "activemq"
-    """Apache ActiveMQ."""
+    """
+    Apache ActiveMQ
+    """
+
     AWS__SQS = "aws_sqs"
-    """Amazon Simple Queue Service (SQS)."""
+    """
+    Amazon Simple Queue Service (SQS)
+    """
+
     EVENTGRID = "eventgrid"
-    """Azure Event Grid."""
+    """
+    Azure Event Grid
+    """
+
     EVENTHUBS = "eventhubs"
-    """Azure Event Hubs."""
+    """
+    Azure Event Hubs
+    """
+
     SERVICEBUS = "servicebus"
-    """Azure Service Bus."""
+    """
+    Azure Service Bus
+    """
+
     GCP__PUBSUB = "gcp_pubsub"
-    """Google Cloud Pub/Sub."""
+    """
+    Google Cloud Pub/Sub
+    """
+
     JMS = "jms"
-    """Java Message Service."""
+    """
+    Java Message Service
+    """
+
     KAFKA = "kafka"
-    """Apache Kafka."""
+    """
+    Apache Kafka
+    """
+
     RABBITMQ = "rabbitmq"
-    """RabbitMQ."""
+    """
+    RabbitMQ
+    """
+
     ROCKETMQ = "rocketmq"
-    """Apache RocketMQ."""
+    """
+    Apache RocketMQ
+    """

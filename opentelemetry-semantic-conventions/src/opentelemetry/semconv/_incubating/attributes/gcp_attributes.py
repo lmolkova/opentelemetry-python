@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+
+from deprecated import deprecated
 
 GCP_CLOUD__RUN_JOB_EXECUTION = "gcp.cloud_run.job.execution"
 """

@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
 
 from deprecated import deprecated
@@ -48,11 +47,13 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_a
 """
 
 
-@deprecated(
-    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatusCodeValues`."
-)
-class OtelStatusCodeValues(Enum):
+class OtelStatus_CodeValues(Enum):
     OK = "OK"
-    """The operation has been validated by an Application developer or Operator to have completed successfully."""
+    """
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatus_CodeValues.OK`.
+    """
+
     ERROR = "ERROR"
-    """The operation contains an error."""
+    """
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatus_CodeValues.ERROR`.
+    """

@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from enum import Enum
+
+from deprecated import deprecated
 
 CLOUD_ACCOUNT_ID = "cloud.account.id"
 """
@@ -45,98 +46,201 @@ Note: Refer to your provider's docs to see the available regions, for example [A
 
 CLOUD_RESOURCE__ID = "cloud.resource_id"
 """
-Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP).
+Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP)
 Note: On some cloud providers, it may not be possible to determine the full ID at startup,
-    so it may be necessary to set `cloud.resource_id` as a span attribute instead.
+so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
-    The exact value to use for `cloud.resource_id` depends on the cloud provider.
-    The following well-known definitions MUST be used if you set this attribute and they apply:
+The exact value to use for `cloud.resource_id` depends on the cloud provider.
+The following well-known definitions MUST be used if you set this attribute and they apply:
 
-    * **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-      Take care not to use the "invoked ARN" directly but replace any
-      [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
-      with the resolved function version, as the same runtime instance may be invokable with
-      multiple different aliases.
-    * **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-    * **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
-      *not* the function app, having the form
-      `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
-      This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
-      a TracerProvider.
+* **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+  Take care not to use the "invoked ARN" directly but replace any
+  [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
+  with the resolved function version, as the same runtime instance may be invokable with
+  multiple different aliases.
+* **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+* **Azure:** The [Fully Qualified Resource ID](https://docs.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+  *not* the function app, having the form
+  `/subscriptions/<SUBSCIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
+  This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
+  a TracerProvider.
 """
 
 
 class CloudPlatformValues(Enum):
     ALIBABA__CLOUD__ECS = "alibaba_cloud_ecs"
-    """Alibaba Cloud Elastic Compute Service."""
+    """
+    Alibaba Cloud Elastic Compute Service
+    """
+
     ALIBABA__CLOUD__FC = "alibaba_cloud_fc"
-    """Alibaba Cloud Function Compute."""
+    """
+    Alibaba Cloud Function Compute
+    """
+
     ALIBABA__CLOUD__OPENSHIFT = "alibaba_cloud_openshift"
-    """Red Hat OpenShift on Alibaba Cloud."""
+    """
+    Red Hat OpenShift on Alibaba Cloud
+    """
+
     AWS__EC2 = "aws_ec2"
-    """AWS Elastic Compute Cloud."""
+    """
+    AWS Elastic Compute Cloud
+    """
+
     AWS__ECS = "aws_ecs"
-    """AWS Elastic Container Service."""
+    """
+    AWS Elastic Container Service
+    """
+
     AWS__EKS = "aws_eks"
-    """AWS Elastic Kubernetes Service."""
+    """
+    AWS Elastic Kubernetes Service
+    """
+
     AWS__LAMBDA = "aws_lambda"
-    """AWS Lambda."""
+    """
+    AWS Lambda
+    """
+
     AWS__ELASTIC__BEANSTALK = "aws_elastic_beanstalk"
-    """AWS Elastic Beanstalk."""
+    """
+    AWS Elastic Beanstalk
+    """
+
     AWS__APP__RUNNER = "aws_app_runner"
-    """AWS App Runner."""
+    """
+    AWS App Runner
+    """
+
     AWS__OPENSHIFT = "aws_openshift"
-    """Red Hat OpenShift on AWS (ROSA)."""
+    """
+    Red Hat OpenShift on AWS (ROSA)
+    """
+
     AZURE__VM = "azure_vm"
-    """Azure Virtual Machines."""
+    """
+    Azure Virtual Machines
+    """
+
     AZURE__CONTAINER__APPS = "azure_container_apps"
-    """Azure Container Apps."""
+    """
+    Azure Container Apps
+    """
+
     AZURE__CONTAINER__INSTANCES = "azure_container_instances"
-    """Azure Container Instances."""
+    """
+    Azure Container Instances
+    """
+
     AZURE__AKS = "azure_aks"
-    """Azure Kubernetes Service."""
+    """
+    Azure Kubernetes Service
+    """
+
     AZURE__FUNCTIONS = "azure_functions"
-    """Azure Functions."""
+    """
+    Azure Functions
+    """
+
     AZURE__APP__SERVICE = "azure_app_service"
-    """Azure App Service."""
+    """
+    Azure App Service
+    """
+
     AZURE__OPENSHIFT = "azure_openshift"
-    """Azure Red Hat OpenShift."""
+    """
+    Azure Red Hat OpenShift
+    """
+
     GCP__BARE__METAL__SOLUTION = "gcp_bare_metal_solution"
-    """Google Bare Metal Solution (BMS)."""
+    """
+    Google Bare Metal Solution (BMS)
+    """
+
     GCP__COMPUTE__ENGINE = "gcp_compute_engine"
-    """Google Cloud Compute Engine (GCE)."""
+    """
+    Google Cloud Compute Engine (GCE)
+    """
+
     GCP__CLOUD__RUN = "gcp_cloud_run"
-    """Google Cloud Run."""
+    """
+    Google Cloud Run
+    """
+
     GCP__KUBERNETES__ENGINE = "gcp_kubernetes_engine"
-    """Google Cloud Kubernetes Engine (GKE)."""
+    """
+    Google Cloud Kubernetes Engine (GKE)
+    """
+
     GCP__CLOUD__FUNCTIONS = "gcp_cloud_functions"
-    """Google Cloud Functions (GCF)."""
+    """
+    Google Cloud Functions (GCF)
+    """
+
     GCP__APP__ENGINE = "gcp_app_engine"
-    """Google Cloud App Engine (GAE)."""
+    """
+    Google Cloud App Engine (GAE)
+    """
+
     GCP__OPENSHIFT = "gcp_openshift"
-    """Red Hat OpenShift on Google Cloud."""
+    """
+    Red Hat OpenShift on Google Cloud
+    """
+
     IBM__CLOUD__OPENSHIFT = "ibm_cloud_openshift"
-    """Red Hat OpenShift on IBM Cloud."""
+    """
+    Red Hat OpenShift on IBM Cloud
+    """
+
     TENCENT__CLOUD__CVM = "tencent_cloud_cvm"
-    """Tencent Cloud Cloud Virtual Machine (CVM)."""
+    """
+    Tencent Cloud Cloud Virtual Machine (CVM)
+    """
+
     TENCENT__CLOUD__EKS = "tencent_cloud_eks"
-    """Tencent Cloud Elastic Kubernetes Service (EKS)."""
+    """
+    Tencent Cloud Elastic Kubernetes Service (EKS)
+    """
+
     TENCENT__CLOUD__SCF = "tencent_cloud_scf"
-    """Tencent Cloud Serverless Cloud Function (SCF)."""
+    """
+    Tencent Cloud Serverless Cloud Function (SCF)
+    """
 
 
 class CloudProviderValues(Enum):
     ALIBABA__CLOUD = "alibaba_cloud"
-    """Alibaba Cloud."""
+    """
+    Alibaba Cloud
+    """
+
     AWS = "aws"
-    """Amazon Web Services."""
+    """
+    Amazon Web Services
+    """
+
     AZURE = "azure"
-    """Microsoft Azure."""
+    """
+    Microsoft Azure
+    """
+
     GCP = "gcp"
-    """Google Cloud Platform."""
+    """
+    Google Cloud Platform
+    """
+
     HEROKU = "heroku"
-    """Heroku Platform as a Service."""
+    """
+    Heroku Platform as a Service
+    """
+
     IBM__CLOUD = "ibm_cloud"
-    """IBM Cloud."""
+    """
+    IBM Cloud
+    """
+
     TENCENT__CLOUD = "tencent_cloud"
-    """Tencent Cloud."""
+    """
+    Tencent Cloud
+    """

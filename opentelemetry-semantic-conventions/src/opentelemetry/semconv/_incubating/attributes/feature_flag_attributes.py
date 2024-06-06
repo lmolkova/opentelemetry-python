@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
+
+from deprecated import deprecated
 
 FEATURE__FLAG_KEY = "feature_flag.key"
 """
@@ -27,11 +30,11 @@ FEATURE__FLAG_VARIANT = "feature_flag.variant"
 """
 SHOULD be a semantic identifier for a value. If one is unavailable, a stringified version of the value can be used.
 Note: A semantic identifier, commonly referred to as a variant, provides a means
-    for referring to a value without including the value itself. This can
-    provide additional context for understanding the meaning behind a value.
-    For example, the variant `red` maybe be used for the value `#c05543`.
+for referring to a value without including the value itself. This can
+provide additional context for understanding the meaning behind a value.
+For example, the variant `red` maybe be used for the value `#c05543`.
 
-    A stringified version of the value can be used in situations where a
-    semantic identifier is unavailable. String representation of the value
-    should be determined by the implementer.
+A stringified version of the value can be used in situations where a
+semantic identifier is unavailable. String representation of the value
+should be determined by the implementer.
 """
