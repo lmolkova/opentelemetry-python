@@ -12,18 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
 
-from deprecated import deprecated
+from enum import Enum
 
 ERROR_TYPE = "error.type"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.error_attributes.ERROR_TYPE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.error_attributes.ERROR_TYPE`.
 """
 
 
 class ErrorTypeValues(Enum):
     OTHER = "_OTHER"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.error_attributes.ErrorTypeValues.OTHER`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.error_attributes.ErrorTypeValues.OTHER`.
     """

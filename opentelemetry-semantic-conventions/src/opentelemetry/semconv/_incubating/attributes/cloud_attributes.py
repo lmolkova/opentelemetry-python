@@ -12,16 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
 
-from deprecated import deprecated
+from enum import Enum
 
 CLOUD_ACCOUNT_ID = "cloud.account.id"
 """
 The cloud account ID the resource is assigned to.
 """
 
-CLOUD_AVAILABILITY__ZONE = "cloud.availability_zone"
+CLOUD_AVAILABILITYZONE = "cloud.availability_zone"
 """
 Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
 Note: Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
@@ -44,7 +43,7 @@ The geographical region the resource is running.
 Note: Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 """
 
-CLOUD_RESOURCE__ID = "cloud.resource_id"
+CLOUD_RESOURCEID = "cloud.resource_id"
 """
 Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP)
 Note: On some cloud providers, it may not be possible to determine the full ID at startup,
@@ -68,149 +67,149 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 
 class CloudPlatformValues(Enum):
-    ALIBABA__CLOUD__ECS = "alibaba_cloud_ecs"
+    ALIBABACLOUDECS = "alibaba_cloud_ecs"
     """
     Alibaba Cloud Elastic Compute Service
     """
 
-    ALIBABA__CLOUD__FC = "alibaba_cloud_fc"
+    ALIBABACLOUDFC = "alibaba_cloud_fc"
     """
     Alibaba Cloud Function Compute
     """
 
-    ALIBABA__CLOUD__OPENSHIFT = "alibaba_cloud_openshift"
+    ALIBABACLOUDOPENSHIFT = "alibaba_cloud_openshift"
     """
     Red Hat OpenShift on Alibaba Cloud
     """
 
-    AWS__EC2 = "aws_ec2"
+    AWSEC2 = "aws_ec2"
     """
     AWS Elastic Compute Cloud
     """
 
-    AWS__ECS = "aws_ecs"
+    AWSECS = "aws_ecs"
     """
     AWS Elastic Container Service
     """
 
-    AWS__EKS = "aws_eks"
+    AWSEKS = "aws_eks"
     """
     AWS Elastic Kubernetes Service
     """
 
-    AWS__LAMBDA = "aws_lambda"
+    AWSLAMBDA = "aws_lambda"
     """
     AWS Lambda
     """
 
-    AWS__ELASTIC__BEANSTALK = "aws_elastic_beanstalk"
+    AWSELASTICBEANSTALK = "aws_elastic_beanstalk"
     """
     AWS Elastic Beanstalk
     """
 
-    AWS__APP__RUNNER = "aws_app_runner"
+    AWSAPPRUNNER = "aws_app_runner"
     """
     AWS App Runner
     """
 
-    AWS__OPENSHIFT = "aws_openshift"
+    AWSOPENSHIFT = "aws_openshift"
     """
     Red Hat OpenShift on AWS (ROSA)
     """
 
-    AZURE__VM = "azure_vm"
+    AZUREVM = "azure_vm"
     """
     Azure Virtual Machines
     """
 
-    AZURE__CONTAINER__APPS = "azure_container_apps"
+    AZURECONTAINERAPPS = "azure_container_apps"
     """
     Azure Container Apps
     """
 
-    AZURE__CONTAINER__INSTANCES = "azure_container_instances"
+    AZURECONTAINERINSTANCES = "azure_container_instances"
     """
     Azure Container Instances
     """
 
-    AZURE__AKS = "azure_aks"
+    AZUREAKS = "azure_aks"
     """
     Azure Kubernetes Service
     """
 
-    AZURE__FUNCTIONS = "azure_functions"
+    AZUREFUNCTIONS = "azure_functions"
     """
     Azure Functions
     """
 
-    AZURE__APP__SERVICE = "azure_app_service"
+    AZUREAPPSERVICE = "azure_app_service"
     """
     Azure App Service
     """
 
-    AZURE__OPENSHIFT = "azure_openshift"
+    AZUREOPENSHIFT = "azure_openshift"
     """
     Azure Red Hat OpenShift
     """
 
-    GCP__BARE__METAL__SOLUTION = "gcp_bare_metal_solution"
+    GCPBAREMETALSOLUTION = "gcp_bare_metal_solution"
     """
     Google Bare Metal Solution (BMS)
     """
 
-    GCP__COMPUTE__ENGINE = "gcp_compute_engine"
+    GCPCOMPUTEENGINE = "gcp_compute_engine"
     """
     Google Cloud Compute Engine (GCE)
     """
 
-    GCP__CLOUD__RUN = "gcp_cloud_run"
+    GCPCLOUDRUN = "gcp_cloud_run"
     """
     Google Cloud Run
     """
 
-    GCP__KUBERNETES__ENGINE = "gcp_kubernetes_engine"
+    GCPKUBERNETESENGINE = "gcp_kubernetes_engine"
     """
     Google Cloud Kubernetes Engine (GKE)
     """
 
-    GCP__CLOUD__FUNCTIONS = "gcp_cloud_functions"
+    GCPCLOUDFUNCTIONS = "gcp_cloud_functions"
     """
     Google Cloud Functions (GCF)
     """
 
-    GCP__APP__ENGINE = "gcp_app_engine"
+    GCPAPPENGINE = "gcp_app_engine"
     """
     Google Cloud App Engine (GAE)
     """
 
-    GCP__OPENSHIFT = "gcp_openshift"
+    GCPOPENSHIFT = "gcp_openshift"
     """
     Red Hat OpenShift on Google Cloud
     """
 
-    IBM__CLOUD__OPENSHIFT = "ibm_cloud_openshift"
+    IBMCLOUDOPENSHIFT = "ibm_cloud_openshift"
     """
     Red Hat OpenShift on IBM Cloud
     """
 
-    TENCENT__CLOUD__CVM = "tencent_cloud_cvm"
+    TENCENTCLOUDCVM = "tencent_cloud_cvm"
     """
     Tencent Cloud Cloud Virtual Machine (CVM)
     """
 
-    TENCENT__CLOUD__EKS = "tencent_cloud_eks"
+    TENCENTCLOUDEKS = "tencent_cloud_eks"
     """
     Tencent Cloud Elastic Kubernetes Service (EKS)
     """
 
-    TENCENT__CLOUD__SCF = "tencent_cloud_scf"
+    TENCENTCLOUDSCF = "tencent_cloud_scf"
     """
     Tencent Cloud Serverless Cloud Function (SCF)
     """
 
 
 class CloudProviderValues(Enum):
-    ALIBABA__CLOUD = "alibaba_cloud"
+    ALIBABACLOUD = "alibaba_cloud"
     """
     Alibaba Cloud
     """
@@ -235,12 +234,12 @@ class CloudProviderValues(Enum):
     Heroku Platform as a Service
     """
 
-    IBM__CLOUD = "ibm_cloud"
+    IBMCLOUD = "ibm_cloud"
     """
     IBM Cloud
     """
 
-    TENCENT__CLOUD = "tencent_cloud"
+    TENCENTCLOUD = "tencent_cloud"
     """
     Tencent Cloud
     """

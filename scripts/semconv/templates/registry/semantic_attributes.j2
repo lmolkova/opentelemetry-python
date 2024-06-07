@@ -16,8 +16,8 @@
 
 {%- import 'common.j2' as common %}
 
-from enum import Enum
-from deprecated import deprecated
+{% set enum_attributes = ctx.attributes | selectattr("type", "mapping") | list %}
+{% if enum_attributes | count > 0 %}from enum import Enum{% endif %}
 
 {%- macro attribute_name(attribute) -%}
 {{common.to_const_name(attribute.name)}}{%- if "template" in attribute.type -%}_TEMPLATE{%- endif -%}
@@ -30,7 +30,7 @@ from deprecated import deprecated
 {%- macro write_docstring(name, brief, note, deprecated, stability, prefix) -%}
     {%- if deprecated is defined and deprecated is not none and deprecated|length %}
 {{prefix}}Deprecated: {{deprecated | comment_with_prefix(prefix)}}
-    {%- elif ctx.stable_package_name is defined and stability == "stable" %}
+    {%- elif ctx.filter == "any" and stability == "stable" %}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
     {%- elif brief is defined and brief is not none and brief|length %}
 {{brief | comment_with_prefix(prefix)}}
@@ -49,7 +49,7 @@ from deprecated import deprecated
 """{%- endif %}
 {% endfor %}
 
-{% for attribute in ctx.attributes | sort(attribute="name") %}{% if attribute.type is mapping %}
+{% for attribute in enum_attributes | sort(attribute="name") %}
 {%- set class_name = common.to_class_name(attribute.name) ~ "Values" -%}
 class {{class_name}}(Enum):
     {%- for member in attribute.type.members %}
@@ -60,5 +60,4 @@ class {{class_name}}(Enum):
     """{{doc_string}}
     """{%- endif %}
     {% endfor %}
-{% endif %}
 {% endfor %}

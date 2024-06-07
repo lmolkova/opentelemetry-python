@@ -12,26 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from enum import Enum
 
-from deprecated import deprecated
-
-AWS_DYNAMODB_ATTRIBUTE__DEFINITIONS = "aws.dynamodb.attribute_definitions"
+AWS_DYNAMODB_ATTRIBUTEDEFINITIONS = "aws.dynamodb.attribute_definitions"
 """
 The JSON-serialized value of each item in the `AttributeDefinitions` request field.
 """
 
-AWS_DYNAMODB_ATTRIBUTES__TO__GET = "aws.dynamodb.attributes_to_get"
+AWS_DYNAMODB_ATTRIBUTESTOGET = "aws.dynamodb.attributes_to_get"
 """
 The value of the `AttributesToGet` request parameter.
 """
 
-AWS_DYNAMODB_CONSISTENT__READ = "aws.dynamodb.consistent_read"
+AWS_DYNAMODB_CONSISTENTREAD = "aws.dynamodb.consistent_read"
 """
 The value of the `ConsistentRead` request parameter.
 """
 
-AWS_DYNAMODB_CONSUMED__CAPACITY = "aws.dynamodb.consumed_capacity"
+AWS_DYNAMODB_CONSUMEDCAPACITY = "aws.dynamodb.consumed_capacity"
 """
 The JSON-serialized value of each item in the `ConsumedCapacity` response field.
 """
@@ -41,31 +40,29 @@ AWS_DYNAMODB_COUNT = "aws.dynamodb.count"
 The value of the `Count` response parameter.
 """
 
-AWS_DYNAMODB_EXCLUSIVE__START__TABLE = "aws.dynamodb.exclusive_start_table"
+AWS_DYNAMODB_EXCLUSIVESTARTTABLE = "aws.dynamodb.exclusive_start_table"
 """
 The value of the `ExclusiveStartTableName` request parameter.
 """
 
-AWS_DYNAMODB_GLOBAL__SECONDARY__INDEX__UPDATES = (
+AWS_DYNAMODB_GLOBALSECONDARYINDEXUPDATES = (
     "aws.dynamodb.global_secondary_index_updates"
 )
 """
 The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
 """
 
-AWS_DYNAMODB_GLOBAL__SECONDARY__INDEXES = (
-    "aws.dynamodb.global_secondary_indexes"
-)
+AWS_DYNAMODB_GLOBALSECONDARYINDEXES = "aws.dynamodb.global_secondary_indexes"
 """
 The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
 """
 
-AWS_DYNAMODB_INDEX__NAME = "aws.dynamodb.index_name"
+AWS_DYNAMODB_INDEXNAME = "aws.dynamodb.index_name"
 """
 The value of the `IndexName` request parameter.
 """
 
-AWS_DYNAMODB_ITEM__COLLECTION__METRICS = "aws.dynamodb.item_collection_metrics"
+AWS_DYNAMODB_ITEMCOLLECTIONMETRICS = "aws.dynamodb.item_collection_metrics"
 """
 The JSON-serialized value of the `ItemCollectionMetrics` response field.
 """
@@ -75,7 +72,7 @@ AWS_DYNAMODB_LIMIT = "aws.dynamodb.limit"
 The value of the `Limit` request parameter.
 """
 
-AWS_DYNAMODB_LOCAL__SECONDARY__INDEXES = "aws.dynamodb.local_secondary_indexes"
+AWS_DYNAMODB_LOCALSECONDARYINDEXES = "aws.dynamodb.local_secondary_indexes"
 """
 The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
 """
@@ -85,26 +82,24 @@ AWS_DYNAMODB_PROJECTION = "aws.dynamodb.projection"
 The value of the `ProjectionExpression` request parameter.
 """
 
-AWS_DYNAMODB_PROVISIONED__READ__CAPACITY = (
-    "aws.dynamodb.provisioned_read_capacity"
-)
+AWS_DYNAMODB_PROVISIONEDREADCAPACITY = "aws.dynamodb.provisioned_read_capacity"
 """
 The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
 """
 
-AWS_DYNAMODB_PROVISIONED__WRITE__CAPACITY = (
+AWS_DYNAMODB_PROVISIONEDWRITECAPACITY = (
     "aws.dynamodb.provisioned_write_capacity"
 )
 """
 The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
 """
 
-AWS_DYNAMODB_SCAN__FORWARD = "aws.dynamodb.scan_forward"
+AWS_DYNAMODB_SCANFORWARD = "aws.dynamodb.scan_forward"
 """
 The value of the `ScanIndexForward` request parameter.
 """
 
-AWS_DYNAMODB_SCANNED__COUNT = "aws.dynamodb.scanned_count"
+AWS_DYNAMODB_SCANNEDCOUNT = "aws.dynamodb.scanned_count"
 """
 The value of the `ScannedCount` response parameter.
 """
@@ -119,17 +114,17 @@ AWS_DYNAMODB_SELECT = "aws.dynamodb.select"
 The value of the `Select` request parameter.
 """
 
-AWS_DYNAMODB_TABLE__COUNT = "aws.dynamodb.table_count"
+AWS_DYNAMODB_TABLECOUNT = "aws.dynamodb.table_count"
 """
 The number of items in the `TableNames` response parameter.
 """
 
-AWS_DYNAMODB_TABLE__NAMES = "aws.dynamodb.table_names"
+AWS_DYNAMODB_TABLENAMES = "aws.dynamodb.table_names"
 """
 The keys in the `RequestItems` object field.
 """
 
-AWS_DYNAMODB_TOTAL__SEGMENTS = "aws.dynamodb.total_segments"
+AWS_DYNAMODB_TOTALSEGMENTS = "aws.dynamodb.total_segments"
 """
 The value of the `TotalSegments` request parameter.
 """
@@ -174,7 +169,7 @@ AWS_EKS_CLUSTER_ARN = "aws.eks.cluster.arn"
 The ARN of an EKS cluster.
 """
 
-AWS_LAMBDA_INVOKED__ARN = "aws.lambda.invoked_arn"
+AWS_LAMBDA_INVOKEDARN = "aws.lambda.invoked_arn"
 """
 The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
 Note: This may be different from `cloud.resource_id` if an alias is involved.
@@ -203,7 +198,7 @@ AWS_LOG_STREAM_NAMES = "aws.log.stream.names"
 The name(s) of the AWS log stream(s) an application is writing to.
 """
 
-AWS_REQUEST__ID = "aws.request_id"
+AWS_REQUESTID = "aws.request_id"
 """
 The AWS request ID as returned in the response headers `x-amz-request-id` or `x-amz-requestid`.
 """
@@ -215,7 +210,7 @@ Note: The `bucket` attribute is applicable to all S3 operations that reference a
 This applies to almost all S3 operations except `list-buckets`.
 """
 
-AWS_S3_COPY__SOURCE = "aws.s3.copy_source"
+AWS_S3_COPYSOURCE = "aws.s3.copy_source"
 """
 The source object (in the form `bucket`/`key`) for the copy operation.
 Note: The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
@@ -255,7 +250,7 @@ This applies in particular to the following operations:
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 """
 
-AWS_S3_PART__NUMBER = "aws.s3.part_number"
+AWS_S3_PARTNUMBER = "aws.s3.part_number"
 """
 The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
 Note: The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
@@ -264,7 +259,7 @@ The `part_number` attribute corresponds to the `--part-number` parameter of the
 [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
 """
 
-AWS_S3_UPLOAD__ID = "aws.s3.upload_id"
+AWS_S3_UPLOADID = "aws.s3.upload_id"
 """
 Upload ID that identifies the multipart upload.
 Note: The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter

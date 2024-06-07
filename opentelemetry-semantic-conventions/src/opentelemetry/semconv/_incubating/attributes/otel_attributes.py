@@ -12,9 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
 
-from deprecated import deprecated
+from enum import Enum
 
 OTEL_LIBRARY_NAME = "otel.library.name"
 """
@@ -28,32 +27,32 @@ Deprecated: use the `otel.scope.version` attribute.
 
 OTEL_SCOPE_NAME = "otel.scope.name"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_SCOPE_NAME`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_SCOPE_NAME`.
 """
 
 OTEL_SCOPE_VERSION = "otel.scope.version"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_SCOPE_VERSION`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_SCOPE_VERSION`.
 """
 
-OTEL_STATUS__CODE = "otel.status_code"
+OTEL_STATUSCODE = "otel.status_code"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_STATUS__CODE`.
-"""
-
-OTEL_STATUS__DESCRIPTION = "otel.status_description"
-"""
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OTEL_STATUS__DESCRIPTION`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_STATUSCODE`.
 """
 
+OTEL_STATUSDESCRIPTION = "otel.status_description"
+"""
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_STATUSDESCRIPTION`.
+"""
 
-class OtelStatus_CodeValues(Enum):
+
+class OtelStatuscodeValues(Enum):
     OK = "OK"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatus_CodeValues.OK`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OtelStatuscodeValues.OK`.
     """
 
     ERROR = "ERROR"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatus_CodeValues.ERROR`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OtelStatuscodeValues.ERROR`.
     """

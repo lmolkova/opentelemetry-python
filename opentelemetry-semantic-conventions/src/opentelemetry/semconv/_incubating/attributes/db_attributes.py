@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from enum import Enum
 
-from deprecated import deprecated
-
-DB_CASSANDRA_CONSISTENCY__LEVEL = "db.cassandra.consistency_level"
+DB_CASSANDRA_CONSISTENCYLEVEL = "db.cassandra.consistency_level"
 """
 The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
 """
@@ -36,12 +35,12 @@ DB_CASSANDRA_IDEMPOTENCE = "db.cassandra.idempotence"
 Whether or not the query is idempotent.
 """
 
-DB_CASSANDRA_PAGE__SIZE = "db.cassandra.page_size"
+DB_CASSANDRA_PAGESIZE = "db.cassandra.page_size"
 """
 The fetch size used for paging, i.e. how many rows will be returned at once.
 """
 
-DB_CASSANDRA_SPECULATIVE__EXECUTION__COUNT = (
+DB_CASSANDRA_SPECULATIVEEXECUTIONCOUNT = (
     "db.cassandra.speculative_execution_count"
 )
 """
@@ -70,17 +69,17 @@ Note: If the collection name is parsed from the query, it SHOULD match the value
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 """
 
-DB_CONNECTION__STRING = "db.connection_string"
+DB_CONNECTIONSTRING = "db.connection_string"
 """
 Deprecated: "Replaced by `server.address` and `server.port`."
 """
 
-DB_COSMOSDB_CLIENT__ID = "db.cosmosdb.client_id"
+DB_COSMOSDB_CLIENTID = "db.cosmosdb.client_id"
 """
 Unique Cosmos client instance id.
 """
 
-DB_COSMOSDB_CONNECTION__MODE = "db.cosmosdb.connection_mode"
+DB_COSMOSDB_CONNECTIONMODE = "db.cosmosdb.connection_mode"
 """
 Cosmos client connection mode.
 """
@@ -90,27 +89,27 @@ DB_COSMOSDB_CONTAINER = "db.cosmosdb.container"
 Deprecated: Replaced by `db.collection.name`.
 """
 
-DB_COSMOSDB_OPERATION__TYPE = "db.cosmosdb.operation_type"
+DB_COSMOSDB_OPERATIONTYPE = "db.cosmosdb.operation_type"
 """
 CosmosDB Operation Type.
 """
 
-DB_COSMOSDB_REQUEST__CHARGE = "db.cosmosdb.request_charge"
+DB_COSMOSDB_REQUESTCHARGE = "db.cosmosdb.request_charge"
 """
 RU consumed for that operation
 """
 
-DB_COSMOSDB_REQUEST__CONTENT__LENGTH = "db.cosmosdb.request_content_length"
+DB_COSMOSDB_REQUESTCONTENTLENGTH = "db.cosmosdb.request_content_length"
 """
 Request payload size in bytes
 """
 
-DB_COSMOSDB_STATUS__CODE = "db.cosmosdb.status_code"
+DB_COSMOSDB_STATUSCODE = "db.cosmosdb.status_code"
 """
 Cosmos DB status code.
 """
 
-DB_COSMOSDB_SUB__STATUS__CODE = "db.cosmosdb.sub_status_code"
+DB_COSMOSDB_SUBSTATUSCODE = "db.cosmosdb.sub_status_code"
 """
 Cosmos DB sub status code.
 """
@@ -125,7 +124,7 @@ DB_ELASTICSEARCH_NODE_NAME = "db.elasticsearch.node.name"
 Represents the human-readable identifier of the node/instance to which a request was routed.
 """
 
-DB_ELASTICSEARCH_PATH__PARTS_TEMPLATE = "db.elasticsearch.path_parts"
+DB_ELASTICSEARCH_PATHPARTS_TEMPLATE = "db.elasticsearch.path_parts"
 """
 A dynamic value in the url path.
 Note: Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.elasticsearch.path_parts.<key>`, where `<key>` is the url path part name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path part values to their names.
@@ -136,7 +135,7 @@ DB_INSTANCE_ID = "db.instance.id"
 Deprecated: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
 """
 
-DB_JDBC_DRIVER__CLASSNAME = "db.jdbc.driver_classname"
+DB_JDBC_DRIVERCLASSNAME = "db.jdbc.driver_classname"
 """
 Deprecated: Removed as not used.
 """
@@ -146,7 +145,7 @@ DB_MONGODB_COLLECTION = "db.mongodb.collection"
 Deprecated: Replaced by `db.collection.name`.
 """
 
-DB_MSSQL_INSTANCE__NAME = "db.mssql.instance_name"
+DB_MSSQL_INSTANCENAME = "db.mssql.instance_name"
 """
 Deprecated: Deprecated, no replacement at this time.
 """
@@ -187,7 +186,7 @@ DB_QUERY_TEXT = "db.query.text"
 The database query being executed.
 """
 
-DB_REDIS_DATABASE__INDEX = "db.redis.database_index"
+DB_REDIS_DATABASEINDEX = "db.redis.database_index"
 """
 Deprecated: Replaced by `db.namespace`.
 """
@@ -224,14 +223,14 @@ Deprecated: Replaced by `db.client.connections.state`.
 """
 
 
-class DbCassandraConsistency_LevelValues(Enum):
+class DbCassandraConsistencylevelValues(Enum):
     ALL = "all"
 
-    EACH__QUORUM = "each_quorum"
+    EACHQUORUM = "each_quorum"
 
     QUORUM = "quorum"
 
-    LOCAL__QUORUM = "local_quorum"
+    LOCALQUORUM = "local_quorum"
 
     ONE = "one"
 
@@ -239,13 +238,13 @@ class DbCassandraConsistency_LevelValues(Enum):
 
     THREE = "three"
 
-    LOCAL__ONE = "local_one"
+    LOCALONE = "local_one"
 
     ANY = "any"
 
     SERIAL = "serial"
 
-    LOCAL__SERIAL = "local_serial"
+    LOCALSERIAL = "local_serial"
 
 
 class DbClientConnectionsStateValues(Enum):
@@ -254,7 +253,7 @@ class DbClientConnectionsStateValues(Enum):
     USED = "used"
 
 
-class DbCosmosdbConnection_ModeValues(Enum):
+class DbCosmosdbConnectionmodeValues(Enum):
     GATEWAY = "gateway"
     """
     Gateway (HTTP) connections mode
@@ -266,7 +265,7 @@ class DbCosmosdbConnection_ModeValues(Enum):
     """
 
 
-class DbCosmosdbOperation_TypeValues(Enum):
+class DbCosmosdbOperationtypeValues(Enum):
     INVALID = "Invalid"
 
     CREATE = "Create"
@@ -275,7 +274,7 @@ class DbCosmosdbOperation_TypeValues(Enum):
 
     READ = "Read"
 
-    READ__FEED = "ReadFeed"
+    READFEED = "ReadFeed"
 
     DELETE = "Delete"
 
@@ -287,19 +286,19 @@ class DbCosmosdbOperation_TypeValues(Enum):
 
     HEAD = "Head"
 
-    HEAD__FEED = "HeadFeed"
+    HEADFEED = "HeadFeed"
 
     UPSERT = "Upsert"
 
     BATCH = "Batch"
 
-    QUERY__PLAN = "QueryPlan"
+    QUERYPLAN = "QueryPlan"
 
-    EXECUTE__JAVASCRIPT = "ExecuteJavaScript"
+    EXECUTEJAVASCRIPT = "ExecuteJavaScript"
 
 
 class DbSystemValues(Enum):
-    OTHER__SQL = "other_sql"
+    OTHERSQL = "other_sql"
     """
     Some other SQL database. Fallback only. See notes.
     """

@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 HEROKU_APP_ID = "heroku.app.id"
 """
@@ -26,7 +23,7 @@ HEROKU_RELEASE_COMMIT = "heroku.release.commit"
 Commit hash for the current release
 """
 
-HEROKU_RELEASE_CREATION__TIMESTAMP = "heroku.release.creation_timestamp"
+HEROKU_RELEASE_CREATIONTIMESTAMP = "heroku.release.creation_timestamp"
 """
 Time and date the release was created
 """

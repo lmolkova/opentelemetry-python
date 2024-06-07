@@ -1,31 +1,29 @@
+params:
+  excluded: ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"]
+  stable_package_name: opentelemetry.semconv
+
+
 templates:
   - pattern: semantic_attributes.j2
     filter: >
-      ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"] as $excluded |
       .groups
       | map(select(.type == "attribute_group"))
       | map(select(.id | startswith("registry")))
       | map({ id: .id, group_id: .id | split(".") | .[1], attributes: .attributes})
       | group_by(.group_id)
-      | map({ id: .[0].group_id, attributes: [.[].attributes[]] | sort_by(.id), output: "_incubating/attributes/", stable_package_name: "opentelemetry.semconv.attributes" })
+      | map({ id: .[0].group_id, attributes: [.[].attributes[]] |  map(select(if $filter == "any" then true else .stability == $filter end)) | sort_by(.id)})
       | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
       | map(select(.attributes | length > 0))
-    application_mode: each
-  - pattern: semantic_attributes.j2
-    filter: >
-      ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"] as $excluded |
-      .groups
-      | map(select(.type == "attribute_group"))
-      | map(select(.id | startswith("registry")))
-      | map({ id: .id, group_id: .id | split(".") | .[1], attributes: .attributes})
-      | group_by(.group_id)
-      | map({ id: .[0].group_id, attributes: [.[].attributes[]] | map(select(.stability == "stable")) | sort_by(.id), output: "attributes/" })
-      | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
-      | map(select(.attributes | length > 0))
+      | map({
+        id: .id,
+        attributes: .attributes,
+        output: $output + "attributes/",
+        stable_package_name: $stable_package_name,
+        filter: $filter
+      })
     application_mode: each
   - pattern: semantic_metrics.j2
     filter: >
-      ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"] as $excluded |
       .groups
       | map(select(.type == "metric"))
       | map(select(.stability == "stable"))
@@ -34,6 +32,8 @@ templates:
       | map({
         id: .[0].id | split(".") | .[1],
         metrics: .,
-        output: "metrics/"
+        output: $output + "metrics/",
+        stable_package_name: $stable_package_name,
+        filter: $filter
       })
     application_mode: each

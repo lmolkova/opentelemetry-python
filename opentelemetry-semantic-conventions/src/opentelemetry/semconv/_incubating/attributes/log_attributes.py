@@ -12,16 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
 
-from deprecated import deprecated
+from enum import Enum
 
 LOG_FILE_NAME = "log.file.name"
 """
 The basename of the file.
 """
 
-LOG_FILE_NAME__RESOLVED = "log.file.name_resolved"
+LOG_FILE_NAMERESOLVED = "log.file.name_resolved"
 """
 The basename of the file, with symlinks resolved.
 """
@@ -31,7 +30,7 @@ LOG_FILE_PATH = "log.file.path"
 The full path to the file.
 """
 
-LOG_FILE_PATH__RESOLVED = "log.file.path_resolved"
+LOG_FILE_PATHRESOLVED = "log.file.path_resolved"
 """
 The full path to the file, with symlinks resolved.
 """

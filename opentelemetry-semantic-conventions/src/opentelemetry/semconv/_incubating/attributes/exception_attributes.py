@@ -12,26 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 EXCEPTION_ESCAPED = "exception.escaped"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.exception_attributes.EXCEPTION_ESCAPED`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.exception_attributes.EXCEPTION_ESCAPED`.
 """
 
 EXCEPTION_MESSAGE = "exception.message"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.exception_attributes.EXCEPTION_MESSAGE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.exception_attributes.EXCEPTION_MESSAGE`.
 """
 
 EXCEPTION_STACKTRACE = "exception.stacktrace"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.exception_attributes.EXCEPTION_STACKTRACE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.exception_attributes.EXCEPTION_STACKTRACE`.
 """
 
 EXCEPTION_TYPE = "exception.type"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.exception_attributes.EXCEPTION_TYPE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.exception_attributes.EXCEPTION_TYPE`.
 """

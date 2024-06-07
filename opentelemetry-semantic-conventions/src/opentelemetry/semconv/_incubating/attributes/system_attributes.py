@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from enum import Enum
 
-from deprecated import deprecated
-
-SYSTEM_CPU_LOGICAL__NUMBER = "system.cpu.logical_number"
+SYSTEM_CPU_LOGICALNUMBER = "system.cpu.logical_number"
 """
 The logical CPU number [0..n-1]
 """
@@ -143,7 +142,7 @@ class SystemMemoryStateValues(Enum):
 class SystemNetworkStateValues(Enum):
     CLOSE = "close"
 
-    CLOSE__WAIT = "close_wait"
+    CLOSEWAIT = "close_wait"
 
     CLOSING = "closing"
 
@@ -151,19 +150,19 @@ class SystemNetworkStateValues(Enum):
 
     ESTABLISHED = "established"
 
-    FIN__WAIT__1 = "fin_wait_1"
+    FINWAIT1 = "fin_wait_1"
 
-    FIN__WAIT__2 = "fin_wait_2"
+    FINWAIT2 = "fin_wait_2"
 
-    LAST__ACK = "last_ack"
+    LASTACK = "last_ack"
 
     LISTEN = "listen"
 
-    SYN__RECV = "syn_recv"
+    SYNRECV = "syn_recv"
 
-    SYN__SENT = "syn_sent"
+    SYNSENT = "syn_sent"
 
-    TIME__WAIT = "time_wait"
+    TIMEWAIT = "time_wait"
 
 
 class SystemPagingDirectionValues(Enum):

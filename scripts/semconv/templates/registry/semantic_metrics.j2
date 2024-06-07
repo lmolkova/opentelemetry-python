@@ -19,7 +19,7 @@
 {%- macro write_docstring(metric, prefix) -%}
     {%- if metric.deprecated is defined and metric.deprecated is not none and metric.deprecated|length %}
 {{prefix}}Deprecated: {{metric.deprecated | comment_with_prefix(prefix)}}
-    {%- elif ctx.stable_package_name is defined and stability == "stable" %}
+    {%- elif ctx.filter == "any" and stability == "stable" %}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
     {%- elif metric.brief is defined and metric.brief is not none and metric.brief|length %}
 {{metric.brief | comment_with_prefix(prefix)}}

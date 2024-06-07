@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from enum import Enum
 
-from deprecated import deprecated
-
-HTTP_CLIENT__IP = "http.client_ip"
+HTTP_CLIENTIP = "http.client_ip"
 """
 Deprecated: Replaced by `client.address`.
 """
@@ -48,22 +47,22 @@ The size of the request payload body in bytes. This is the number of bytes trans
 
 HTTP_REQUEST_HEADER_TEMPLATE = "http.request.header"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_REQUEST_HEADER_TEMPLATE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_HEADER_TEMPLATE`.
 """
 
 HTTP_REQUEST_METHOD = "http.request.method"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_REQUEST_METHOD`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_METHOD`.
 """
 
-HTTP_REQUEST_METHOD__ORIGINAL = "http.request.method_original"
+HTTP_REQUEST_METHODORIGINAL = "http.request.method_original"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_REQUEST_METHOD__ORIGINAL`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_METHODORIGINAL`.
 """
 
-HTTP_REQUEST_RESEND__COUNT = "http.request.resend_count"
+HTTP_REQUEST_RESENDCOUNT = "http.request.resend_count"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_REQUEST_RESEND__COUNT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_RESENDCOUNT`.
 """
 
 HTTP_REQUEST_SIZE = "http.request.size"
@@ -71,12 +70,12 @@ HTTP_REQUEST_SIZE = "http.request.size"
 The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
 """
 
-HTTP_REQUEST__CONTENT__LENGTH = "http.request_content_length"
+HTTP_REQUESTCONTENTLENGTH = "http.request_content_length"
 """
 Deprecated: Replaced by `http.request.header.content-length`.
 """
 
-HTTP_REQUEST__CONTENT__LENGTH__UNCOMPRESSED = (
+HTTP_REQUESTCONTENTLENGTHUNCOMPRESSED = (
     "http.request_content_length_uncompressed"
 )
 """
@@ -90,7 +89,7 @@ The size of the response payload body in bytes. This is the number of bytes tran
 
 HTTP_RESPONSE_HEADER_TEMPLATE = "http.response.header"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_RESPONSE_HEADER_TEMPLATE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_RESPONSE_HEADER_TEMPLATE`.
 """
 
 HTTP_RESPONSE_SIZE = "http.response.size"
@@ -98,17 +97,17 @@ HTTP_RESPONSE_SIZE = "http.response.size"
 The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
 """
 
-HTTP_RESPONSE_STATUS__CODE = "http.response.status_code"
+HTTP_RESPONSE_STATUSCODE = "http.response.status_code"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_RESPONSE_STATUS__CODE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_RESPONSE_STATUSCODE`.
 """
 
-HTTP_RESPONSE__CONTENT__LENGTH = "http.response_content_length"
+HTTP_RESPONSECONTENTLENGTH = "http.response_content_length"
 """
 Deprecated: Replaced by `http.response.header.content-length`.
 """
 
-HTTP_RESPONSE__CONTENT__LENGTH__UNCOMPRESSED = (
+HTTP_RESPONSECONTENTLENGTHUNCOMPRESSED = (
     "http.response_content_length_uncompressed"
 )
 """
@@ -117,7 +116,7 @@ Deprecated: Replace by `http.response.body.size`.
 
 HTTP_ROUTE = "http.route"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_ROUTE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_ROUTE`.
 """
 
 HTTP_SCHEME = "http.scheme"
@@ -125,12 +124,12 @@ HTTP_SCHEME = "http.scheme"
 Deprecated: Replaced by `url.scheme` instead.
 """
 
-HTTP_SERVER__NAME = "http.server_name"
+HTTP_SERVERNAME = "http.server_name"
 """
 Deprecated: Replaced by `server.address`.
 """
 
-HTTP_STATUS__CODE = "http.status_code"
+HTTP_STATUSCODE = "http.status_code"
 """
 Deprecated: Replaced by `http.response.status_code`.
 """
@@ -145,7 +144,7 @@ HTTP_URL = "http.url"
 Deprecated: Replaced by `url.full`.
 """
 
-HTTP_USER__AGENT = "http.user_agent"
+HTTP_USERAGENT = "http.user_agent"
 """
 Deprecated: Replaced by `user_agent.original`.
 """
@@ -164,22 +163,22 @@ class HttpConnectionStateValues(Enum):
 
 
 class HttpFlavorValues(Enum):
-    HTTP__1__0 = "1.0"
+    HTTP10 = "1.0"
     """
     HTTP/1.0
     """
 
-    HTTP__1__1 = "1.1"
+    HTTP11 = "1.1"
     """
     HTTP/1.1
     """
 
-    HTTP__2__0 = "2.0"
+    HTTP20 = "2.0"
     """
     HTTP/2
     """
 
-    HTTP__3__0 = "3.0"
+    HTTP30 = "3.0"
     """
     HTTP/3
     """
@@ -198,50 +197,50 @@ class HttpFlavorValues(Enum):
 class HttpRequestMethodValues(Enum):
     CONNECT = "CONNECT"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.CONNECT`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.CONNECT`.
     """
 
     DELETE = "DELETE"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.DELETE`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.DELETE`.
     """
 
     GET = "GET"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.GET`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.GET`.
     """
 
     HEAD = "HEAD"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.HEAD`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.HEAD`.
     """
 
     OPTIONS = "OPTIONS"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.OPTIONS`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.OPTIONS`.
     """
 
     PATCH = "PATCH"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.PATCH`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.PATCH`.
     """
 
     POST = "POST"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.POST`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.POST`.
     """
 
     PUT = "PUT"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.PUT`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.PUT`.
     """
 
     TRACE = "TRACE"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.TRACE`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.TRACE`.
     """
 
     OTHER = "_OTHER"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.OTHER`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HttpRequestMethodValues.OTHER`.
     """

@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 DNS_QUESTION_NAME = "dns.question.name"
 """

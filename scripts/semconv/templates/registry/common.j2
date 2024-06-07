@@ -16,17 +16,9 @@
 {% endmacro -%}
 
 {%- macro to_const_name(attr_name) -%}
-{{attr_name | upper | replace('_', '__') | replace('.', '_')}}
+{{attr_name | upper | replace('_', '') | replace('.', '_')}}
 {%- endmacro %}
 
 {%- macro to_class_name(attr_name) -%}
-{%- set ns=namespace(up=True) -%}
-{%- for l in attr_name -%}
-{%- if ns.up -%}
-{{l | upper}}
-{%- elif l != '.' -%}
-{{l}}
-{%- endif -%}
-{%- set ns.up=(l=='.' or l=='_') -%}
-{%- endfor -%}
+{{attr_name | upper | replace('_', '') | title | replace('.', '')}}
 {%- endmacro %}

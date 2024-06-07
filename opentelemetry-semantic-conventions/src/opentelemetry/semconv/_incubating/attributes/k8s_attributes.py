@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 K8S_CLUSTER_NAME = "k8s.cluster.name"
 """
@@ -53,12 +50,12 @@ K8S_CONTAINER_NAME = "k8s.container.name"
 The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
 """
 
-K8S_CONTAINER_RESTART__COUNT = "k8s.container.restart_count"
+K8S_CONTAINER_RESTARTCOUNT = "k8s.container.restart_count"
 """
 Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
 """
 
-K8S_CONTAINER_STATUS_LAST__TERMINATED__REASON = (
+K8S_CONTAINER_STATUS_LASTTERMINATEDREASON = (
     "k8s.container.status.last_terminated_reason"
 )
 """

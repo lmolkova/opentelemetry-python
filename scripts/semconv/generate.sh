@@ -7,7 +7,7 @@ ROOT_DIR="${SCRIPT_DIR}/../.."
 
 # freeze the spec version to make SemanticAttributes generation reproducible
 SEMCONV_VERSION=v1.26.0
-OTEL_WEAVER_IMG_VERSION=0.2.0
+OTEL_WEAVER_IMG_VERSION=0.4.0
 INCUBATING_DIR=_incubating
 cd ${SCRIPT_DIR}
 
@@ -31,6 +31,8 @@ fi
 
 generate() {
   TARGET=$1
+  OUTPUT=$2
+  FILTER=$3
   docker run --rm \
     -v ${SCRIPT_DIR}/semantic-conventions/model:/source \
     -v ${SCRIPT_DIR}/templates:/templates \
@@ -41,12 +43,19 @@ generate() {
     --registry=/source \
     --templates=/templates \
     ${TARGET} \
-    /output${TARGET}
+    /output/${TARGET} \
+    --param output=${OUTPUT} \
+    --param filter=${FILTER}
 }
 
 # stable attributes and metrics
 mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/attributes
-generate "/"
+mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/metrics
+generate "./" "./" "stable"
+
+mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/_incubating/attributes
+mkdir -p ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/_incubating/metrics
+generate "./" "./_incubating/" "any"
 
 cd "$ROOT_DIR"
 ${ROOT_DIR}/.tox/lint/bin/black --config pyproject.toml ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv

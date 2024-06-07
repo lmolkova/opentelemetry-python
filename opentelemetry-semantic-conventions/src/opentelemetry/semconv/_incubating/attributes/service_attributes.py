@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 SERVICE_INSTANCE_ID = "service.instance.id"
 """
@@ -49,7 +46,7 @@ port.
 
 SERVICE_NAME = "service.name"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.service_attributes.SERVICE_NAME`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.service_attributes.SERVICE_NAME`.
 """
 
 SERVICE_NAMESPACE = "service.namespace"
@@ -60,5 +57,5 @@ Note: A string value having a meaning that helps to distinguish a group of servi
 
 SERVICE_VERSION = "service.version"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.service_attributes.SERVICE_VERSION`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.service_attributes.SERVICE_VERSION`.
 """

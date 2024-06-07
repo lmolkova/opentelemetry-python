@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 URL_DOMAIN = "url.domain"
 """
@@ -30,12 +27,12 @@ Note: The file extension is only set if it exists, as not every url has a file e
 
 URL_FRAGMENT = "url.fragment"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_FRAGMENT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_FRAGMENT`.
 """
 
 URL_FULL = "url.full"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_FULL`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_FULL`.
 """
 
 URL_ORIGINAL = "url.original"
@@ -47,7 +44,7 @@ Note: In network monitoring, the observed URL may be a full URL, whereas in acce
 
 URL_PATH = "url.path"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_PATH`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_PATH`.
 """
 
 URL_PORT = "url.port"
@@ -57,10 +54,10 @@ Port extracted from the `url.full`
 
 URL_QUERY = "url.query"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_QUERY`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_QUERY`.
 """
 
-URL_REGISTERED__DOMAIN = "url.registered_domain"
+URL_REGISTEREDDOMAIN = "url.registered_domain"
 """
 The highest registered url domain, stripped of the subdomain.
 Note: This value can be determined precisely with the [public suffix list](http://publicsuffix.org). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
@@ -68,7 +65,7 @@ Note: This value can be determined precisely with the [public suffix list](http:
 
 URL_SCHEME = "url.scheme"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_SCHEME`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_SCHEME`.
 """
 
 URL_SUBDOMAIN = "url.subdomain"
@@ -82,7 +79,7 @@ URL_TEMPLATE = "url.template"
 The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
 """
 
-URL_TOP__LEVEL__DOMAIN = "url.top_level_domain"
+URL_TOPLEVELDOMAIN = "url.top_level_domain"
 """
 The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`.
 Note: This value can be determined precisely with the [public suffix list](http://publicsuffix.org).

@@ -12,16 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum
-
-from deprecated import deprecated
 
 SESSION_ID = "session.id"
 """
 A unique id to identify a session.
 """
 
-SESSION_PREVIOUS__ID = "session.previous_id"
+SESSION_PREVIOUSID = "session.previous_id"
 """
 The previous `session.id` for this user, when known.
 """
