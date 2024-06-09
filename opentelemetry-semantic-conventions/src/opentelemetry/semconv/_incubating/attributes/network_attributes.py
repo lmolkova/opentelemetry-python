@@ -179,8 +179,10 @@ class NetSockFamilyValues(Enum):
 
 class NetTransportValues(Enum):
     IP_TCP = "ip_tcp"
+    """ip_tcp."""
 
     IP_UDP = "ip_udp"
+    """ip_udp."""
 
     PIPE = "pipe"
     """Named or anonymous pipe."""
@@ -259,20 +261,27 @@ class NetworkConnectionSubtypeValues(Enum):
 
 class NetworkConnectionTypeValues(Enum):
     WIFI = "wifi"
+    """wifi."""
 
     WIRED = "wired"
+    """wired."""
 
     CELL = "cell"
+    """cell."""
 
     UNAVAILABLE = "unavailable"
+    """unavailable."""
 
     UNKNOWN = "unknown"
+    """unknown."""
 
 
 class NetworkIoDirectionValues(Enum):
     TRANSMIT = "transmit"
+    """transmit."""
 
     RECEIVE = "receive"
+    """receive."""
 
 
 class NetworkTransportValues(Enum):

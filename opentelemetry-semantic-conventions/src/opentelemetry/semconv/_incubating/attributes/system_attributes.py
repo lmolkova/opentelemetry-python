@@ -88,114 +88,160 @@ Deprecated: Replaced by `system.process.status`.
 
 class SystemCpuStateValues(Enum):
     USER = "user"
+    """user."""
 
     SYSTEM = "system"
+    """system."""
 
     NICE = "nice"
+    """nice."""
 
     IDLE = "idle"
+    """idle."""
 
     IOWAIT = "iowait"
+    """iowait."""
 
     INTERRUPT = "interrupt"
+    """interrupt."""
 
     STEAL = "steal"
+    """steal."""
 
 
 class SystemFilesystemStateValues(Enum):
     USED = "used"
+    """used."""
 
     FREE = "free"
+    """free."""
 
     RESERVED = "reserved"
+    """reserved."""
 
 
 class SystemFilesystemTypeValues(Enum):
     FAT32 = "fat32"
+    """fat32."""
 
     EXFAT = "exfat"
+    """exfat."""
 
     NTFS = "ntfs"
+    """ntfs."""
 
     REFS = "refs"
+    """refs."""
 
     HFSPLUS = "hfsplus"
+    """hfsplus."""
 
     EXT4 = "ext4"
+    """ext4."""
 
 
 class SystemMemoryStateValues(Enum):
     USED = "used"
+    """used."""
 
     FREE = "free"
+    """free."""
 
     SHARED = "shared"
     """Deprecated: Removed, report shared memory usage with `metric.system.memory.shared` metric."""
 
     BUFFERS = "buffers"
+    """buffers."""
 
     CACHED = "cached"
+    """cached."""
 
 
 class SystemNetworkStateValues(Enum):
     CLOSE = "close"
+    """close."""
 
     CLOSE_WAIT = "close_wait"
+    """close_wait."""
 
     CLOSING = "closing"
+    """closing."""
 
     DELETE = "delete"
+    """delete."""
 
     ESTABLISHED = "established"
+    """established."""
 
     FIN_WAIT_1 = "fin_wait_1"
+    """fin_wait_1."""
 
     FIN_WAIT_2 = "fin_wait_2"
+    """fin_wait_2."""
 
     LAST_ACK = "last_ack"
+    """last_ack."""
 
     LISTEN = "listen"
+    """listen."""
 
     SYN_RECV = "syn_recv"
+    """syn_recv."""
 
     SYN_SENT = "syn_sent"
+    """syn_sent."""
 
     TIME_WAIT = "time_wait"
+    """time_wait."""
 
 
 class SystemPagingDirectionValues(Enum):
     IN = "in"
+    """in."""
 
     OUT = "out"
+    """out."""
 
 
 class SystemPagingStateValues(Enum):
     USED = "used"
+    """used."""
 
     FREE = "free"
+    """free."""
 
 
 class SystemPagingTypeValues(Enum):
     MAJOR = "major"
+    """major."""
 
     MINOR = "minor"
+    """minor."""
 
 
 class SystemProcessStatusValues(Enum):
     RUNNING = "running"
+    """running."""
 
     SLEEPING = "sleeping"
+    """sleeping."""
 
     STOPPED = "stopped"
+    """stopped."""
 
     DEFUNCT = "defunct"
+    """defunct."""
 
 
 class SystemProcessesStatusValues(Enum):
     RUNNING = "running"
+    """running."""
 
     SLEEPING = "sleeping"
+    """sleeping."""
 
     STOPPED = "stopped"
+    """stopped."""
 
     DEFUNCT = "defunct"
+    """defunct."""

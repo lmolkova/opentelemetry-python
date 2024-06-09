@@ -225,32 +225,45 @@ Deprecated: Replaced by `db.client.connections.state`.
 
 class DbCassandraConsistencyLevelValues(Enum):
     ALL = "all"
+    """all."""
 
     EACH_QUORUM = "each_quorum"
+    """each_quorum."""
 
     QUORUM = "quorum"
+    """quorum."""
 
     LOCAL_QUORUM = "local_quorum"
+    """local_quorum."""
 
     ONE = "one"
+    """one."""
 
     TWO = "two"
+    """two."""
 
     THREE = "three"
+    """three."""
 
     LOCAL_ONE = "local_one"
+    """local_one."""
 
     ANY = "any"
+    """any."""
 
     SERIAL = "serial"
+    """serial."""
 
     LOCAL_SERIAL = "local_serial"
+    """local_serial."""
 
 
 class DbClientConnectionsStateValues(Enum):
     IDLE = "idle"
+    """idle."""
 
     USED = "used"
+    """used."""
 
 
 class DbCosmosdbConnectionModeValues(Enum):
@@ -263,34 +276,49 @@ class DbCosmosdbConnectionModeValues(Enum):
 
 class DbCosmosdbOperationTypeValues(Enum):
     INVALID = "Invalid"
+    """invalid."""
 
     CREATE = "Create"
+    """create."""
 
     PATCH = "Patch"
+    """patch."""
 
     READ = "Read"
+    """read."""
 
     READ_FEED = "ReadFeed"
+    """read_feed."""
 
     DELETE = "Delete"
+    """delete."""
 
     REPLACE = "Replace"
+    """replace."""
 
     EXECUTE = "Execute"
+    """execute."""
 
     QUERY = "Query"
+    """query."""
 
     HEAD = "Head"
+    """head."""
 
     HEAD_FEED = "HeadFeed"
+    """head_feed."""
 
     UPSERT = "Upsert"
+    """upsert."""
 
     BATCH = "Batch"
+    """batch."""
 
     QUERY_PLAN = "QueryPlan"
+    """query_plan."""
 
     EXECUTE_JAVASCRIPT = "ExecuteJavaScript"
+    """execute_javascript."""
 
 
 class DbSystemValues(Enum):
@@ -453,5 +481,7 @@ class DbSystemValues(Enum):
 
 class StateValues(Enum):
     IDLE = "idle"
+    """idle."""
 
     USED = "used"
+    """used."""

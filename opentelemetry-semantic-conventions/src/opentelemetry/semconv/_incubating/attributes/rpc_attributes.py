@@ -132,42 +132,60 @@ A string identifying the remoting system. See below for a list of well-known ide
 
 class MessageTypeValues(Enum):
     SENT = "SENT"
+    """sent."""
 
     RECEIVED = "RECEIVED"
+    """received."""
 
 
 class RpcConnectRpcErrorCodeValues(Enum):
     CANCELLED = "cancelled"
+    """cancelled."""
 
     UNKNOWN = "unknown"
+    """unknown."""
 
     INVALID_ARGUMENT = "invalid_argument"
+    """invalid_argument."""
 
     DEADLINE_EXCEEDED = "deadline_exceeded"
+    """deadline_exceeded."""
 
     NOT_FOUND = "not_found"
+    """not_found."""
 
     ALREADY_EXISTS = "already_exists"
+    """already_exists."""
 
     PERMISSION_DENIED = "permission_denied"
+    """permission_denied."""
 
     RESOURCE_EXHAUSTED = "resource_exhausted"
+    """resource_exhausted."""
 
     FAILED_PRECONDITION = "failed_precondition"
+    """failed_precondition."""
 
     ABORTED = "aborted"
+    """aborted."""
 
     OUT_OF_RANGE = "out_of_range"
+    """out_of_range."""
 
     UNIMPLEMENTED = "unimplemented"
+    """unimplemented."""
 
     INTERNAL = "internal"
+    """internal."""
 
     UNAVAILABLE = "unavailable"
+    """unavailable."""
 
     DATA_LOSS = "data_loss"
+    """data_loss."""
 
     UNAUTHENTICATED = "unauthenticated"
+    """unauthenticated."""
 
 
 class RpcGrpcStatusCodeValues(Enum):
@@ -225,8 +243,10 @@ class RpcGrpcStatusCodeValues(Enum):
 
 class RpcMessageTypeValues(Enum):
     SENT = "SENT"
+    """sent."""
 
     RECEIVED = "RECEIVED"
+    """received."""
 
 
 class RpcSystemValues(Enum):
