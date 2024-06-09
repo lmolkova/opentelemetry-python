@@ -32,7 +32,7 @@ templates:
       .groups
       | map(select(.type == "metric"))
       | map(select(if $filter == "any" then true else .stability == $filter end))
-      | map({ id: .id, group_id: .id | split(".") | .[1], brief, unit, stability, deprecated, instrument, metric_name})
+      | map({ id: .id, group_id: .id | split(".") | .[1], brief, unit, stability, deprecated, instrument, metric_name, note})
       | group_by(.group_id)
       | map({
         id: .[0].group_id,

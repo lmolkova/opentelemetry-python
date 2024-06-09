@@ -20,6 +20,10 @@ RPC_CLIENT_DURATION = "rpc.client.duration"
 Measures the duration of outbound RPC.
 Instrument: histogram
 Unit: ms
+Note: While streaming RPCs may record this metric as start-of-batch
+to end-of-batch, it's hard to interpret in practice.
+
+**Streaming**: N/A.
 """
 
 
@@ -37,6 +41,7 @@ RPC_CLIENT_REQUEST_SIZE = "rpc.client.request.size"
 Measures the size of RPC request messages (uncompressed).
 Instrument: histogram
 Unit: By
+Note: **Streaming**: Recorded per message in a streaming batch.
 """
 
 
@@ -54,6 +59,9 @@ RPC_CLIENT_REQUESTS_PER_RPC = "rpc.client.requests_per_rpc"
 Measures the number of messages received per RPC.
 Instrument: histogram
 Unit: {count}
+Note: Should be 1 for all non-streaming RPCs.
+
+**Streaming**: This metric is required for server and client streaming RPCs.
 """
 
 
@@ -71,6 +79,7 @@ RPC_CLIENT_RESPONSE_SIZE = "rpc.client.response.size"
 Measures the size of RPC response messages (uncompressed).
 Instrument: histogram
 Unit: By
+Note: **Streaming**: Recorded per response in a streaming batch.
 """
 
 
@@ -88,6 +97,9 @@ RPC_CLIENT_RESPONSES_PER_RPC = "rpc.client.responses_per_rpc"
 Measures the number of messages sent per RPC.
 Instrument: histogram
 Unit: {count}
+Note: Should be 1 for all non-streaming RPCs.
+
+**Streaming**: This metric is required for server and client streaming RPCs.
 """
 
 
@@ -105,6 +117,10 @@ RPC_SERVER_DURATION = "rpc.server.duration"
 Measures the duration of inbound RPC.
 Instrument: histogram
 Unit: ms
+Note: While streaming RPCs may record this metric as start-of-batch
+to end-of-batch, it's hard to interpret in practice.
+
+**Streaming**: N/A.
 """
 
 
@@ -122,6 +138,7 @@ RPC_SERVER_REQUEST_SIZE = "rpc.server.request.size"
 Measures the size of RPC request messages (uncompressed).
 Instrument: histogram
 Unit: By
+Note: **Streaming**: Recorded per message in a streaming batch.
 """
 
 
@@ -139,6 +156,9 @@ RPC_SERVER_REQUESTS_PER_RPC = "rpc.server.requests_per_rpc"
 Measures the number of messages received per RPC.
 Instrument: histogram
 Unit: {count}
+Note: Should be 1 for all non-streaming RPCs.
+
+**Streaming** : This metric is required for server and client streaming RPCs.
 """
 
 
@@ -156,6 +176,7 @@ RPC_SERVER_RESPONSE_SIZE = "rpc.server.response.size"
 Measures the size of RPC response messages (uncompressed).
 Instrument: histogram
 Unit: By
+Note: **Streaming**: Recorded per response in a streaming batch.
 """
 
 
@@ -173,6 +194,9 @@ RPC_SERVER_RESPONSES_PER_RPC = "rpc.server.responses_per_rpc"
 Measures the number of messages sent per RPC.
 Instrument: histogram
 Unit: {count}
+Note: Should be 1 for all non-streaming RPCs.
+
+**Streaming**: This metric is required for server and client streaming RPCs.
 """
 
 

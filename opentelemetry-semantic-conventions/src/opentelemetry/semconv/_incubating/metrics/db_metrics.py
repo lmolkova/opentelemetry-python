@@ -17,7 +17,7 @@ from opentelemetry.metrics import Counter, Histogram, Meter, UpDownCounter
 
 DB_CLIENT_CONNECTION_COUNT = "db.client.connection.count"
 """
-The number of connections that are currently in state described by the `state` attribute
+The number of connections that are currently in state described by the `state` attribute.
 Instrument: updowncounter
 Unit: {connection}
 """
@@ -34,7 +34,7 @@ def create_db_client_connection_count(meter: Meter) -> UpDownCounter:
 
 DB_CLIENT_CONNECTION_CREATE_TIME = "db.client.connection.create_time"
 """
-The time it took to create a new connection
+The time it took to create a new connection.
 Instrument: histogram
 Unit: s
 """
@@ -51,7 +51,7 @@ def create_db_client_connection_create_time(meter: Meter) -> Histogram:
 
 DB_CLIENT_CONNECTION_IDLE_MAX = "db.client.connection.idle.max"
 """
-The maximum number of idle open connections allowed
+The maximum number of idle open connections allowed.
 Instrument: updowncounter
 Unit: {connection}
 """
@@ -68,7 +68,7 @@ def create_db_client_connection_idle_max(meter: Meter) -> UpDownCounter:
 
 DB_CLIENT_CONNECTION_IDLE_MIN = "db.client.connection.idle.min"
 """
-The minimum number of idle open connections allowed
+The minimum number of idle open connections allowed.
 Instrument: updowncounter
 Unit: {connection}
 """
@@ -85,7 +85,7 @@ def create_db_client_connection_idle_min(meter: Meter) -> UpDownCounter:
 
 DB_CLIENT_CONNECTION_MAX = "db.client.connection.max"
 """
-The maximum number of open connections allowed
+The maximum number of open connections allowed.
 Instrument: updowncounter
 Unit: {connection}
 """
@@ -102,7 +102,7 @@ def create_db_client_connection_max(meter: Meter) -> UpDownCounter:
 
 DB_CLIENT_CONNECTION_PENDING_REQUESTS = "db.client.connection.pending_requests"
 """
-The number of pending requests for an open connection, cumulative for the entire pool
+The number of pending requests for an open connection, cumulative for the entire pool.
 Instrument: updowncounter
 Unit: {request}
 """
@@ -121,7 +121,7 @@ def create_db_client_connection_pending_requests(
 
 DB_CLIENT_CONNECTION_TIMEOUTS = "db.client.connection.timeouts"
 """
-The number of connection timeouts that have occurred trying to obtain a connection from the pool
+The number of connection timeouts that have occurred trying to obtain a connection from the pool.
 Instrument: counter
 Unit: {timeout}
 """
@@ -138,7 +138,7 @@ def create_db_client_connection_timeouts(meter: Meter) -> Counter:
 
 DB_CLIENT_CONNECTION_USE_TIME = "db.client.connection.use_time"
 """
-The time between borrowing a connection and returning it to the pool
+The time between borrowing a connection and returning it to the pool.
 Instrument: histogram
 Unit: s
 """
@@ -155,7 +155,7 @@ def create_db_client_connection_use_time(meter: Meter) -> Histogram:
 
 DB_CLIENT_CONNECTION_WAIT_TIME = "db.client.connection.wait_time"
 """
-The time it took to obtain an open connection from the pool
+The time it took to obtain an open connection from the pool.
 Instrument: histogram
 Unit: s
 """

@@ -24,7 +24,7 @@ from opentelemetry.metrics import (
 
 SYSTEM_CPU_FREQUENCY = "system.cpu.frequency"
 """
-Reports the current frequency of the CPU in Hz
+Reports the current frequency of the CPU in Hz.
 Instrument: gauge
 Unit: {Hz}
 """
@@ -44,7 +44,7 @@ def create_system_cpu_frequency(
 
 SYSTEM_CPU_LOGICAL_COUNT = "system.cpu.logical.count"
 """
-Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking
+Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking.
 Instrument: updowncounter
 Unit: {cpu}
 """
@@ -61,7 +61,7 @@ def create_system_cpu_logical_count(meter: Meter) -> UpDownCounter:
 
 SYSTEM_CPU_PHYSICAL_COUNT = "system.cpu.physical.count"
 """
-Reports the number of actual physical processor cores on the hardware
+Reports the number of actual physical processor cores on the hardware.
 Instrument: updowncounter
 Unit: {cpu}
 """
@@ -78,7 +78,7 @@ def create_system_cpu_physical_count(meter: Meter) -> UpDownCounter:
 
 SYSTEM_CPU_TIME = "system.cpu.time"
 """
-Seconds each logical CPU spent on each mode
+Seconds each logical CPU spent on each mode.
 Instrument: counter
 Unit: s
 """
@@ -95,7 +95,7 @@ def create_system_cpu_time(meter: Meter) -> Counter:
 
 SYSTEM_CPU_UTILIZATION = "system.cpu.utilization"
 """
-Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs
+Difference in system.cpu.time since the last measurement, divided by the elapsed time and number of logical CPUs.
 Instrument: gauge
 Unit: 1
 """
@@ -127,9 +127,15 @@ def create_system_disk_io(meter: Meter) -> Counter:
 
 SYSTEM_DISK_IO_TIME = "system.disk.io_time"
 """
-Time disk spent activated
+Time disk spent activated.
 Instrument: counter
 Unit: s
+Note: The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
+
+- Linux: Field 13 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+- Windows: The complement of
+  ["Disk\% Idle Time"](https://learn.microsoft.com/archive/blogs/askcore/windows-performance-monitor-disk-counters-explained#windows-performance-monitor-disk-counters-explained)
+  performance counter: `uptime * (100 - "Disk\% Idle Time") / 100`.
 """
 
 
@@ -156,9 +162,13 @@ def create_system_disk_merged(meter: Meter) -> Counter:
 
 SYSTEM_DISK_OPERATION_TIME = "system.disk.operation_time"
 """
-Sum of the time each operation took to complete
+Sum of the time each operation took to complete.
 Instrument: counter
 Unit: s
+Note: Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
+
+- Linux: Fields 7 & 11 from [procfs-diskstats](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats)
+- Windows: "Avg. Disk sec/Read" perf counter multiplied by "Disk Reads/sec" perf counter (similar for Writes).
 """
 
 
@@ -212,9 +222,14 @@ def create_system_filesystem_utilization(
 
 SYSTEM_LINUX_MEMORY_AVAILABLE = "system.linux.memory.available"
 """
-An estimate of how much memory is available for starting new applications, without causing swapping
+An estimate of how much memory is available for starting new applications, without causing swapping.
 Instrument: updowncounter
 Unit: By
+Note: This is an alternative to `system.memory.usage` metric with `state=free`.
+Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
+This is supposed to be more accurate than just "free" memory.
+For reference, see the calculations [here](https://superuser.com/a/980821).
+See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
 """
 
 
@@ -232,6 +247,7 @@ SYSTEM_MEMORY_LIMIT = "system.memory.limit"
 Total memory available in the system.
 Instrument: updowncounter
 Unit: By
+Note: Its value SHOULD equal the sum of `system.memory.state` over all states.
 """
 
 
@@ -249,6 +265,8 @@ SYSTEM_MEMORY_SHARED = "system.memory.shared"
 Shared memory used (mostly by tmpfs).
 Instrument: updowncounter
 Unit: By
+Note: Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+`Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)".
 """
 
 
@@ -266,6 +284,8 @@ SYSTEM_MEMORY_USAGE = "system.memory.usage"
 Reports memory in use by state.
 Instrument: updowncounter
 Unit: By
+Note: The sum over all `system.memory.state` values SHOULD equal the total memory
+available on the system, that is `system.memory.limit`.
 """
 
 
@@ -307,9 +327,14 @@ def create_system_network_connections(meter: Meter) -> UpDownCounter:
 
 SYSTEM_NETWORK_DROPPED = "system.network.dropped"
 """
-Count of packets that are dropped or discarded even though there was no error
+Count of packets that are dropped or discarded even though there was no error.
 Instrument: counter
 Unit: {packet}
+Note: Measured as:
+
+- Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+- Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
 """
 
 
@@ -324,9 +349,14 @@ def create_system_network_dropped(meter: Meter) -> Counter:
 
 SYSTEM_NETWORK_ERRORS = "system.network.errors"
 """
-Count of network errors detected
+Count of network errors detected.
 Instrument: counter
 Unit: {error}
+Note: Measured as:
+
+- Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
+- Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+  from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
 """
 
 
@@ -389,7 +419,7 @@ def create_system_paging_operations(meter: Meter) -> Counter:
 
 SYSTEM_PAGING_USAGE = "system.paging.usage"
 """
-Unix swap or windows pagefile usage
+Unix swap or windows pagefile usage.
 Instrument: updowncounter
 Unit: By
 """
@@ -421,7 +451,7 @@ def create_system_paging_utilization(
 
 SYSTEM_PROCESS_COUNT = "system.process.count"
 """
-Total number of processes in each state
+Total number of processes in each state.
 Instrument: updowncounter
 Unit: {process}
 """
@@ -438,7 +468,7 @@ def create_system_process_count(meter: Meter) -> UpDownCounter:
 
 SYSTEM_PROCESS_CREATED = "system.process.created"
 """
-Total number of processes created over uptime of the host
+Total number of processes created over uptime of the host.
 Instrument: counter
 Unit: {process}
 """

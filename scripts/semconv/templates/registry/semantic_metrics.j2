@@ -17,17 +17,21 @@
 
 {% import 'common.j2' as c -%}
 
+{%- macro stable_class_ref(const_name, separator) -%}
+{{ctx.stable_package_name}}.{{ctx.id}}_metrics{{separator}}{{const_name}}
+{%- endmacro %}
+
 {%- macro write_docstring(metric, prefix) -%}
-    {%- if metric.deprecated is defined and metric.deprecated is not none and metric.deprecated|length %}
-{{prefix}}Deprecated: {{metric.deprecated | comment_with_prefix(prefix)}}
-    {%- elif ctx.filter == "any" and stability == "stable" %}
+    {%- if c.str_or_empty(metric.deprecated)|length %}
+{{prefix}}Deprecated: {{metric.deprecated | trim('.\n') | comment_with_prefix(prefix)}}.
+    {%- elif ctx.filter == "any" and metric.stability == "stable" %}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
-    {%- elif metric.brief is defined and metric.brief is not none and metric.brief|length %}
-{{metric.brief | comment_with_prefix(prefix)}}
+    {%- elif c.str_or_empty(metric.brief)|length %}
+{{metric.brief | trim('.\n') | comment_with_prefix(prefix)}}.
 {{prefix}}Instrument: {{ metric.instrument }}
 {{prefix}}Unit: {{ metric.unit }}
-        {%- if metric.note is defined and metric.note is not none and metric.note|length  %}
-{{prefix}}Note: {{note | comment_with_prefix(prefix)}}
+        {%- if c.str_or_empty(metric.note)|length  %}
+{{prefix}}Note: {{metric.note | trim('.\n') | comment_with_prefix(prefix)}}.
         {%- endif -%}
     {%- endif -%}
 {%- endmacro -%}

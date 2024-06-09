@@ -71,6 +71,7 @@ HTTP_CLIENT_REQUEST_BODY_SIZE = "http.client.request.body.size"
 Size of HTTP client request bodies.
 Instrument: histogram
 Unit: By
+Note: The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 """
 
 
@@ -85,9 +86,7 @@ def create_http_client_request_body_size(meter: Meter) -> Histogram:
 
 HTTP_CLIENT_REQUEST_DURATION = "http.client.request.duration"
 """
-Duration of HTTP client requests.
-Instrument: histogram
-Unit: s
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.metrics.http_metrics.`.
 """
 
 
@@ -105,6 +104,7 @@ HTTP_CLIENT_RESPONSE_BODY_SIZE = "http.client.response.body.size"
 Size of HTTP client response bodies.
 Instrument: histogram
 Unit: By
+Note: The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 """
 
 
@@ -139,6 +139,7 @@ HTTP_SERVER_REQUEST_BODY_SIZE = "http.server.request.body.size"
 Size of HTTP server request bodies.
 Instrument: histogram
 Unit: By
+Note: The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 """
 
 
@@ -153,9 +154,7 @@ def create_http_server_request_body_size(meter: Meter) -> Histogram:
 
 HTTP_SERVER_REQUEST_DURATION = "http.server.request.duration"
 """
-Duration of HTTP server requests.
-Instrument: histogram
-Unit: s
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.metrics.http_metrics.`.
 """
 
 
@@ -173,6 +172,7 @@ HTTP_SERVER_RESPONSE_BODY_SIZE = "http.server.response.body.size"
 Size of HTTP server response bodies.
 Instrument: histogram
 Unit: By
+Note: The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 """
 
 
