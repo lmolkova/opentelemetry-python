@@ -21,5 +21,5 @@ Note: When observed from the source side, and when communicating through an inte
 
 DESTINATION_PORT = "destination.port"
 """
-Destination port number
+Destination port number.
 """

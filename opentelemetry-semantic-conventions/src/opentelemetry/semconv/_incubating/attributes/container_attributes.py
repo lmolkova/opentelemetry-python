@@ -23,12 +23,12 @@ Note: If using embedded credentials or sensitive data, it is recommended to remo
 
 CONTAINER_COMMAND_ARGS = "container.command_args"
 """
-All the command arguments (including the command/executable itself) run by the container. [2]
+All the command arguments (including the command/executable itself) run by the container. [2].
 """
 
 CONTAINER_COMMAND_LINE = "container.command_line"
 """
-The full command run by the container as a single string representing the full command. [2]
+The full command run by the container as a single string representing the full command. [2].
 """
 
 CONTAINER_CPU_STATE = "container.cpu.state"
@@ -91,7 +91,7 @@ class ContainerCpuStateValues(Enum):
     """When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows)."""
 
     SYSTEM = "system"
-    """When CPU is used by the system (host OS)"""
+    """When CPU is used by the system (host OS)."""
 
     KERNEL = "kernel"
     """When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."""

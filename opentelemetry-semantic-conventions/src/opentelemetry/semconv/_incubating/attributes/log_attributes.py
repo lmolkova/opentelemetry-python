@@ -50,7 +50,7 @@ The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID
 
 class LogIostreamValues(Enum):
     STDOUT = "stdout"
-    """Logs from stdout stream"""
+    """Logs from stdout stream."""
 
     STDERR = "stderr"
-    """Events from stderr stream"""
+    """Events from stderr stream."""

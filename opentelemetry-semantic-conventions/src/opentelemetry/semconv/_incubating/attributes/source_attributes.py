@@ -21,5 +21,5 @@ Note: When observed from the destination side, and when communicating through an
 
 SOURCE_PORT = "source.port"
 """
-Source port number
+Source port number.
 """

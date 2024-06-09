@@ -49,7 +49,7 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_at
 
 URL_PORT = "url.port"
 """
-Port extracted from the `url.full`
+Port extracted from the `url.full`.
 """
 
 URL_QUERY = "url.query"

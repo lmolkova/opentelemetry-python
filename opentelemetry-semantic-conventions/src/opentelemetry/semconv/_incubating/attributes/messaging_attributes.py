@@ -33,7 +33,7 @@ A boolean that is true if the message destination is anonymous (could be unnamed
 
 MESSAGING_DESTINATION_NAME = "messaging.destination.name"
 """
-The message destination name
+The message destination name.
 Note: Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 """
@@ -45,7 +45,7 @@ The identifier of the partition messages are sent to or received from, unique wi
 
 MESSAGING_DESTINATION_TEMPLATE = "messaging.destination.template"
 """
-Low cardinality representation of the messaging destination name
+Low cardinality representation of the messaging destination name.
 Note: Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 """
 
@@ -63,7 +63,7 @@ A boolean that is true if the publish message destination is anonymous (could be
 
 MESSAGING_DESTINATION_PUBLISH_NAME = "messaging.destination_publish.name"
 """
-The name of the original destination the message was published to
+The name of the original destination the message was published to.
 Note: The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
 the broker doesn't have such notion, the original destination name SHOULD uniquely identify the broker.
 """
@@ -183,7 +183,7 @@ MESSAGING_RABBITMQ_MESSAGE_DELIVERY_TAG = (
     "messaging.rabbitmq.message.delivery_tag"
 )
 """
-RabbitMQ message delivery tag
+RabbitMQ message delivery tag.
 """
 
 MESSAGING_ROCKETMQ_CLIENT_GROUP = "messaging.rocketmq.client_group"
@@ -289,67 +289,67 @@ class MessagingOperationTypeValues(Enum):
 
 class MessagingRocketmqConsumptionModelValues(Enum):
     CLUSTERING = "clustering"
-    """Clustering consumption model"""
+    """Clustering consumption model."""
 
     BROADCASTING = "broadcasting"
-    """Broadcasting consumption model"""
+    """Broadcasting consumption model."""
 
 
 class MessagingRocketmqMessageTypeValues(Enum):
     NORMAL = "normal"
-    """Normal message"""
+    """Normal message."""
 
     FIFO = "fifo"
-    """FIFO message"""
+    """FIFO message."""
 
     DELAY = "delay"
-    """Delay message"""
+    """Delay message."""
 
     TRANSACTION = "transaction"
-    """Transaction message"""
+    """Transaction message."""
 
 
 class MessagingServicebusDispositionStatusValues(Enum):
     COMPLETE = "complete"
-    """Message is completed"""
+    """Message is completed."""
 
     ABANDON = "abandon"
-    """Message is abandoned"""
+    """Message is abandoned."""
 
     DEAD_LETTER = "dead_letter"
-    """Message is sent to dead letter queue"""
+    """Message is sent to dead letter queue."""
 
     DEFER = "defer"
-    """Message is deferred"""
+    """Message is deferred."""
 
 
 class MessagingSystemValues(Enum):
     ACTIVEMQ = "activemq"
-    """Apache ActiveMQ"""
+    """Apache ActiveMQ."""
 
     AWS_SQS = "aws_sqs"
-    """Amazon Simple Queue Service (SQS)"""
+    """Amazon Simple Queue Service (SQS)."""
 
     EVENTGRID = "eventgrid"
-    """Azure Event Grid"""
+    """Azure Event Grid."""
 
     EVENTHUBS = "eventhubs"
-    """Azure Event Hubs"""
+    """Azure Event Hubs."""
 
     SERVICEBUS = "servicebus"
-    """Azure Service Bus"""
+    """Azure Service Bus."""
 
     GCP_PUBSUB = "gcp_pubsub"
-    """Google Cloud Pub/Sub"""
+    """Google Cloud Pub/Sub."""
 
     JMS = "jms"
-    """Java Message Service"""
+    """Java Message Service."""
 
     KAFKA = "kafka"
-    """Apache Kafka"""
+    """Apache Kafka."""
 
     RABBITMQ = "rabbitmq"
-    """RabbitMQ"""
+    """RabbitMQ."""
 
     ROCKETMQ = "rocketmq"
-    """Apache RocketMQ"""
+    """Apache RocketMQ."""

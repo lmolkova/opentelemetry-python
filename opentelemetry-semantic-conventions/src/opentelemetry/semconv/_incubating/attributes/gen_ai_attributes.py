@@ -18,13 +18,13 @@ from enum import Enum
 GEN_AI_COMPLETION = "gen_ai.completion"
 """
 The full response received from the LLM.
-Note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+Note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation).
 """
 
 GEN_AI_PROMPT = "gen_ai.prompt"
 """
 The full prompt sent to an LLM.
-Note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
+Note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation).
 """
 
 GEN_AI_REQUEST_MAX_TOKENS = "gen_ai.request.max_tokens"
@@ -81,4 +81,4 @@ The number of tokens used in the LLM prompt.
 
 class GenAiSystemValues(Enum):
     OPENAI = "openai"
-    """OpenAI"""
+    """OpenAI."""

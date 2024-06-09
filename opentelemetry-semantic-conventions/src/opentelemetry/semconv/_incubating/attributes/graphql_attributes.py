@@ -34,10 +34,10 @@ The type of the operation being executed.
 
 class GraphqlOperationTypeValues(Enum):
     QUERY = "query"
-    """GraphQL query"""
+    """GraphQL query."""
 
     MUTATION = "mutation"
-    """GraphQL mutation"""
+    """GraphQL mutation."""
 
     SUBSCRIPTION = "subscription"
-    """GraphQL subscription"""
+    """GraphQL subscription."""

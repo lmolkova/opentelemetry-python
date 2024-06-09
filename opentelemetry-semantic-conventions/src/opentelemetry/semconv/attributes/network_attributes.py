@@ -66,21 +66,21 @@ Note: The value SHOULD be normalized to lowercase.
 
 class NetworkTransportValues(Enum):
     TCP = "tcp"
-    """TCP"""
+    """TCP."""
 
     UDP = "udp"
-    """UDP"""
+    """UDP."""
 
     PIPE = "pipe"
     """Named or anonymous pipe."""
 
     UNIX = "unix"
-    """Unix domain socket"""
+    """Unix domain socket."""
 
 
 class NetworkTypeValues(Enum):
     IPV4 = "ipv4"
-    """IPv4"""
+    """IPv4."""
 
     IPV6 = "ipv6"
-    """IPv6"""
+    """IPv6."""

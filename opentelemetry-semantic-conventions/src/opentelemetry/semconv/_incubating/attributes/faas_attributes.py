@@ -139,33 +139,33 @@ class FaasDocumentOperationValues(Enum):
 
 class FaasInvokedProviderValues(Enum):
     ALIBABA_CLOUD = "alibaba_cloud"
-    """Alibaba Cloud"""
+    """Alibaba Cloud."""
 
     AWS = "aws"
-    """Amazon Web Services"""
+    """Amazon Web Services."""
 
     AZURE = "azure"
-    """Microsoft Azure"""
+    """Microsoft Azure."""
 
     GCP = "gcp"
-    """Google Cloud Platform"""
+    """Google Cloud Platform."""
 
     TENCENT_CLOUD = "tencent_cloud"
-    """Tencent Cloud"""
+    """Tencent Cloud."""
 
 
 class FaasTriggerValues(Enum):
     DATASOURCE = "datasource"
-    """A response to some data source operation such as a database or filesystem read/write"""
+    """A response to some data source operation such as a database or filesystem read/write."""
 
     HTTP = "http"
-    """To provide an answer to an inbound HTTP request"""
+    """To provide an answer to an inbound HTTP request."""
 
     PUBSUB = "pubsub"
-    """A function is set to be executed when messages are sent to a messaging system"""
+    """A function is set to be executed when messages are sent to a messaging system."""
 
     TIMER = "timer"
-    """A function is scheduled to be executed regularly"""
+    """A function is scheduled to be executed regularly."""
 
     OTHER = "other"
-    """If none of the others apply"""
+    """If none of the others apply."""

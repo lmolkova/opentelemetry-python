@@ -54,7 +54,7 @@ The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` requ
 
 AWS_DYNAMODB_GLOBAL_SECONDARY_INDEXES = "aws.dynamodb.global_secondary_indexes"
 """
-The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
+The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field.
 """
 
 AWS_DYNAMODB_INDEX_NAME = "aws.dynamodb.index_name"
@@ -220,7 +220,7 @@ of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
-- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
+- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html).
 """
 
 AWS_S3_DELETE = "aws.s3.delete"
@@ -249,7 +249,7 @@ This applies in particular to the following operations:
 - [create-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html)
 - [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
-- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
+- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html).
 """
 
 AWS_S3_PART_NUMBER = "aws.s3.part_number"
@@ -272,7 +272,7 @@ This applies in particular to the following operations:
 - [complete-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html)
 - [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
-- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
+- [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html).
 """
 
 

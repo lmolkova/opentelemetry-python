@@ -30,13 +30,13 @@
 
 {%- macro write_docstring(name, brief, note, deprecated, stability, prefix) -%}
     {%- if c.str_or_empty(deprecated)|length -%}
-{{prefix}}Deprecated: {{deprecated | comment_with_prefix(prefix)}}
+{{prefix}}Deprecated: {{deprecated | trim('.\n') | comment_with_prefix(prefix)}}.
     {%- elif ctx.filter == "any" and stability == "stable" -%}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
     {%- elif c.str_or_empty(brief)|length -%}
-{{brief | comment_with_prefix(prefix)}}
+{{brief | trim('.\n') | comment_with_prefix(prefix)}}.
         {%- if c.str_or_empty(note)|length  %}
-{{prefix}}Note: {{note | comment_with_prefix(prefix)}}
+{{prefix}}Note: {{note  | trim('.\n') | comment_with_prefix(prefix)}}.
         {%- endif -%}
     {%- endif -%}
 {%- endmacro -%}

@@ -160,16 +160,16 @@ class HttpConnectionStateValues(Enum):
 
 class HttpFlavorValues(Enum):
     HTTP_1_0 = "1.0"
-    """HTTP/1.0"""
+    """HTTP/1.0."""
 
     HTTP_1_1 = "1.1"
-    """HTTP/1.1"""
+    """HTTP/1.1."""
 
     HTTP_2_0 = "2.0"
-    """HTTP/2"""
+    """HTTP/2."""
 
     HTTP_3_0 = "3.0"
-    """HTTP/3"""
+    """HTTP/3."""
 
     SPDY = "SPDY"
     """SPDY protocol."""
