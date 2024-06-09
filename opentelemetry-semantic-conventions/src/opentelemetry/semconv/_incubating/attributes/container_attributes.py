@@ -89,9 +89,7 @@ The container runtime managing this container.
 class ContainerCpuStateValues(Enum):
     USER = "user"
     """When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows)."""
-
     SYSTEM = "system"
     """When CPU is used by the system (host OS)."""
-
     KERNEL = "kernel"
     """When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows)."""

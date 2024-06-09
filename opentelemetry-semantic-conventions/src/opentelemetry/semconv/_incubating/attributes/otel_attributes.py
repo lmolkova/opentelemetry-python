@@ -49,6 +49,5 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_a
 class OtelStatusCodeValues(Enum):
     OK = "OK"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatusCodeValues.OK`."""
-
     ERROR = "ERROR"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatusCodeValues.ERROR`."""

@@ -24,6 +24,5 @@ The disk IO operation direction.
 class DiskIoDirectionValues(Enum):
     READ = "read"
     """read."""
-
     WRITE = "write"
     """write."""

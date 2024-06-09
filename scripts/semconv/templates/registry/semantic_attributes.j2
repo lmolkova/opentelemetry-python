@@ -56,9 +56,9 @@
 {% for attribute in enum_attributes %}{%- set class_name = c.to_class_name(attribute.name) ~ "Values" -%}
 class {{class_name}}(Enum):
     {%- for member in attribute.type.members %}
-    {% set member_name = c.to_const_name(member.id) %}
+    {% set member_name = c.to_const_name(member.id) -%}
     {%- set doc_string=write_docstring(class_name + '.' + member_name, member.brief or member.id, "", member.deprecated, member.stability, "")-%}
     {{member_name}} = "{{ member.value }}"
     {% if doc_string %}"""{{doc_string}}"""{% endif %}
-    {% endfor %}
+    {%- endfor %}
 {% endfor %}

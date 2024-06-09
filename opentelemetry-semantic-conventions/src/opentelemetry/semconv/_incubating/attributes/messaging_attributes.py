@@ -273,16 +273,12 @@ Note: The actual messaging system may differ from the one known by the client. F
 class MessagingOperationTypeValues(Enum):
     PUBLISH = "publish"
     """One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created."""
-
     CREATE = "create"
     """A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch publishing scenarios."""
-
     RECEIVE = "receive"
     """One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages."""
-
     DELIVER = "process"
     """One or more messages are delivered to or processed by a consumer."""
-
     SETTLE = "settle"
     """One or more messages are settled."""
 
@@ -290,7 +286,6 @@ class MessagingOperationTypeValues(Enum):
 class MessagingRocketmqConsumptionModelValues(Enum):
     CLUSTERING = "clustering"
     """Clustering consumption model."""
-
     BROADCASTING = "broadcasting"
     """Broadcasting consumption model."""
 
@@ -298,13 +293,10 @@ class MessagingRocketmqConsumptionModelValues(Enum):
 class MessagingRocketmqMessageTypeValues(Enum):
     NORMAL = "normal"
     """Normal message."""
-
     FIFO = "fifo"
     """FIFO message."""
-
     DELAY = "delay"
     """Delay message."""
-
     TRANSACTION = "transaction"
     """Transaction message."""
 
@@ -312,13 +304,10 @@ class MessagingRocketmqMessageTypeValues(Enum):
 class MessagingServicebusDispositionStatusValues(Enum):
     COMPLETE = "complete"
     """Message is completed."""
-
     ABANDON = "abandon"
     """Message is abandoned."""
-
     DEAD_LETTER = "dead_letter"
     """Message is sent to dead letter queue."""
-
     DEFER = "defer"
     """Message is deferred."""
 
@@ -326,30 +315,21 @@ class MessagingServicebusDispositionStatusValues(Enum):
 class MessagingSystemValues(Enum):
     ACTIVEMQ = "activemq"
     """Apache ActiveMQ."""
-
     AWS_SQS = "aws_sqs"
     """Amazon Simple Queue Service (SQS)."""
-
     EVENTGRID = "eventgrid"
     """Azure Event Grid."""
-
     EVENTHUBS = "eventhubs"
     """Azure Event Hubs."""
-
     SERVICEBUS = "servicebus"
     """Azure Service Bus."""
-
     GCP_PUBSUB = "gcp_pubsub"
     """Google Cloud Pub/Sub."""
-
     JMS = "jms"
     """Java Message Service."""
-
     KAFKA = "kafka"
     """Apache Kafka."""
-
     RABBITMQ = "rabbitmq"
     """RabbitMQ."""
-
     ROCKETMQ = "rocketmq"
     """Apache RocketMQ."""

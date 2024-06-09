@@ -169,10 +169,8 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.networ
 class NetSockFamilyValues(Enum):
     INET = "inet"
     """IPv4 address."""
-
     INET6 = "inet6"
     """IPv6 address."""
-
     UNIX = "unix"
     """Unix domain socket path."""
 
@@ -180,16 +178,12 @@ class NetSockFamilyValues(Enum):
 class NetTransportValues(Enum):
     IP_TCP = "ip_tcp"
     """ip_tcp."""
-
     IP_UDP = "ip_udp"
     """ip_udp."""
-
     PIPE = "pipe"
     """Named or anonymous pipe."""
-
     INPROC = "inproc"
     """In-process communication."""
-
     OTHER = "other"
     """Something else (non IP-based)."""
 
@@ -197,64 +191,44 @@ class NetTransportValues(Enum):
 class NetworkConnectionSubtypeValues(Enum):
     GPRS = "gprs"
     """GPRS."""
-
     EDGE = "edge"
     """EDGE."""
-
     UMTS = "umts"
     """UMTS."""
-
     CDMA = "cdma"
     """CDMA."""
-
     EVDO_0 = "evdo_0"
     """EVDO Rel. 0."""
-
     EVDO_A = "evdo_a"
     """EVDO Rev. A."""
-
     CDMA2000_1XRTT = "cdma2000_1xrtt"
     """CDMA2000 1XRTT."""
-
     HSDPA = "hsdpa"
     """HSDPA."""
-
     HSUPA = "hsupa"
     """HSUPA."""
-
     HSPA = "hspa"
     """HSPA."""
-
     IDEN = "iden"
     """IDEN."""
-
     EVDO_B = "evdo_b"
     """EVDO Rev. B."""
-
     LTE = "lte"
     """LTE."""
-
     EHRPD = "ehrpd"
     """EHRPD."""
-
     HSPAP = "hspap"
     """HSPAP."""
-
     GSM = "gsm"
     """GSM."""
-
     TD_SCDMA = "td_scdma"
     """TD-SCDMA."""
-
     IWLAN = "iwlan"
     """IWLAN."""
-
     NR = "nr"
     """5G NR (New Radio)."""
-
     NRNSA = "nrnsa"
     """5G NRNSA (New Radio Non-Standalone)."""
-
     LTE_CA = "lte_ca"
     """LTE CA."""
 
@@ -262,16 +236,12 @@ class NetworkConnectionSubtypeValues(Enum):
 class NetworkConnectionTypeValues(Enum):
     WIFI = "wifi"
     """wifi."""
-
     WIRED = "wired"
     """wired."""
-
     CELL = "cell"
     """cell."""
-
     UNAVAILABLE = "unavailable"
     """unavailable."""
-
     UNKNOWN = "unknown"
     """unknown."""
 
@@ -279,7 +249,6 @@ class NetworkConnectionTypeValues(Enum):
 class NetworkIoDirectionValues(Enum):
     TRANSMIT = "transmit"
     """transmit."""
-
     RECEIVE = "receive"
     """receive."""
 
@@ -287,13 +256,10 @@ class NetworkIoDirectionValues(Enum):
 class NetworkTransportValues(Enum):
     TCP = "tcp"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.TCP`."""
-
     UDP = "udp"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.UDP`."""
-
     PIPE = "pipe"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.PIPE`."""
-
     UNIX = "unix"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.UNIX`."""
 
@@ -301,6 +267,5 @@ class NetworkTransportValues(Enum):
 class NetworkTypeValues(Enum):
     IPV4 = "ipv4"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues.IPV4`."""
-
     IPV6 = "ipv6"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues.IPV6`."""

@@ -133,7 +133,6 @@ A string identifying the remoting system. See below for a list of well-known ide
 class MessageTypeValues(Enum):
     SENT = "SENT"
     """sent."""
-
     RECEIVED = "RECEIVED"
     """received."""
 
@@ -141,49 +140,34 @@ class MessageTypeValues(Enum):
 class RpcConnectRpcErrorCodeValues(Enum):
     CANCELLED = "cancelled"
     """cancelled."""
-
     UNKNOWN = "unknown"
     """unknown."""
-
     INVALID_ARGUMENT = "invalid_argument"
     """invalid_argument."""
-
     DEADLINE_EXCEEDED = "deadline_exceeded"
     """deadline_exceeded."""
-
     NOT_FOUND = "not_found"
     """not_found."""
-
     ALREADY_EXISTS = "already_exists"
     """already_exists."""
-
     PERMISSION_DENIED = "permission_denied"
     """permission_denied."""
-
     RESOURCE_EXHAUSTED = "resource_exhausted"
     """resource_exhausted."""
-
     FAILED_PRECONDITION = "failed_precondition"
     """failed_precondition."""
-
     ABORTED = "aborted"
     """aborted."""
-
     OUT_OF_RANGE = "out_of_range"
     """out_of_range."""
-
     UNIMPLEMENTED = "unimplemented"
     """unimplemented."""
-
     INTERNAL = "internal"
     """internal."""
-
     UNAVAILABLE = "unavailable"
     """unavailable."""
-
     DATA_LOSS = "data_loss"
     """data_loss."""
-
     UNAUTHENTICATED = "unauthenticated"
     """unauthenticated."""
 
@@ -191,52 +175,36 @@ class RpcConnectRpcErrorCodeValues(Enum):
 class RpcGrpcStatusCodeValues(Enum):
     OK = "0"
     """OK."""
-
     CANCELLED = "1"
     """CANCELLED."""
-
     UNKNOWN = "2"
     """UNKNOWN."""
-
     INVALID_ARGUMENT = "3"
     """INVALID_ARGUMENT."""
-
     DEADLINE_EXCEEDED = "4"
     """DEADLINE_EXCEEDED."""
-
     NOT_FOUND = "5"
     """NOT_FOUND."""
-
     ALREADY_EXISTS = "6"
     """ALREADY_EXISTS."""
-
     PERMISSION_DENIED = "7"
     """PERMISSION_DENIED."""
-
     RESOURCE_EXHAUSTED = "8"
     """RESOURCE_EXHAUSTED."""
-
     FAILED_PRECONDITION = "9"
     """FAILED_PRECONDITION."""
-
     ABORTED = "10"
     """ABORTED."""
-
     OUT_OF_RANGE = "11"
     """OUT_OF_RANGE."""
-
     UNIMPLEMENTED = "12"
     """UNIMPLEMENTED."""
-
     INTERNAL = "13"
     """INTERNAL."""
-
     UNAVAILABLE = "14"
     """UNAVAILABLE."""
-
     DATA_LOSS = "15"
     """DATA_LOSS."""
-
     UNAUTHENTICATED = "16"
     """UNAUTHENTICATED."""
 
@@ -244,7 +212,6 @@ class RpcGrpcStatusCodeValues(Enum):
 class RpcMessageTypeValues(Enum):
     SENT = "SENT"
     """sent."""
-
     RECEIVED = "RECEIVED"
     """received."""
 
@@ -252,15 +219,11 @@ class RpcMessageTypeValues(Enum):
 class RpcSystemValues(Enum):
     GRPC = "grpc"
     """gRPC."""
-
     JAVA_RMI = "java_rmi"
     """Java RMI."""
-
     DOTNET_WCF = "dotnet_wcf"
     """NET WCF."""
-
     APACHE_DUBBO = "apache_dubbo"
     """Apache Dubbo."""
-
     CONNECT_RPC = "connect_rpc"
     """Connect RPC."""

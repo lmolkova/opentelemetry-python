@@ -226,34 +226,24 @@ Deprecated: Replaced by `db.client.connections.state`.
 class DbCassandraConsistencyLevelValues(Enum):
     ALL = "all"
     """all."""
-
     EACH_QUORUM = "each_quorum"
     """each_quorum."""
-
     QUORUM = "quorum"
     """quorum."""
-
     LOCAL_QUORUM = "local_quorum"
     """local_quorum."""
-
     ONE = "one"
     """one."""
-
     TWO = "two"
     """two."""
-
     THREE = "three"
     """three."""
-
     LOCAL_ONE = "local_one"
     """local_one."""
-
     ANY = "any"
     """any."""
-
     SERIAL = "serial"
     """serial."""
-
     LOCAL_SERIAL = "local_serial"
     """local_serial."""
 
@@ -261,7 +251,6 @@ class DbCassandraConsistencyLevelValues(Enum):
 class DbClientConnectionsStateValues(Enum):
     IDLE = "idle"
     """idle."""
-
     USED = "used"
     """used."""
 
@@ -269,7 +258,6 @@ class DbClientConnectionsStateValues(Enum):
 class DbCosmosdbConnectionModeValues(Enum):
     GATEWAY = "gateway"
     """Gateway (HTTP) connections mode."""
-
     DIRECT = "direct"
     """Direct connection."""
 
@@ -277,46 +265,32 @@ class DbCosmosdbConnectionModeValues(Enum):
 class DbCosmosdbOperationTypeValues(Enum):
     INVALID = "Invalid"
     """invalid."""
-
     CREATE = "Create"
     """create."""
-
     PATCH = "Patch"
     """patch."""
-
     READ = "Read"
     """read."""
-
     READ_FEED = "ReadFeed"
     """read_feed."""
-
     DELETE = "Delete"
     """delete."""
-
     REPLACE = "Replace"
     """replace."""
-
     EXECUTE = "Execute"
     """execute."""
-
     QUERY = "Query"
     """query."""
-
     HEAD = "Head"
     """head."""
-
     HEAD_FEED = "HeadFeed"
     """head_feed."""
-
     UPSERT = "Upsert"
     """upsert."""
-
     BATCH = "Batch"
     """batch."""
-
     QUERY_PLAN = "QueryPlan"
     """query_plan."""
-
     EXECUTE_JAVASCRIPT = "ExecuteJavaScript"
     """execute_javascript."""
 
@@ -324,157 +298,106 @@ class DbCosmosdbOperationTypeValues(Enum):
 class DbSystemValues(Enum):
     OTHER_SQL = "other_sql"
     """Some other SQL database. Fallback only. See notes."""
-
     MSSQL = "mssql"
     """Microsoft SQL Server."""
-
     MSSQLCOMPACT = "mssqlcompact"
     """Microsoft SQL Server Compact."""
-
     MYSQL = "mysql"
     """MySQL."""
-
     ORACLE = "oracle"
     """Oracle Database."""
-
     DB2 = "db2"
     """IBM Db2."""
-
     POSTGRESQL = "postgresql"
     """PostgreSQL."""
-
     REDSHIFT = "redshift"
     """Amazon Redshift."""
-
     HIVE = "hive"
     """Apache Hive."""
-
     CLOUDSCAPE = "cloudscape"
     """Cloudscape."""
-
     HSQLDB = "hsqldb"
     """HyperSQL DataBase."""
-
     PROGRESS = "progress"
     """Progress Database."""
-
     MAXDB = "maxdb"
     """SAP MaxDB."""
-
     HANADB = "hanadb"
     """SAP HANA."""
-
     INGRES = "ingres"
     """Ingres."""
-
     FIRSTSQL = "firstsql"
     """FirstSQL."""
-
     EDB = "edb"
     """EnterpriseDB."""
-
     CACHE = "cache"
     """InterSystems Caché."""
-
     ADABAS = "adabas"
     """Adabas (Adaptable Database System)."""
-
     FIREBIRD = "firebird"
     """Firebird."""
-
     DERBY = "derby"
     """Apache Derby."""
-
     FILEMAKER = "filemaker"
     """FileMaker."""
-
     INFORMIX = "informix"
     """Informix."""
-
     INSTANTDB = "instantdb"
     """InstantDB."""
-
     INTERBASE = "interbase"
     """InterBase."""
-
     MARIADB = "mariadb"
     """MariaDB."""
-
     NETEZZA = "netezza"
     """Netezza."""
-
     PERVASIVE = "pervasive"
     """Pervasive PSQL."""
-
     POINTBASE = "pointbase"
     """PointBase."""
-
     SQLITE = "sqlite"
     """SQLite."""
-
     SYBASE = "sybase"
     """Sybase."""
-
     TERADATA = "teradata"
     """Teradata."""
-
     VERTICA = "vertica"
     """Vertica."""
-
     H2 = "h2"
     """H2."""
-
     COLDFUSION = "coldfusion"
     """ColdFusion IMQ."""
-
     CASSANDRA = "cassandra"
     """Apache Cassandra."""
-
     HBASE = "hbase"
     """Apache HBase."""
-
     MONGODB = "mongodb"
     """MongoDB."""
-
     REDIS = "redis"
     """Redis."""
-
     COUCHBASE = "couchbase"
     """Couchbase."""
-
     COUCHDB = "couchdb"
     """CouchDB."""
-
     COSMOSDB = "cosmosdb"
     """Microsoft Azure Cosmos DB."""
-
     DYNAMODB = "dynamodb"
     """Amazon DynamoDB."""
-
     NEO4J = "neo4j"
     """Neo4j."""
-
     GEODE = "geode"
     """Apache Geode."""
-
     ELASTICSEARCH = "elasticsearch"
     """Elasticsearch."""
-
     MEMCACHED = "memcached"
     """Memcached."""
-
     COCKROACHDB = "cockroachdb"
     """CockroachDB."""
-
     OPENSEARCH = "opensearch"
     """OpenSearch."""
-
     CLICKHOUSE = "clickhouse"
     """ClickHouse."""
-
     SPANNER = "spanner"
     """Cloud Spanner."""
-
     TRINO = "trino"
     """Trino."""
 
@@ -482,6 +405,5 @@ class DbSystemValues(Enum):
 class StateValues(Enum):
     IDLE = "idle"
     """idle."""
-
     USED = "used"
     """used."""

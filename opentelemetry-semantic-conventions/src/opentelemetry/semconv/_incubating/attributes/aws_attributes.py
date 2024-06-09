@@ -279,6 +279,5 @@ This applies in particular to the following operations:
 class AwsEcsLaunchtypeValues(Enum):
     EC2 = "ec2"
     """ec2."""
-
     FARGATE = "fargate"
     """fargate."""
