@@ -26,3 +26,13 @@
 {%- macro str_or_empty(str) -%}
 {% if str is defined and str is not none %}{{str}}{% else %}{{""}}{% endif %}
 {%- endmacro %}
+
+{%- macro to_docstring(str, prefix) -%}
+{{str | trim('.\n') | comment_with_prefix(prefix)}}
+{%- endmacro %}
+
+{%- macro import_deprecated(semconv) -%}
+    {%- if (semconv | rejectattr("deprecated", "none") | list | count > 0) or (filter == "any" and semconv | selectattr("stability", "equalto", "stable") | list | count > 0) %}
+from deprecated import deprecated
+    {%- endif %}
+{%- endmacro-%}

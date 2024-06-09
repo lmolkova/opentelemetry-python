@@ -15,6 +15,8 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 NET_HOST_IP = "net.host.ip"
 """
 Deprecated: Replaced by `network.local.address`.
@@ -166,6 +168,9 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.networ
 """
 
 
+@deprecated(
+    reason="The attribute net.sock.family is deprecated - Split to `network.transport` and `network.type`"
+)
 class NetSockFamilyValues(Enum):
     INET = "inet"
     """IPv4 address."""
@@ -175,6 +180,9 @@ class NetSockFamilyValues(Enum):
     """Unix domain socket path."""
 
 
+@deprecated(
+    reason="The attribute net.transport is deprecated - Replaced by `network.transport`"
+)
 class NetTransportValues(Enum):
     IP_TCP = "ip_tcp"
     """ip_tcp."""

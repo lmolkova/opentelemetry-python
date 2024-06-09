@@ -15,6 +15,8 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 HTTP_CLIENT_IP = "http.client_ip"
 """
 Deprecated: Replaced by `client.address`.
@@ -157,6 +159,9 @@ class HttpConnectionStateValues(Enum):
     """idle state."""
 
 
+@deprecated(
+    reason="The attribute http.flavor is deprecated - Replaced by `network.protocol.name`"
+)
 class HttpFlavorValues(Enum):
     HTTP_1_0 = "1.0"
     """HTTP/1.0."""

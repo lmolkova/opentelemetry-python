@@ -21,6 +21,8 @@
 {% set enum_attributes = attributes | selectattr("type", "mapping") | list %}
 {% if enum_attributes | count > 0 %}from enum import Enum{% endif %}
 
+{{c.import_deprecated(enum_attributes)}}
+
 {%- macro attribute_name(attribute) -%}
 {{c.to_const_name(attribute.name)}}{%- if "template" in attribute.type -%}_TEMPLATE{%- endif -%}
 {%- endmacro -%}
@@ -31,13 +33,13 @@
 
 {%- macro write_docstring(name, brief, note, deprecated, stability, prefix) -%}
     {%- if c.str_or_empty(deprecated)|length -%}
-{{prefix}}Deprecated: {{deprecated | trim('.\n') | comment_with_prefix(prefix)}}.
+{{prefix}}Deprecated: {{c.to_docstring(deprecated, prefix)}}.
     {%- elif ctx.filter == "any" and stability == "stable" -%}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
     {%- elif c.str_or_empty(brief)|length -%}
-{{brief | trim('.\n') | comment_with_prefix(prefix)}}.
+{{prefix}}{{c.to_docstring(brief, prefix)}}.
         {%- if c.str_or_empty(note)|length  %}
-{{prefix}}Note: {{note  | trim('.\n') | comment_with_prefix(prefix)}}.
+{{prefix}}Note: {{c.to_docstring(note, prefix)}}.
         {%- endif -%}
     {%- endif -%}
 {%- endmacro -%}
@@ -54,6 +56,11 @@
 {% endfor %}
 
 {% for attribute in enum_attributes %}{%- set class_name = c.to_class_name(attribute.name) ~ "Values" -%}
+{%- if c.str_or_empty(attribute.deprecated) | length %}
+@deprecated(reason="The attribute {{attribute.name}} is deprecated - {{ c.to_docstring(attribute.deprecated, "") }}")
+    {%- elif attribute.stability == "stable" and filter == "any" %}
+@deprecated(reason="Deprecated in favor of stable :py:const:`{{stable_class_ref(class_name, '.')}}`.")
+    {%- endif %}
 class {{class_name}}(Enum):
     {%- for member in attribute.type.members %}
     {% set member_name = c.to_const_name(member.id) -%}

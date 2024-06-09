@@ -15,6 +15,8 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 SYSTEM_CPU_LOGICAL_NUMBER = "system.cpu.logical_number"
 """
 The logical CPU number [0..n-1].
@@ -199,6 +201,9 @@ class SystemProcessStatusValues(Enum):
     """defunct."""
 
 
+@deprecated(
+    reason="The attribute system.processes.status is deprecated - Replaced by `system.process.status`"
+)
 class SystemProcessesStatusValues(Enum):
     RUNNING = "running"
     """running."""

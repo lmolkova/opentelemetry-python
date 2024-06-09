@@ -15,6 +15,8 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 MESSAGE_COMPRESSED_SIZE = "message.compressed_size"
 """
 Deprecated: Replaced by `rpc.message.compressed_size`.
@@ -130,6 +132,9 @@ A string identifying the remoting system. See below for a list of well-known ide
 """
 
 
+@deprecated(
+    reason="The attribute message.type is deprecated - Replaced by `rpc.message.type`"
+)
 class MessageTypeValues(Enum):
     SENT = "SENT"
     """sent."""
