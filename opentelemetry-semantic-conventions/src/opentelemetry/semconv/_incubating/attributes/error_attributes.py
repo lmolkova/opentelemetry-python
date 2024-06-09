@@ -15,12 +15,17 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 ERROR_TYPE = "error.type"
 """
 Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.error_attributes.ERROR_TYPE`.
 """
 
 
+@deprecated(
+    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.error_attributes.ErrorTypeValues`."
+)
 class ErrorTypeValues(Enum):
     OTHER = "_OTHER"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.error_attributes.ErrorTypeValues.OTHER`."""

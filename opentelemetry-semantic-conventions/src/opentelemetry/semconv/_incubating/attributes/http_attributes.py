@@ -177,6 +177,9 @@ class HttpFlavorValues(Enum):
     """QUIC protocol."""
 
 
+@deprecated(
+    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues`."
+)
 class HttpRequestMethodValues(Enum):
     CONNECT = "CONNECT"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HttpRequestMethodValues.CONNECT`."""

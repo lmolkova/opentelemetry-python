@@ -261,6 +261,9 @@ class NetworkIoDirectionValues(Enum):
     """receive."""
 
 
+@deprecated(
+    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues`."
+)
 class NetworkTransportValues(Enum):
     TCP = "tcp"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.TCP`."""
@@ -272,6 +275,9 @@ class NetworkTransportValues(Enum):
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.UNIX`."""
 
 
+@deprecated(
+    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues`."
+)
 class NetworkTypeValues(Enum):
     IPV4 = "ipv4"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues.IPV4`."""

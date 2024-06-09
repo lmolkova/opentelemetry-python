@@ -15,6 +15,8 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 TELEMETRY_DISTRO_NAME = "telemetry.distro.name"
 """
 The name of the auto instrumentation agent or distribution, if used.
@@ -43,6 +45,9 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.teleme
 """
 
 
+@deprecated(
+    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues`."
+)
 class TelemetrySdkLanguageValues(Enum):
     CPP = "cpp"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.CPP`."""

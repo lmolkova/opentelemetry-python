@@ -15,6 +15,8 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 OTEL_LIBRARY_NAME = "otel.library.name"
 """
 Deprecated: use the `otel.scope.name` attribute.
@@ -46,6 +48,9 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_a
 """
 
 
+@deprecated(
+    reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatusCodeValues`."
+)
 class OtelStatusCodeValues(Enum):
     OK = "OK"
     """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.otel_attributes.OtelStatusCodeValues.OK`."""

@@ -58,7 +58,7 @@
 {% for attribute in enum_attributes %}{%- set class_name = c.to_class_name(attribute.name) ~ "Values" -%}
 {%- if c.str_or_empty(attribute.deprecated) | length %}
 @deprecated(reason="The attribute {{attribute.name}} is deprecated - {{ c.to_docstring(attribute.deprecated, "") }}")
-    {%- elif attribute.stability == "stable" and filter == "any" %}
+    {%- elif attribute.stability == "stable" and ctx.filter == "any" %}
 @deprecated(reason="Deprecated in favor of stable :py:const:`{{stable_class_ref(class_name, '.')}}`.")
     {%- endif %}
 class {{class_name}}(Enum):

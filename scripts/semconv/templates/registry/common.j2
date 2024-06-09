@@ -32,7 +32,7 @@
 {%- endmacro %}
 
 {%- macro import_deprecated(semconv) -%}
-    {%- if (semconv | rejectattr("deprecated", "none") | list | count > 0) or (filter == "any" and semconv | selectattr("stability", "equalto", "stable") | list | count > 0) %}
+    {%- if (semconv | rejectattr("deprecated", "none") | list | count > 0) or (ctx.filter == "any" and semconv | selectattr("stability", "equalto", "stable") | list | count > 0) %}
 from deprecated import deprecated
     {%- endif %}
 {%- endmacro-%}
