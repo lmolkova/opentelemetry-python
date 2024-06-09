@@ -45,61 +45,37 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.teleme
 
 class TelemetrySdkLanguageValues(Enum):
     CPP = "cpp"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.CPP`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.CPP`."""
 
     DOTNET = "dotnet"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.DOTNET`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.DOTNET`."""
 
     ERLANG = "erlang"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.ERLANG`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.ERLANG`."""
 
     GO = "go"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.GO`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.GO`."""
 
     JAVA = "java"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.JAVA`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.JAVA`."""
 
     NODEJS = "nodejs"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.NODEJS`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.NODEJS`."""
 
     PHP = "php"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.PHP`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.PHP`."""
 
     PYTHON = "python"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.PYTHON`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.PYTHON`."""
 
     RUBY = "ruby"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.RUBY`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.RUBY`."""
 
     RUST = "rust"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.RUST`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.RUST`."""
 
     SWIFT = "swift"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.SWIFT`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.SWIFT`."""
 
     WEBJS = "webjs"
-    """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.WEBJS`.
-    """
+    """Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.telemetry_attributes.TelemetrySdkLanguageValues.WEBJS`."""

@@ -14,6 +14,145 @@
 
 from opentelemetry.metrics import Counter, Histogram, Meter, UpDownCounter
 
+DB_CLIENT_CONNECTIONS_USAGE = "db.client.connections.usage"
+"""
+Deprecated: Replaced by `db.client.connection.count`.
+"""
+
+
+def create_db_client_connections_usage(meter: Meter) -> UpDownCounter:
+    """Deprecated, use `db.client.connection.count` instead."""
+    return meter.create_up_down_counter(
+        name="db.client.connections.usage",
+        description="Deprecated, use `db.client.connection.count` instead.",
+        unit="{connection}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_IDLE_MAX = "db.client.connections.idle.max"
+"""
+Deprecated: Replaced by `db.client.connection.idle.max`.
+"""
+
+
+def create_db_client_connections_idle_max(meter: Meter) -> UpDownCounter:
+    """Deprecated, use `db.client.connection.idle.max` instead."""
+    return meter.create_up_down_counter(
+        name="db.client.connections.idle.max",
+        description="Deprecated, use `db.client.connection.idle.max` instead.",
+        unit="{connection}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_IDLE_MIN = "db.client.connections.idle.min"
+"""
+Deprecated: Replaced by `db.client.connection.idle.min`.
+"""
+
+
+def create_db_client_connections_idle_min(meter: Meter) -> UpDownCounter:
+    """Deprecated, use `db.client.connection.idle.min` instead."""
+    return meter.create_up_down_counter(
+        name="db.client.connections.idle.min",
+        description="Deprecated, use `db.client.connection.idle.min` instead.",
+        unit="{connection}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_MAX = "db.client.connections.max"
+"""
+Deprecated: Replaced by `db.client.connection.max`.
+"""
+
+
+def create_db_client_connections_max(meter: Meter) -> UpDownCounter:
+    """Deprecated, use `db.client.connection.max` instead."""
+    return meter.create_up_down_counter(
+        name="db.client.connections.max",
+        description="Deprecated, use `db.client.connection.max` instead.",
+        unit="{connection}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_PENDING_REQUESTS = (
+    "db.client.connections.pending_requests"
+)
+"""
+Deprecated: Replaced by `db.client.connection.pending_requests`.
+"""
+
+
+def create_db_client_connections_pending_requests(
+    meter: Meter,
+) -> UpDownCounter:
+    """Deprecated, use `db.client.connection.pending_requests` instead."""
+    return meter.create_up_down_counter(
+        name="db.client.connections.pending_requests",
+        description="Deprecated, use `db.client.connection.pending_requests` instead.",
+        unit="{request}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_TIMEOUTS = "db.client.connections.timeouts"
+"""
+Deprecated: Replaced by `db.client.connection.timeouts`.
+"""
+
+
+def create_db_client_connections_timeouts(meter: Meter) -> Counter:
+    """Deprecated, use `db.client.connection.timeouts` instead."""
+    return meter.create_counter(
+        name="db.client.connections.timeouts",
+        description="Deprecated, use `db.client.connection.timeouts` instead.",
+        unit="{timeout}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_CREATE_TIME = "db.client.connections.create_time"
+"""
+Deprecated: Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`.
+"""
+
+
+def create_db_client_connections_create_time(meter: Meter) -> Histogram:
+    """Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."""
+    return meter.create_histogram(
+        name="db.client.connections.create_time",
+        description="Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`.",
+        unit="ms",
+    )
+
+
+DB_CLIENT_CONNECTIONS_WAIT_TIME = "db.client.connections.wait_time"
+"""
+Deprecated: Replaced by `db.client.connection.wait_time`. Note: the unit also changed from `ms` to `s`.
+"""
+
+
+def create_db_client_connections_wait_time(meter: Meter) -> Histogram:
+    """Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."""
+    return meter.create_histogram(
+        name="db.client.connections.wait_time",
+        description="Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`.",
+        unit="ms",
+    )
+
+
+DB_CLIENT_CONNECTIONS_USE_TIME = "db.client.connections.use_time"
+"""
+Deprecated: Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`.
+"""
+
+
+def create_db_client_connections_use_time(meter: Meter) -> Histogram:
+    """Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."""
+    return meter.create_histogram(
+        name="db.client.connections.use_time",
+        description="Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`.",
+        unit="ms",
+    )
+
+
 DB_CLIENT_OPERATION_DURATION = "db.client.operation.duration"
 """
 Duration of database client operations.
@@ -183,143 +322,4 @@ def create_db_client_connection_use_time(meter: Meter) -> Histogram:
         name="db.client.connection.use_time",
         description="The time between borrowing a connection and returning it to the pool",
         unit="s",
-    )
-
-
-DB_CLIENT_CONNECTIONS_USAGE = "db.client.connections.usage"
-"""
-Deprecated: Replaced by `db.client.connection.count`.
-"""
-
-
-def create_db_client_connections_usage(meter: Meter) -> UpDownCounter:
-    """Deprecated, use `db.client.connection.count` instead."""
-    return meter.create_up_down_counter(
-        name="db.client.connections.usage",
-        description="Deprecated, use `db.client.connection.count` instead.",
-        unit="{connection}",
-    )
-
-
-DB_CLIENT_CONNECTIONS_IDLE_MAX = "db.client.connections.idle.max"
-"""
-Deprecated: Replaced by `db.client.connection.idle.max`.
-"""
-
-
-def create_db_client_connections_idle_max(meter: Meter) -> UpDownCounter:
-    """Deprecated, use `db.client.connection.idle.max` instead."""
-    return meter.create_up_down_counter(
-        name="db.client.connections.idle.max",
-        description="Deprecated, use `db.client.connection.idle.max` instead.",
-        unit="{connection}",
-    )
-
-
-DB_CLIENT_CONNECTIONS_IDLE_MIN = "db.client.connections.idle.min"
-"""
-Deprecated: Replaced by `db.client.connection.idle.min`.
-"""
-
-
-def create_db_client_connections_idle_min(meter: Meter) -> UpDownCounter:
-    """Deprecated, use `db.client.connection.idle.min` instead."""
-    return meter.create_up_down_counter(
-        name="db.client.connections.idle.min",
-        description="Deprecated, use `db.client.connection.idle.min` instead.",
-        unit="{connection}",
-    )
-
-
-DB_CLIENT_CONNECTIONS_MAX = "db.client.connections.max"
-"""
-Deprecated: Replaced by `db.client.connection.max`.
-"""
-
-
-def create_db_client_connections_max(meter: Meter) -> UpDownCounter:
-    """Deprecated, use `db.client.connection.max` instead."""
-    return meter.create_up_down_counter(
-        name="db.client.connections.max",
-        description="Deprecated, use `db.client.connection.max` instead.",
-        unit="{connection}",
-    )
-
-
-DB_CLIENT_CONNECTIONS_PENDING_REQUESTS = (
-    "db.client.connections.pending_requests"
-)
-"""
-Deprecated: Replaced by `db.client.connection.pending_requests`.
-"""
-
-
-def create_db_client_connections_pending_requests(
-    meter: Meter,
-) -> UpDownCounter:
-    """Deprecated, use `db.client.connection.pending_requests` instead."""
-    return meter.create_up_down_counter(
-        name="db.client.connections.pending_requests",
-        description="Deprecated, use `db.client.connection.pending_requests` instead.",
-        unit="{request}",
-    )
-
-
-DB_CLIENT_CONNECTIONS_TIMEOUTS = "db.client.connections.timeouts"
-"""
-Deprecated: Replaced by `db.client.connection.timeouts`.
-"""
-
-
-def create_db_client_connections_timeouts(meter: Meter) -> Counter:
-    """Deprecated, use `db.client.connection.timeouts` instead."""
-    return meter.create_counter(
-        name="db.client.connections.timeouts",
-        description="Deprecated, use `db.client.connection.timeouts` instead.",
-        unit="{timeout}",
-    )
-
-
-DB_CLIENT_CONNECTIONS_CREATE_TIME = "db.client.connections.create_time"
-"""
-Deprecated: Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`.
-"""
-
-
-def create_db_client_connections_create_time(meter: Meter) -> Histogram:
-    """Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."""
-    return meter.create_histogram(
-        name="db.client.connections.create_time",
-        description="Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`.",
-        unit="ms",
-    )
-
-
-DB_CLIENT_CONNECTIONS_WAIT_TIME = "db.client.connections.wait_time"
-"""
-Deprecated: Replaced by `db.client.connection.wait_time`. Note: the unit also changed from `ms` to `s`.
-"""
-
-
-def create_db_client_connections_wait_time(meter: Meter) -> Histogram:
-    """Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."""
-    return meter.create_histogram(
-        name="db.client.connections.wait_time",
-        description="Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`.",
-        unit="ms",
-    )
-
-
-DB_CLIENT_CONNECTIONS_USE_TIME = "db.client.connections.use_time"
-"""
-Deprecated: Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`.
-"""
-
-
-def create_db_client_connections_use_time(meter: Meter) -> Histogram:
-    """Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."""
-    return meter.create_histogram(
-        name="db.client.connections.use_time",
-        description="Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`.",
-        unit="ms",
     )

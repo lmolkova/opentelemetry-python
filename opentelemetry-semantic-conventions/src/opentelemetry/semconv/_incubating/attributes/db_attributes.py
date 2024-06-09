@@ -255,14 +255,10 @@ class DbClientConnectionsStateValues(Enum):
 
 class DbCosmosdbConnectionModeValues(Enum):
     GATEWAY = "gateway"
-    """
-    Gateway (HTTP) connections mode
-    """
+    """Gateway (HTTP) connections mode"""
 
     DIRECT = "direct"
-    """
-    Direct connection.
-    """
+    """Direct connection."""
 
 
 class DbCosmosdbOperationTypeValues(Enum):
@@ -299,264 +295,160 @@ class DbCosmosdbOperationTypeValues(Enum):
 
 class DbSystemValues(Enum):
     OTHER_SQL = "other_sql"
-    """
-    Some other SQL database. Fallback only. See notes.
-    """
+    """Some other SQL database. Fallback only. See notes."""
 
     MSSQL = "mssql"
-    """
-    Microsoft SQL Server
-    """
+    """Microsoft SQL Server"""
 
     MSSQLCOMPACT = "mssqlcompact"
-    """
-    Microsoft SQL Server Compact
-    """
+    """Microsoft SQL Server Compact"""
 
     MYSQL = "mysql"
-    """
-    MySQL
-    """
+    """MySQL"""
 
     ORACLE = "oracle"
-    """
-    Oracle Database
-    """
+    """Oracle Database"""
 
     DB2 = "db2"
-    """
-    IBM Db2
-    """
+    """IBM Db2"""
 
     POSTGRESQL = "postgresql"
-    """
-    PostgreSQL
-    """
+    """PostgreSQL"""
 
     REDSHIFT = "redshift"
-    """
-    Amazon Redshift
-    """
+    """Amazon Redshift"""
 
     HIVE = "hive"
-    """
-    Apache Hive
-    """
+    """Apache Hive"""
 
     CLOUDSCAPE = "cloudscape"
-    """
-    Cloudscape
-    """
+    """Cloudscape"""
 
     HSQLDB = "hsqldb"
-    """
-    HyperSQL DataBase
-    """
+    """HyperSQL DataBase"""
 
     PROGRESS = "progress"
-    """
-    Progress Database
-    """
+    """Progress Database"""
 
     MAXDB = "maxdb"
-    """
-    SAP MaxDB
-    """
+    """SAP MaxDB"""
 
     HANADB = "hanadb"
-    """
-    SAP HANA
-    """
+    """SAP HANA"""
 
     INGRES = "ingres"
-    """
-    Ingres
-    """
+    """Ingres"""
 
     FIRSTSQL = "firstsql"
-    """
-    FirstSQL
-    """
+    """FirstSQL"""
 
     EDB = "edb"
-    """
-    EnterpriseDB
-    """
+    """EnterpriseDB"""
 
     CACHE = "cache"
-    """
-    InterSystems Caché
-    """
+    """InterSystems Caché"""
 
     ADABAS = "adabas"
-    """
-    Adabas (Adaptable Database System)
-    """
+    """Adabas (Adaptable Database System)"""
 
     FIREBIRD = "firebird"
-    """
-    Firebird
-    """
+    """Firebird"""
 
     DERBY = "derby"
-    """
-    Apache Derby
-    """
+    """Apache Derby"""
 
     FILEMAKER = "filemaker"
-    """
-    FileMaker
-    """
+    """FileMaker"""
 
     INFORMIX = "informix"
-    """
-    Informix
-    """
+    """Informix"""
 
     INSTANTDB = "instantdb"
-    """
-    InstantDB
-    """
+    """InstantDB"""
 
     INTERBASE = "interbase"
-    """
-    InterBase
-    """
+    """InterBase"""
 
     MARIADB = "mariadb"
-    """
-    MariaDB
-    """
+    """MariaDB"""
 
     NETEZZA = "netezza"
-    """
-    Netezza
-    """
+    """Netezza"""
 
     PERVASIVE = "pervasive"
-    """
-    Pervasive PSQL
-    """
+    """Pervasive PSQL"""
 
     POINTBASE = "pointbase"
-    """
-    PointBase
-    """
+    """PointBase"""
 
     SQLITE = "sqlite"
-    """
-    SQLite
-    """
+    """SQLite"""
 
     SYBASE = "sybase"
-    """
-    Sybase
-    """
+    """Sybase"""
 
     TERADATA = "teradata"
-    """
-    Teradata
-    """
+    """Teradata"""
 
     VERTICA = "vertica"
-    """
-    Vertica
-    """
+    """Vertica"""
 
     H2 = "h2"
-    """
-    H2
-    """
+    """H2"""
 
     COLDFUSION = "coldfusion"
-    """
-    ColdFusion IMQ
-    """
+    """ColdFusion IMQ"""
 
     CASSANDRA = "cassandra"
-    """
-    Apache Cassandra
-    """
+    """Apache Cassandra"""
 
     HBASE = "hbase"
-    """
-    Apache HBase
-    """
+    """Apache HBase"""
 
     MONGODB = "mongodb"
-    """
-    MongoDB
-    """
+    """MongoDB"""
 
     REDIS = "redis"
-    """
-    Redis
-    """
+    """Redis"""
 
     COUCHBASE = "couchbase"
-    """
-    Couchbase
-    """
+    """Couchbase"""
 
     COUCHDB = "couchdb"
-    """
-    CouchDB
-    """
+    """CouchDB"""
 
     COSMOSDB = "cosmosdb"
-    """
-    Microsoft Azure Cosmos DB
-    """
+    """Microsoft Azure Cosmos DB"""
 
     DYNAMODB = "dynamodb"
-    """
-    Amazon DynamoDB
-    """
+    """Amazon DynamoDB"""
 
     NEO4J = "neo4j"
-    """
-    Neo4j
-    """
+    """Neo4j"""
 
     GEODE = "geode"
-    """
-    Apache Geode
-    """
+    """Apache Geode"""
 
     ELASTICSEARCH = "elasticsearch"
-    """
-    Elasticsearch
-    """
+    """Elasticsearch"""
 
     MEMCACHED = "memcached"
-    """
-    Memcached
-    """
+    """Memcached"""
 
     COCKROACHDB = "cockroachdb"
-    """
-    CockroachDB
-    """
+    """CockroachDB"""
 
     OPENSEARCH = "opensearch"
-    """
-    OpenSearch
-    """
+    """OpenSearch"""
 
     CLICKHOUSE = "clickhouse"
-    """
-    ClickHouse
-    """
+    """ClickHouse"""
 
     SPANNER = "spanner"
-    """
-    Cloud Spanner
-    """
+    """Cloud Spanner"""
 
     TRINO = "trino"
-    """
-    Trino
-    """
+    """Trino"""
 
 
 class StateValues(Enum):

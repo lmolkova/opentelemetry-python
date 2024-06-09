@@ -29,11 +29,11 @@
 {%- endmacro %}
 
 {%- macro write_docstring(name, brief, note, deprecated, stability, prefix) -%}
-    {%- if c.str_or_empty(deprecated)|length %}
+    {%- if c.str_or_empty(deprecated)|length -%}
 {{prefix}}Deprecated: {{deprecated | comment_with_prefix(prefix)}}
-    {%- elif ctx.filter == "any" and stability == "stable" %}
+    {%- elif ctx.filter == "any" and stability == "stable" -%}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
-    {%- elif c.str_or_empty(brief)|length %}
+    {%- elif c.str_or_empty(brief)|length -%}
 {{brief | comment_with_prefix(prefix)}}
         {%- if c.str_or_empty(note)|length  %}
 {{prefix}}Note: {{note | comment_with_prefix(prefix)}}
@@ -46,18 +46,18 @@
 {%- set doc_string=write_docstring(attr_name, attribute.brief, attribute.note, attribute.deprecated, attribute.stability, "")-%}
 {{attr_name}} = "{{attribute.name}}"
 {%- if doc_string %}
-"""{{doc_string}}
-"""{%- endif %}
+"""
+{{doc_string}}
+"""
+{%- endif %}
 {% endfor %}
 
 {% for attribute in enum_attributes %}{%- set class_name = c.to_class_name(attribute.name) ~ "Values" -%}
 class {{class_name}}(Enum):
     {%- for member in attribute.type.members %}
     {% set member_name = c.to_const_name(member.id) %}
-    {%- set doc_string=write_docstring(class_name + '.' + member_name, member.brief, "", member.deprecated, member.stability, "    ")-%}
+    {%- set doc_string=write_docstring(class_name + '.' + member_name, member.brief, "", member.deprecated, member.stability, "")-%}
     {{member_name}} = "{{ member.value }}"
-    {%- if doc_string %}
-    """{{doc_string}}
-    """{%- endif %}
+    {% if doc_string %}"""{{doc_string}}"""{% endif %}
     {% endfor %}
 {% endfor %}

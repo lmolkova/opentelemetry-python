@@ -172,89 +172,55 @@ class RpcConnectRpcErrorCodeValues(Enum):
 
 class RpcGrpcStatusCodeValues(Enum):
     OK = "0"
-    """
-    OK
-    """
+    """OK"""
 
     CANCELLED = "1"
-    """
-    CANCELLED
-    """
+    """CANCELLED"""
 
     UNKNOWN = "2"
-    """
-    UNKNOWN
-    """
+    """UNKNOWN"""
 
     INVALID_ARGUMENT = "3"
-    """
-    INVALID_ARGUMENT
-    """
+    """INVALID_ARGUMENT"""
 
     DEADLINE_EXCEEDED = "4"
-    """
-    DEADLINE_EXCEEDED
-    """
+    """DEADLINE_EXCEEDED"""
 
     NOT_FOUND = "5"
-    """
-    NOT_FOUND
-    """
+    """NOT_FOUND"""
 
     ALREADY_EXISTS = "6"
-    """
-    ALREADY_EXISTS
-    """
+    """ALREADY_EXISTS"""
 
     PERMISSION_DENIED = "7"
-    """
-    PERMISSION_DENIED
-    """
+    """PERMISSION_DENIED"""
 
     RESOURCE_EXHAUSTED = "8"
-    """
-    RESOURCE_EXHAUSTED
-    """
+    """RESOURCE_EXHAUSTED"""
 
     FAILED_PRECONDITION = "9"
-    """
-    FAILED_PRECONDITION
-    """
+    """FAILED_PRECONDITION"""
 
     ABORTED = "10"
-    """
-    ABORTED
-    """
+    """ABORTED"""
 
     OUT_OF_RANGE = "11"
-    """
-    OUT_OF_RANGE
-    """
+    """OUT_OF_RANGE"""
 
     UNIMPLEMENTED = "12"
-    """
-    UNIMPLEMENTED
-    """
+    """UNIMPLEMENTED"""
 
     INTERNAL = "13"
-    """
-    INTERNAL
-    """
+    """INTERNAL"""
 
     UNAVAILABLE = "14"
-    """
-    UNAVAILABLE
-    """
+    """UNAVAILABLE"""
 
     DATA_LOSS = "15"
-    """
-    DATA_LOSS
-    """
+    """DATA_LOSS"""
 
     UNAUTHENTICATED = "16"
-    """
-    UNAUTHENTICATED
-    """
+    """UNAUTHENTICATED"""
 
 
 class RpcMessageTypeValues(Enum):
@@ -265,26 +231,16 @@ class RpcMessageTypeValues(Enum):
 
 class RpcSystemValues(Enum):
     GRPC = "grpc"
-    """
-    gRPC
-    """
+    """gRPC"""
 
     JAVA_RMI = "java_rmi"
-    """
-    Java RMI
-    """
+    """Java RMI"""
 
     DOTNET_WCF = "dotnet_wcf"
-    """
-    .NET WCF
-    """
+    """.NET WCF"""
 
     APACHE_DUBBO = "apache_dubbo"
-    """
-    Apache Dubbo
-    """
+    """Apache Dubbo"""
 
     CONNECT_RPC = "connect_rpc"
-    """
-    Connect RPC
-    """
+    """Connect RPC"""

@@ -68,178 +68,108 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 class CloudPlatformValues(Enum):
     ALIBABA_CLOUD_ECS = "alibaba_cloud_ecs"
-    """
-    Alibaba Cloud Elastic Compute Service
-    """
+    """Alibaba Cloud Elastic Compute Service"""
 
     ALIBABA_CLOUD_FC = "alibaba_cloud_fc"
-    """
-    Alibaba Cloud Function Compute
-    """
+    """Alibaba Cloud Function Compute"""
 
     ALIBABA_CLOUD_OPENSHIFT = "alibaba_cloud_openshift"
-    """
-    Red Hat OpenShift on Alibaba Cloud
-    """
+    """Red Hat OpenShift on Alibaba Cloud"""
 
     AWS_EC2 = "aws_ec2"
-    """
-    AWS Elastic Compute Cloud
-    """
+    """AWS Elastic Compute Cloud"""
 
     AWS_ECS = "aws_ecs"
-    """
-    AWS Elastic Container Service
-    """
+    """AWS Elastic Container Service"""
 
     AWS_EKS = "aws_eks"
-    """
-    AWS Elastic Kubernetes Service
-    """
+    """AWS Elastic Kubernetes Service"""
 
     AWS_LAMBDA = "aws_lambda"
-    """
-    AWS Lambda
-    """
+    """AWS Lambda"""
 
     AWS_ELASTIC_BEANSTALK = "aws_elastic_beanstalk"
-    """
-    AWS Elastic Beanstalk
-    """
+    """AWS Elastic Beanstalk"""
 
     AWS_APP_RUNNER = "aws_app_runner"
-    """
-    AWS App Runner
-    """
+    """AWS App Runner"""
 
     AWS_OPENSHIFT = "aws_openshift"
-    """
-    Red Hat OpenShift on AWS (ROSA)
-    """
+    """Red Hat OpenShift on AWS (ROSA)"""
 
     AZURE_VM = "azure_vm"
-    """
-    Azure Virtual Machines
-    """
+    """Azure Virtual Machines"""
 
     AZURE_CONTAINER_APPS = "azure_container_apps"
-    """
-    Azure Container Apps
-    """
+    """Azure Container Apps"""
 
     AZURE_CONTAINER_INSTANCES = "azure_container_instances"
-    """
-    Azure Container Instances
-    """
+    """Azure Container Instances"""
 
     AZURE_AKS = "azure_aks"
-    """
-    Azure Kubernetes Service
-    """
+    """Azure Kubernetes Service"""
 
     AZURE_FUNCTIONS = "azure_functions"
-    """
-    Azure Functions
-    """
+    """Azure Functions"""
 
     AZURE_APP_SERVICE = "azure_app_service"
-    """
-    Azure App Service
-    """
+    """Azure App Service"""
 
     AZURE_OPENSHIFT = "azure_openshift"
-    """
-    Azure Red Hat OpenShift
-    """
+    """Azure Red Hat OpenShift"""
 
     GCP_BARE_METAL_SOLUTION = "gcp_bare_metal_solution"
-    """
-    Google Bare Metal Solution (BMS)
-    """
+    """Google Bare Metal Solution (BMS)"""
 
     GCP_COMPUTE_ENGINE = "gcp_compute_engine"
-    """
-    Google Cloud Compute Engine (GCE)
-    """
+    """Google Cloud Compute Engine (GCE)"""
 
     GCP_CLOUD_RUN = "gcp_cloud_run"
-    """
-    Google Cloud Run
-    """
+    """Google Cloud Run"""
 
     GCP_KUBERNETES_ENGINE = "gcp_kubernetes_engine"
-    """
-    Google Cloud Kubernetes Engine (GKE)
-    """
+    """Google Cloud Kubernetes Engine (GKE)"""
 
     GCP_CLOUD_FUNCTIONS = "gcp_cloud_functions"
-    """
-    Google Cloud Functions (GCF)
-    """
+    """Google Cloud Functions (GCF)"""
 
     GCP_APP_ENGINE = "gcp_app_engine"
-    """
-    Google Cloud App Engine (GAE)
-    """
+    """Google Cloud App Engine (GAE)"""
 
     GCP_OPENSHIFT = "gcp_openshift"
-    """
-    Red Hat OpenShift on Google Cloud
-    """
+    """Red Hat OpenShift on Google Cloud"""
 
     IBM_CLOUD_OPENSHIFT = "ibm_cloud_openshift"
-    """
-    Red Hat OpenShift on IBM Cloud
-    """
+    """Red Hat OpenShift on IBM Cloud"""
 
     TENCENT_CLOUD_CVM = "tencent_cloud_cvm"
-    """
-    Tencent Cloud Cloud Virtual Machine (CVM)
-    """
+    """Tencent Cloud Cloud Virtual Machine (CVM)"""
 
     TENCENT_CLOUD_EKS = "tencent_cloud_eks"
-    """
-    Tencent Cloud Elastic Kubernetes Service (EKS)
-    """
+    """Tencent Cloud Elastic Kubernetes Service (EKS)"""
 
     TENCENT_CLOUD_SCF = "tencent_cloud_scf"
-    """
-    Tencent Cloud Serverless Cloud Function (SCF)
-    """
+    """Tencent Cloud Serverless Cloud Function (SCF)"""
 
 
 class CloudProviderValues(Enum):
     ALIBABA_CLOUD = "alibaba_cloud"
-    """
-    Alibaba Cloud
-    """
+    """Alibaba Cloud"""
 
     AWS = "aws"
-    """
-    Amazon Web Services
-    """
+    """Amazon Web Services"""
 
     AZURE = "azure"
-    """
-    Microsoft Azure
-    """
+    """Microsoft Azure"""
 
     GCP = "gcp"
-    """
-    Google Cloud Platform
-    """
+    """Google Cloud Platform"""
 
     HEROKU = "heroku"
-    """
-    Heroku Platform as a Service
-    """
+    """Heroku Platform as a Service"""
 
     IBM_CLOUD = "ibm_cloud"
-    """
-    IBM Cloud
-    """
+    """IBM Cloud"""
 
     TENCENT_CLOUD = "tencent_cloud"
-    """
-    Tencent Cloud
-    """
+    """Tencent Cloud"""

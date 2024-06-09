@@ -76,51 +76,31 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 
 class HttpRequestMethodValues(Enum):
     CONNECT = "CONNECT"
-    """
-    CONNECT method.
-    """
+    """CONNECT method."""
 
     DELETE = "DELETE"
-    """
-    DELETE method.
-    """
+    """DELETE method."""
 
     GET = "GET"
-    """
-    GET method.
-    """
+    """GET method."""
 
     HEAD = "HEAD"
-    """
-    HEAD method.
-    """
+    """HEAD method."""
 
     OPTIONS = "OPTIONS"
-    """
-    OPTIONS method.
-    """
+    """OPTIONS method."""
 
     PATCH = "PATCH"
-    """
-    PATCH method.
-    """
+    """PATCH method."""
 
     POST = "POST"
-    """
-    POST method.
-    """
+    """POST method."""
 
     PUT = "PUT"
-    """
-    PUT method.
-    """
+    """PUT method."""
 
     TRACE = "TRACE"
-    """
-    TRACE method.
-    """
+    """TRACE method."""
 
     OTHER = "_OTHER"
-    """
-    Any HTTP method that the instrumentation has no prior knowledge of.
-    """
+    """Any HTTP method that the instrumentation has no prior knowledge of."""

@@ -43,56 +43,34 @@ The version string of the operating system as defined in [Version Attributes](/d
 
 class OsTypeValues(Enum):
     WINDOWS = "windows"
-    """
-    Microsoft Windows
-    """
+    """Microsoft Windows"""
 
     LINUX = "linux"
-    """
-    Linux
-    """
+    """Linux"""
 
     DARWIN = "darwin"
-    """
-    Apple Darwin
-    """
+    """Apple Darwin"""
 
     FREEBSD = "freebsd"
-    """
-    FreeBSD
-    """
+    """FreeBSD"""
 
     NETBSD = "netbsd"
-    """
-    NetBSD
-    """
+    """NetBSD"""
 
     OPENBSD = "openbsd"
-    """
-    OpenBSD
-    """
+    """OpenBSD"""
 
     DRAGONFLYBSD = "dragonflybsd"
-    """
-    DragonFly BSD
-    """
+    """DragonFly BSD"""
 
     HPUX = "hpux"
-    """
-    HP-UX (Hewlett Packard Unix)
-    """
+    """HP-UX (Hewlett Packard Unix)"""
 
     AIX = "aix"
-    """
-    AIX (Advanced Interactive eXecutive)
-    """
+    """AIX (Advanced Interactive eXecutive)"""
 
     SOLARIS = "solaris"
-    """
-    SunOS, Oracle Solaris
-    """
+    """SunOS, Oracle Solaris"""
 
     Z_OS = "z_os"
-    """
-    IBM z/OS
-    """
+    """IBM z/OS"""
