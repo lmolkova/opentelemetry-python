@@ -1,5 +1,5 @@
 params:
-  excluded: ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm"]
+  excluded: ["ios", "aspnetcore", "signalr", "android", "dotnet", "jvm", "kestrel"]
   stable_package_name: opentelemetry.semconv
 
 
@@ -16,7 +16,12 @@ templates:
       | map(select(.attributes | length > 0))
       | map({
         id: .id,
-        attributes: .attributes,
+        attributes: .attributes
+          | map(. + {const_name: .name | split(".")|join("_")})
+          | map(if has("deprecated") then . else . + {"deprecated": null} end)
+          | group_by(.const_name)
+          | map({const_name: .[0].const_name, names: [.[]] | sort_by(.deprecated) })
+          | map(.names[0]),
         output: $output + "attributes/",
         stable_package_name: $stable_package_name,
         filter: $filter
@@ -26,14 +31,27 @@ templates:
     filter: >
       .groups
       | map(select(.type == "metric"))
-      | map(select(.stability == "stable"))
-      | group_by(.id | split(".") | .[1])
-      | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
+      | map(select(if $filter == "any" then true else .stability == $filter end))
+      | map({ id: .id, group_id: .id | split(".") | .[1], brief, unit, stability, deprecated, instrument, metric_name})
+      | group_by(.group_id)
       | map({
-        id: .[0].id | split(".") | .[1],
+        id: .[0].group_id,
         metrics: .,
         output: $output + "metrics/",
         stable_package_name: $stable_package_name,
         filter: $filter
       })
+      | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
     application_mode: each
+text_maps:
+  py_instrument_to_factory:
+    counter: counter
+    histogram: histogram
+    updowncounter: up_down_counter
+    gauge: observable_gauge
+  py_instrument_to_type:
+    counter: Counter
+    histogram: Histogram
+    updowncounter: UpDownCounter
+    gauge: ObservableGauge
+

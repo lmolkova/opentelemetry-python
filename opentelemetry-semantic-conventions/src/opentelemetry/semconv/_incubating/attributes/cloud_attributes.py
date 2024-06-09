@@ -20,7 +20,7 @@ CLOUD_ACCOUNT_ID = "cloud.account.id"
 The cloud account ID the resource is assigned to.
 """
 
-CLOUD_AVAILABILITYZONE = "cloud.availability_zone"
+CLOUD_AVAILABILITY_ZONE = "cloud.availability_zone"
 """
 Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
 Note: Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
@@ -43,7 +43,7 @@ The geographical region the resource is running.
 Note: Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 """
 
-CLOUD_RESOURCEID = "cloud.resource_id"
+CLOUD_RESOURCE_ID = "cloud.resource_id"
 """
 Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) on GCP)
 Note: On some cloud providers, it may not be possible to determine the full ID at startup,
@@ -67,149 +67,149 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 
 class CloudPlatformValues(Enum):
-    ALIBABACLOUDECS = "alibaba_cloud_ecs"
+    ALIBABA_CLOUD_ECS = "alibaba_cloud_ecs"
     """
     Alibaba Cloud Elastic Compute Service
     """
 
-    ALIBABACLOUDFC = "alibaba_cloud_fc"
+    ALIBABA_CLOUD_FC = "alibaba_cloud_fc"
     """
     Alibaba Cloud Function Compute
     """
 
-    ALIBABACLOUDOPENSHIFT = "alibaba_cloud_openshift"
+    ALIBABA_CLOUD_OPENSHIFT = "alibaba_cloud_openshift"
     """
     Red Hat OpenShift on Alibaba Cloud
     """
 
-    AWSEC2 = "aws_ec2"
+    AWS_EC2 = "aws_ec2"
     """
     AWS Elastic Compute Cloud
     """
 
-    AWSECS = "aws_ecs"
+    AWS_ECS = "aws_ecs"
     """
     AWS Elastic Container Service
     """
 
-    AWSEKS = "aws_eks"
+    AWS_EKS = "aws_eks"
     """
     AWS Elastic Kubernetes Service
     """
 
-    AWSLAMBDA = "aws_lambda"
+    AWS_LAMBDA = "aws_lambda"
     """
     AWS Lambda
     """
 
-    AWSELASTICBEANSTALK = "aws_elastic_beanstalk"
+    AWS_ELASTIC_BEANSTALK = "aws_elastic_beanstalk"
     """
     AWS Elastic Beanstalk
     """
 
-    AWSAPPRUNNER = "aws_app_runner"
+    AWS_APP_RUNNER = "aws_app_runner"
     """
     AWS App Runner
     """
 
-    AWSOPENSHIFT = "aws_openshift"
+    AWS_OPENSHIFT = "aws_openshift"
     """
     Red Hat OpenShift on AWS (ROSA)
     """
 
-    AZUREVM = "azure_vm"
+    AZURE_VM = "azure_vm"
     """
     Azure Virtual Machines
     """
 
-    AZURECONTAINERAPPS = "azure_container_apps"
+    AZURE_CONTAINER_APPS = "azure_container_apps"
     """
     Azure Container Apps
     """
 
-    AZURECONTAINERINSTANCES = "azure_container_instances"
+    AZURE_CONTAINER_INSTANCES = "azure_container_instances"
     """
     Azure Container Instances
     """
 
-    AZUREAKS = "azure_aks"
+    AZURE_AKS = "azure_aks"
     """
     Azure Kubernetes Service
     """
 
-    AZUREFUNCTIONS = "azure_functions"
+    AZURE_FUNCTIONS = "azure_functions"
     """
     Azure Functions
     """
 
-    AZUREAPPSERVICE = "azure_app_service"
+    AZURE_APP_SERVICE = "azure_app_service"
     """
     Azure App Service
     """
 
-    AZUREOPENSHIFT = "azure_openshift"
+    AZURE_OPENSHIFT = "azure_openshift"
     """
     Azure Red Hat OpenShift
     """
 
-    GCPBAREMETALSOLUTION = "gcp_bare_metal_solution"
+    GCP_BARE_METAL_SOLUTION = "gcp_bare_metal_solution"
     """
     Google Bare Metal Solution (BMS)
     """
 
-    GCPCOMPUTEENGINE = "gcp_compute_engine"
+    GCP_COMPUTE_ENGINE = "gcp_compute_engine"
     """
     Google Cloud Compute Engine (GCE)
     """
 
-    GCPCLOUDRUN = "gcp_cloud_run"
+    GCP_CLOUD_RUN = "gcp_cloud_run"
     """
     Google Cloud Run
     """
 
-    GCPKUBERNETESENGINE = "gcp_kubernetes_engine"
+    GCP_KUBERNETES_ENGINE = "gcp_kubernetes_engine"
     """
     Google Cloud Kubernetes Engine (GKE)
     """
 
-    GCPCLOUDFUNCTIONS = "gcp_cloud_functions"
+    GCP_CLOUD_FUNCTIONS = "gcp_cloud_functions"
     """
     Google Cloud Functions (GCF)
     """
 
-    GCPAPPENGINE = "gcp_app_engine"
+    GCP_APP_ENGINE = "gcp_app_engine"
     """
     Google Cloud App Engine (GAE)
     """
 
-    GCPOPENSHIFT = "gcp_openshift"
+    GCP_OPENSHIFT = "gcp_openshift"
     """
     Red Hat OpenShift on Google Cloud
     """
 
-    IBMCLOUDOPENSHIFT = "ibm_cloud_openshift"
+    IBM_CLOUD_OPENSHIFT = "ibm_cloud_openshift"
     """
     Red Hat OpenShift on IBM Cloud
     """
 
-    TENCENTCLOUDCVM = "tencent_cloud_cvm"
+    TENCENT_CLOUD_CVM = "tencent_cloud_cvm"
     """
     Tencent Cloud Cloud Virtual Machine (CVM)
     """
 
-    TENCENTCLOUDEKS = "tencent_cloud_eks"
+    TENCENT_CLOUD_EKS = "tencent_cloud_eks"
     """
     Tencent Cloud Elastic Kubernetes Service (EKS)
     """
 
-    TENCENTCLOUDSCF = "tencent_cloud_scf"
+    TENCENT_CLOUD_SCF = "tencent_cloud_scf"
     """
     Tencent Cloud Serverless Cloud Function (SCF)
     """
 
 
 class CloudProviderValues(Enum):
-    ALIBABACLOUD = "alibaba_cloud"
+    ALIBABA_CLOUD = "alibaba_cloud"
     """
     Alibaba Cloud
     """
@@ -234,12 +234,12 @@ class CloudProviderValues(Enum):
     Heroku Platform as a Service
     """
 
-    IBMCLOUD = "ibm_cloud"
+    IBM_CLOUD = "ibm_cloud"
     """
     IBM Cloud
     """
 
-    TENCENTCLOUD = "tencent_cloud"
+    TENCENT_CLOUD = "tencent_cloud"
     """
     Tencent Cloud
     """

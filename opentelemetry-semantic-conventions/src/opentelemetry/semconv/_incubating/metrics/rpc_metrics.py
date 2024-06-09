@@ -1,5 +1,4 @@
 # Copyright The OpenTelemetry Authors
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -15,117 +14,16 @@
 
 from opentelemetry.metrics import Histogram, Meter
 
-RPC_CLIENT_DURATION = "rpc.client.duration"
-"""
-Measures the duration of outbound RPC
-Instrument: histogram
-Unit: ms
-Note: While streaming RPCs may record this metric as start-of-batch
-    to end-of-batch, it's hard to interpret in practice.
-
-    **Streaming**: N/A.
-"""
-
-
-def create_rpc_client_duration(meter: Meter) -> Histogram:
-    """Measures the duration of outbound RPC"""
-    return meter.create_histogram(
-        name="rpc.client.duration",
-        description="Measures the duration of outbound RPC.",
-        unit="ms",
-    )
-
-
-RPC_CLIENT_REQUEST_SIZE = "rpc.client.request.size"
-"""
-Measures the size of RPC request messages (uncompressed)
-Instrument: histogram
-Unit: By
-Note: **Streaming**: Recorded per message in a streaming batch.
-"""
-
-
-def create_rpc_client_request_size(meter: Meter) -> Histogram:
-    """Measures the size of RPC request messages (uncompressed)"""
-    return meter.create_histogram(
-        name="rpc.client.request.size",
-        description="Measures the size of RPC request messages (uncompressed).",
-        unit="By",
-    )
-
-
-RPC_CLIENT_REQUESTS__PER__RPC = "rpc.client.requests_per_rpc"
-"""
-Measures the number of messages received per RPC
-Instrument: histogram
-Unit: {count}
-Note: Should be 1 for all non-streaming RPCs.
-
-    **Streaming**: This metric is required for server and client streaming RPCs.
-"""
-
-
-def create_rpc_client_requests_per_rpc(meter: Meter) -> Histogram:
-    """Measures the number of messages received per RPC"""
-    return meter.create_histogram(
-        name="rpc.client.requests_per_rpc",
-        description="Measures the number of messages received per RPC.",
-        unit="{count}",
-    )
-
-
-RPC_CLIENT_RESPONSE_SIZE = "rpc.client.response.size"
-"""
-Measures the size of RPC response messages (uncompressed)
-Instrument: histogram
-Unit: By
-Note: **Streaming**: Recorded per response in a streaming batch.
-"""
-
-
-def create_rpc_client_response_size(meter: Meter) -> Histogram:
-    """Measures the size of RPC response messages (uncompressed)"""
-    return meter.create_histogram(
-        name="rpc.client.response.size",
-        description="Measures the size of RPC response messages (uncompressed).",
-        unit="By",
-    )
-
-
-RPC_CLIENT_RESPONSES__PER__RPC = "rpc.client.responses_per_rpc"
-"""
-Measures the number of messages sent per RPC
-Instrument: histogram
-Unit: {count}
-Note: Should be 1 for all non-streaming RPCs.
-
-    **Streaming**: This metric is required for server and client streaming RPCs.
-"""
-
-
-def create_rpc_client_responses_per_rpc(meter: Meter) -> Histogram:
-    """Measures the number of messages sent per RPC"""
-    return meter.create_histogram(
-        name="rpc.client.responses_per_rpc",
-        description="Measures the number of messages sent per RPC.",
-        unit="{count}",
-    )
-
-
 RPC_SERVER_DURATION = "rpc.server.duration"
 """
-Measures the duration of inbound RPC
+Measures the duration of inbound RPC.
 Instrument: histogram
 Unit: ms
-Note: While streaming RPCs may record this metric as start-of-batch
-    to end-of-batch, it's hard to interpret in practice.
-
-    **Streaming**: N/A.
 """
 
 
 def create_rpc_server_duration(meter: Meter) -> Histogram:
-    """Measures the duration of inbound RPC"""
+    """Measures the duration of inbound RPC."""
     return meter.create_histogram(
         name="rpc.server.duration",
         description="Measures the duration of inbound RPC.",
@@ -135,15 +33,14 @@ def create_rpc_server_duration(meter: Meter) -> Histogram:
 
 RPC_SERVER_REQUEST_SIZE = "rpc.server.request.size"
 """
-Measures the size of RPC request messages (uncompressed)
+Measures the size of RPC request messages (uncompressed).
 Instrument: histogram
 Unit: By
-Note: **Streaming**: Recorded per message in a streaming batch.
 """
 
 
 def create_rpc_server_request_size(meter: Meter) -> Histogram:
-    """Measures the size of RPC request messages (uncompressed)"""
+    """Measures the size of RPC request messages (uncompressed)."""
     return meter.create_histogram(
         name="rpc.server.request.size",
         description="Measures the size of RPC request messages (uncompressed).",
@@ -151,37 +48,16 @@ def create_rpc_server_request_size(meter: Meter) -> Histogram:
     )
 
 
-RPC_SERVER_REQUESTS__PER__RPC = "rpc.server.requests_per_rpc"
-"""
-Measures the number of messages received per RPC
-Instrument: histogram
-Unit: {count}
-Note: Should be 1 for all non-streaming RPCs.
-
-    **Streaming** : This metric is required for server and client streaming RPCs.
-"""
-
-
-def create_rpc_server_requests_per_rpc(meter: Meter) -> Histogram:
-    """Measures the number of messages received per RPC"""
-    return meter.create_histogram(
-        name="rpc.server.requests_per_rpc",
-        description="Measures the number of messages received per RPC.",
-        unit="{count}",
-    )
-
-
 RPC_SERVER_RESPONSE_SIZE = "rpc.server.response.size"
 """
-Measures the size of RPC response messages (uncompressed)
+Measures the size of RPC response messages (uncompressed).
 Instrument: histogram
 Unit: By
-Note: **Streaming**: Recorded per response in a streaming batch.
 """
 
 
 def create_rpc_server_response_size(meter: Meter) -> Histogram:
-    """Measures the size of RPC response messages (uncompressed)"""
+    """Measures the size of RPC response messages (uncompressed)."""
     return meter.create_histogram(
         name="rpc.server.response.size",
         description="Measures the size of RPC response messages (uncompressed).",
@@ -189,21 +65,120 @@ def create_rpc_server_response_size(meter: Meter) -> Histogram:
     )
 
 
-RPC_SERVER_RESPONSES__PER__RPC = "rpc.server.responses_per_rpc"
+RPC_SERVER_REQUESTS_PER_RPC = "rpc.server.requests_per_rpc"
 """
-Measures the number of messages sent per RPC
+Measures the number of messages received per RPC.
 Instrument: histogram
 Unit: {count}
-Note: Should be 1 for all non-streaming RPCs.
+"""
 
-    **Streaming**: This metric is required for server and client streaming RPCs.
+
+def create_rpc_server_requests_per_rpc(meter: Meter) -> Histogram:
+    """Measures the number of messages received per RPC."""
+    return meter.create_histogram(
+        name="rpc.server.requests_per_rpc",
+        description="Measures the number of messages received per RPC.",
+        unit="{count}",
+    )
+
+
+RPC_SERVER_RESPONSES_PER_RPC = "rpc.server.responses_per_rpc"
+"""
+Measures the number of messages sent per RPC.
+Instrument: histogram
+Unit: {count}
 """
 
 
 def create_rpc_server_responses_per_rpc(meter: Meter) -> Histogram:
-    """Measures the number of messages sent per RPC"""
+    """Measures the number of messages sent per RPC."""
     return meter.create_histogram(
         name="rpc.server.responses_per_rpc",
+        description="Measures the number of messages sent per RPC.",
+        unit="{count}",
+    )
+
+
+RPC_CLIENT_DURATION = "rpc.client.duration"
+"""
+Measures the duration of outbound RPC.
+Instrument: histogram
+Unit: ms
+"""
+
+
+def create_rpc_client_duration(meter: Meter) -> Histogram:
+    """Measures the duration of outbound RPC."""
+    return meter.create_histogram(
+        name="rpc.client.duration",
+        description="Measures the duration of outbound RPC.",
+        unit="ms",
+    )
+
+
+RPC_CLIENT_REQUEST_SIZE = "rpc.client.request.size"
+"""
+Measures the size of RPC request messages (uncompressed).
+Instrument: histogram
+Unit: By
+"""
+
+
+def create_rpc_client_request_size(meter: Meter) -> Histogram:
+    """Measures the size of RPC request messages (uncompressed)."""
+    return meter.create_histogram(
+        name="rpc.client.request.size",
+        description="Measures the size of RPC request messages (uncompressed).",
+        unit="By",
+    )
+
+
+RPC_CLIENT_RESPONSE_SIZE = "rpc.client.response.size"
+"""
+Measures the size of RPC response messages (uncompressed).
+Instrument: histogram
+Unit: By
+"""
+
+
+def create_rpc_client_response_size(meter: Meter) -> Histogram:
+    """Measures the size of RPC response messages (uncompressed)."""
+    return meter.create_histogram(
+        name="rpc.client.response.size",
+        description="Measures the size of RPC response messages (uncompressed).",
+        unit="By",
+    )
+
+
+RPC_CLIENT_REQUESTS_PER_RPC = "rpc.client.requests_per_rpc"
+"""
+Measures the number of messages received per RPC.
+Instrument: histogram
+Unit: {count}
+"""
+
+
+def create_rpc_client_requests_per_rpc(meter: Meter) -> Histogram:
+    """Measures the number of messages received per RPC."""
+    return meter.create_histogram(
+        name="rpc.client.requests_per_rpc",
+        description="Measures the number of messages received per RPC.",
+        unit="{count}",
+    )
+
+
+RPC_CLIENT_RESPONSES_PER_RPC = "rpc.client.responses_per_rpc"
+"""
+Measures the number of messages sent per RPC.
+Instrument: histogram
+Unit: {count}
+"""
+
+
+def create_rpc_client_responses_per_rpc(meter: Meter) -> Histogram:
+    """Measures the number of messages sent per RPC."""
+    return meter.create_histogram(
+        name="rpc.client.responses_per_rpc",
         description="Measures the number of messages sent per RPC.",
         unit="{count}",
     )

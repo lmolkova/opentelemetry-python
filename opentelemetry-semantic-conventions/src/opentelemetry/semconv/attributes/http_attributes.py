@@ -42,12 +42,12 @@ Instrumentations for specific web frameworks that consider HTTP methods to be ca
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 """
 
-HTTP_REQUEST_METHODORIGINAL = "http.request.method_original"
+HTTP_REQUEST_METHOD_ORIGINAL = "http.request.method_original"
 """
 Original HTTP method sent by the client in the request line.
 """
 
-HTTP_REQUEST_RESENDCOUNT = "http.request.resend_count"
+HTTP_REQUEST_RESEND_COUNT = "http.request.resend_count"
 """
 The ordinal number of request resending attempt (for any reason, including redirects).
 Note: The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
@@ -61,7 +61,7 @@ Users MAY explicitly configure instrumentations to capture them even though it i
 The attribute value MUST consist of either multiple header values as an array of strings or a single-item array containing a possibly comma-concatenated string, depending on the way the HTTP library provides access to headers.
 """
 
-HTTP_RESPONSE_STATUSCODE = "http.response.status_code"
+HTTP_RESPONSE_STATUS_CODE = "http.response.status_code"
 """
 [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
 """

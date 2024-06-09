@@ -15,7 +15,7 @@
 
 from enum import Enum
 
-HTTP_CLIENTIP = "http.client_ip"
+HTTP_CLIENT_IP = "http.client_ip"
 """
 Deprecated: Replaced by `client.address`.
 """
@@ -55,14 +55,14 @@ HTTP_REQUEST_METHOD = "http.request.method"
 Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_METHOD`.
 """
 
-HTTP_REQUEST_METHODORIGINAL = "http.request.method_original"
+HTTP_REQUEST_METHOD_ORIGINAL = "http.request.method_original"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_METHODORIGINAL`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_METHOD_ORIGINAL`.
 """
 
-HTTP_REQUEST_RESENDCOUNT = "http.request.resend_count"
+HTTP_REQUEST_RESEND_COUNT = "http.request.resend_count"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_RESENDCOUNT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_REQUEST_RESEND_COUNT`.
 """
 
 HTTP_REQUEST_SIZE = "http.request.size"
@@ -70,12 +70,12 @@ HTTP_REQUEST_SIZE = "http.request.size"
 The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
 """
 
-HTTP_REQUESTCONTENTLENGTH = "http.request_content_length"
+HTTP_REQUEST_CONTENT_LENGTH = "http.request_content_length"
 """
 Deprecated: Replaced by `http.request.header.content-length`.
 """
 
-HTTP_REQUESTCONTENTLENGTHUNCOMPRESSED = (
+HTTP_REQUEST_CONTENT_LENGTH_UNCOMPRESSED = (
     "http.request_content_length_uncompressed"
 )
 """
@@ -97,17 +97,17 @@ HTTP_RESPONSE_SIZE = "http.response.size"
 The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
 """
 
-HTTP_RESPONSE_STATUSCODE = "http.response.status_code"
+HTTP_RESPONSE_STATUS_CODE = "http.response.status_code"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_RESPONSE_STATUSCODE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.http_attributes.HTTP_RESPONSE_STATUS_CODE`.
 """
 
-HTTP_RESPONSECONTENTLENGTH = "http.response_content_length"
+HTTP_RESPONSE_CONTENT_LENGTH = "http.response_content_length"
 """
 Deprecated: Replaced by `http.response.header.content-length`.
 """
 
-HTTP_RESPONSECONTENTLENGTHUNCOMPRESSED = (
+HTTP_RESPONSE_CONTENT_LENGTH_UNCOMPRESSED = (
     "http.response_content_length_uncompressed"
 )
 """
@@ -124,12 +124,12 @@ HTTP_SCHEME = "http.scheme"
 Deprecated: Replaced by `url.scheme` instead.
 """
 
-HTTP_SERVERNAME = "http.server_name"
+HTTP_SERVER_NAME = "http.server_name"
 """
 Deprecated: Replaced by `server.address`.
 """
 
-HTTP_STATUSCODE = "http.status_code"
+HTTP_STATUS_CODE = "http.status_code"
 """
 Deprecated: Replaced by `http.response.status_code`.
 """
@@ -144,7 +144,7 @@ HTTP_URL = "http.url"
 Deprecated: Replaced by `url.full`.
 """
 
-HTTP_USERAGENT = "http.user_agent"
+HTTP_USER_AGENT = "http.user_agent"
 """
 Deprecated: Replaced by `user_agent.original`.
 """
@@ -163,22 +163,22 @@ class HttpConnectionStateValues(Enum):
 
 
 class HttpFlavorValues(Enum):
-    HTTP10 = "1.0"
+    HTTP_1_0 = "1.0"
     """
     HTTP/1.0
     """
 
-    HTTP11 = "1.1"
+    HTTP_1_1 = "1.1"
     """
     HTTP/1.1
     """
 
-    HTTP20 = "2.0"
+    HTTP_2_0 = "2.0"
     """
     HTTP/2
     """
 
-    HTTP30 = "3.0"
+    HTTP_3_0 = "3.0"
     """
     HTTP/3
     """

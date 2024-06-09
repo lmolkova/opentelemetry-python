@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-{%- import 'common.j2' as common -%}
+{% import 'common.j2' as c -%}
 
 {%- macro write_docstring(metric, prefix) -%}
     {%- if metric.deprecated is defined and metric.deprecated is not none and metric.deprecated|length %}
@@ -32,9 +32,53 @@
 {%- endmacro -%}
 
 
+{%- macro import_instrument_classes(metrics) -%}
+  {% if ctx.filter == "any" %}
+from opentelemetry.metrics import Meter
+
+    {%- if ctx.metrics | selectattr("instrument", "equalto", "gauge") | list | count > 0 %}
+from typing import Callable, Sequence
+from opentelemetry.metrics import ObservableGauge
+    {%- endif %}
+
+    {%- if ctx.metrics | selectattr("instrument", "equalto", "histogram") | list | count > 0 %}
+from opentelemetry.metrics import Histogram
+    {%- endif %}
+
+    {%- if ctx.metrics | selectattr("instrument", "equalto", "updowncounter") | list | count > 0 %}
+from opentelemetry.metrics import UpDownCounter
+    {%- endif %}
+
+    {%- if ctx.metrics | selectattr("instrument", "equalto", "counter") | list | count > 0 %}
+from opentelemetry.metrics import Counter
+    {%- endif %}
+  {%- endif -%}
+{%- endmacro-%}
+
+{{ import_instrument_classes(filtered_metrics) }}
+
 {%- for metric in ctx.metrics %}
-{{common.to_const_name(metric.metric_name)}} = "{{metric.metric_name}}"
+{{c.to_const_name(metric.metric_name)}} = "{{metric.metric_name}}"
 {%- set doc_string=write_docstring(metric, "")-%}{%- if doc_string %}
 """{{doc_string}}
-"""{%- endif %}
-{%- endfor -%}
+"""{% endif %}
+
+{% if ctx.filter == "any" %}
+{% set metric_name = metric.metric_name | replace(".", "_") %}
+{%- if metric.instrument == "gauge" %}
+def create_{{ metric_name }}(meter: Meter, callback: Sequence[Callable]) -> {{metric.instrument | map_text("py_instrument_to_type")}}:
+{%- else %}
+def create_{{ metric_name }}(meter: Meter) -> {{metric.instrument | map_text("py_instrument_to_type")}}:
+{%- endif %}
+    {% if metric.brief != "" %}"""{{ metric.brief | replace("\\", "\\\\")}}"""{% endif %}
+    return meter.create_{{ metric.instrument | map_text("py_instrument_to_factory")}}(
+        name="{{ metric.metric_name }}",
+        {%- if metric.instrument == "gauge" %}
+        callback=callback,
+        {%- endif %}
+        description="{{ metric.brief }}",
+        unit="{{ metric.unit }}",
+    )
+    {%- endif -%}
+
+{% endfor %}

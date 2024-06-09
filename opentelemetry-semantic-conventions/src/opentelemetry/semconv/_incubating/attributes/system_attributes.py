@@ -15,7 +15,7 @@
 
 from enum import Enum
 
-SYSTEM_CPU_LOGICALNUMBER = "system.cpu.logical_number"
+SYSTEM_CPU_LOGICAL_NUMBER = "system.cpu.logical_number"
 """
 The logical CPU number [0..n-1]
 """
@@ -142,7 +142,7 @@ class SystemMemoryStateValues(Enum):
 class SystemNetworkStateValues(Enum):
     CLOSE = "close"
 
-    CLOSEWAIT = "close_wait"
+    CLOSE_WAIT = "close_wait"
 
     CLOSING = "closing"
 
@@ -150,19 +150,19 @@ class SystemNetworkStateValues(Enum):
 
     ESTABLISHED = "established"
 
-    FINWAIT1 = "fin_wait_1"
+    FIN_WAIT_1 = "fin_wait_1"
 
-    FINWAIT2 = "fin_wait_2"
+    FIN_WAIT_2 = "fin_wait_2"
 
-    LASTACK = "last_ack"
+    LAST_ACK = "last_ack"
 
     LISTEN = "listen"
 
-    SYNRECV = "syn_recv"
+    SYN_RECV = "syn_recv"
 
-    SYNSENT = "syn_sent"
+    SYN_SENT = "syn_sent"
 
-    TIMEWAIT = "time_wait"
+    TIME_WAIT = "time_wait"
 
 
 class SystemPagingDirectionValues(Enum):

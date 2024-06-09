@@ -35,24 +35,24 @@ OTEL_SCOPE_VERSION = "otel.scope.version"
 Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_SCOPE_VERSION`.
 """
 
-OTEL_STATUSCODE = "otel.status_code"
+OTEL_STATUS_CODE = "otel.status_code"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_STATUSCODE`.
-"""
-
-OTEL_STATUSDESCRIPTION = "otel.status_description"
-"""
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_STATUSDESCRIPTION`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_STATUS_CODE`.
 """
 
+OTEL_STATUS_DESCRIPTION = "otel.status_description"
+"""
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OTEL_STATUS_DESCRIPTION`.
+"""
 
-class OtelStatuscodeValues(Enum):
+
+class OtelStatusCodeValues(Enum):
     OK = "OK"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OtelStatuscodeValues.OK`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OtelStatusCodeValues.OK`.
     """
 
     ERROR = "ERROR"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OtelStatuscodeValues.ERROR`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.otel_attributes.OtelStatusCodeValues.ERROR`.
     """

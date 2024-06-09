@@ -20,17 +20,17 @@ PROCESS_COMMAND = "process.command"
 The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
 """
 
-PROCESS_COMMANDARGS = "process.command_args"
+PROCESS_COMMAND_ARGS = "process.command_args"
 """
 All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`.
 """
 
-PROCESS_COMMANDLINE = "process.command_line"
+PROCESS_COMMAND_LINE = "process.command_line"
 """
 The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead.
 """
 
-PROCESS_CONTEXTSWITCHTYPE = "process.context_switch_type"
+PROCESS_CONTEXT_SWITCH_TYPE = "process.context_switch_type"
 """
 Specifies whether the context switches for this data point were voluntary or involuntary.
 """
@@ -65,7 +65,7 @@ PROCESS_EXIT_TIME = "process.exit.time"
 The date and time the process exited, in ISO 8601 format.
 """
 
-PROCESS_GROUPLEADER_PID = "process.group_leader.pid"
+PROCESS_GROUP_LEADER_PID = "process.group_leader.pid"
 """
 The PID of the process's group leader. This is also the process group ID (PGID) of the process.
 """
@@ -80,12 +80,12 @@ PROCESS_OWNER = "process.owner"
 The username of the user that owns the process.
 """
 
-PROCESS_PAGING_FAULTTYPE = "process.paging.fault_type"
+PROCESS_PAGING_FAULT_TYPE = "process.paging.fault_type"
 """
 The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
 """
 
-PROCESS_PARENTPID = "process.parent_pid"
+PROCESS_PARENT_PID = "process.parent_pid"
 """
 Parent Process identifier (PPID).
 """
@@ -95,12 +95,12 @@ PROCESS_PID = "process.pid"
 Process identifier (PID).
 """
 
-PROCESS_REALUSER_ID = "process.real_user.id"
+PROCESS_REAL_USER_ID = "process.real_user.id"
 """
 The real user ID (RUID) of the process.
 """
 
-PROCESS_REALUSER_NAME = "process.real_user.name"
+PROCESS_REAL_USER_NAME = "process.real_user.name"
 """
 The username of the real user of the process.
 """
@@ -120,17 +120,17 @@ PROCESS_RUNTIME_VERSION = "process.runtime.version"
 The version of the runtime of this process, as returned by the runtime without modification.
 """
 
-PROCESS_SAVEDUSER_ID = "process.saved_user.id"
+PROCESS_SAVED_USER_ID = "process.saved_user.id"
 """
 The saved user ID (SUID) of the process.
 """
 
-PROCESS_SAVEDUSER_NAME = "process.saved_user.name"
+PROCESS_SAVED_USER_NAME = "process.saved_user.name"
 """
 The username of the saved user.
 """
 
-PROCESS_SESSIONLEADER_PID = "process.session_leader.pid"
+PROCESS_SESSION_LEADER_PID = "process.session_leader.pid"
 """
 The PID of the process's session leader. This is also the session ID (SID) of the process.
 """
@@ -152,7 +152,7 @@ Note: The process ID within a PID namespace. This is not necessarily unique acro
 """
 
 
-class ProcessContextswitchtypeValues(Enum):
+class ProcessContextSwitchTypeValues(Enum):
     VOLUNTARY = "voluntary"
 
     INVOLUNTARY = "involuntary"
@@ -166,7 +166,7 @@ class ProcessCpuStateValues(Enum):
     WAIT = "wait"
 
 
-class ProcessPagingFaulttypeValues(Enum):
+class ProcessPagingFaultTypeValues(Enum):
     MAJOR = "major"
 
     MINOR = "minor"

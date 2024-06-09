@@ -1,5 +1,4 @@
 # Copyright The OpenTelemetry Authors
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -17,14 +16,14 @@ from opentelemetry.metrics import Histogram, Meter
 
 DNS_LOOKUP_DURATION = "dns.lookup.duration"
 """
-Measures the time taken to perform a DNS lookup
+Measures the time taken to perform a DNS lookup.
 Instrument: histogram
 Unit: s
 """
 
 
 def create_dns_lookup_duration(meter: Meter) -> Histogram:
-    """Measures the time taken to perform a DNS lookup"""
+    """Measures the time taken to perform a DNS lookup."""
     return meter.create_histogram(
         name="dns.lookup.duration",
         description="Measures the time taken to perform a DNS lookup.",

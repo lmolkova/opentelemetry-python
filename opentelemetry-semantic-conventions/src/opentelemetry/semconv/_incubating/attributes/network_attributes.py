@@ -184,9 +184,9 @@ class NetSockFamilyValues(Enum):
 
 
 class NetTransportValues(Enum):
-    IPTCP = "ip_tcp"
+    IP_TCP = "ip_tcp"
 
-    IPUDP = "ip_udp"
+    IP_UDP = "ip_udp"
 
     PIPE = "pipe"
     """
@@ -225,17 +225,17 @@ class NetworkConnectionSubtypeValues(Enum):
     CDMA
     """
 
-    EVDO0 = "evdo_0"
+    EVDO_0 = "evdo_0"
     """
     EVDO Rel. 0
     """
 
-    EVDOA = "evdo_a"
+    EVDO_A = "evdo_a"
     """
     EVDO Rev. A
     """
 
-    CDMA20001XRTT = "cdma2000_1xrtt"
+    CDMA2000_1XRTT = "cdma2000_1xrtt"
     """
     CDMA2000 1XRTT
     """
@@ -260,7 +260,7 @@ class NetworkConnectionSubtypeValues(Enum):
     IDEN
     """
 
-    EVDOB = "evdo_b"
+    EVDO_B = "evdo_b"
     """
     EVDO Rev. B
     """
@@ -285,7 +285,7 @@ class NetworkConnectionSubtypeValues(Enum):
     GSM
     """
 
-    TDSCDMA = "td_scdma"
+    TD_SCDMA = "td_scdma"
     """
     TD-SCDMA
     """
@@ -305,7 +305,7 @@ class NetworkConnectionSubtypeValues(Enum):
     5G NRNSA (New Radio Non-Standalone)
     """
 
-    LTECA = "lte_ca"
+    LTE_CA = "lte_ca"
     """
     LTE CA
     """

@@ -15,7 +15,7 @@
 
 from enum import Enum
 
-MESSAGE_COMPRESSEDSIZE = "message.compressed_size"
+MESSAGE_COMPRESSED_SIZE = "message.compressed_size"
 """
 Deprecated: Replaced by `rpc.message.compressed_size`.
 """
@@ -30,23 +30,25 @@ MESSAGE_TYPE = "message.type"
 Deprecated: Replaced by `rpc.message.type`.
 """
 
-MESSAGE_UNCOMPRESSEDSIZE = "message.uncompressed_size"
+MESSAGE_UNCOMPRESSED_SIZE = "message.uncompressed_size"
 """
 Deprecated: Replaced by `rpc.message.uncompressed_size`.
 """
 
-RPC_CONNECTRPC_ERRORCODE = "rpc.connect_rpc.error_code"
+RPC_CONNECT_RPC_ERROR_CODE = "rpc.connect_rpc.error_code"
 """
 The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
 """
 
-RPC_CONNECTRPC_REQUEST_METADATA_TEMPLATE = "rpc.connect_rpc.request.metadata"
+RPC_CONNECT_RPC_REQUEST_METADATA_TEMPLATE = "rpc.connect_rpc.request.metadata"
 """
 Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
 Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 """
 
-RPC_CONNECTRPC_RESPONSE_METADATA_TEMPLATE = "rpc.connect_rpc.response.metadata"
+RPC_CONNECT_RPC_RESPONSE_METADATA_TEMPLATE = (
+    "rpc.connect_rpc.response.metadata"
+)
 """
 Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
 Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -64,22 +66,22 @@ gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercas
 Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured. Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 """
 
-RPC_GRPC_STATUSCODE = "rpc.grpc.status_code"
+RPC_GRPC_STATUS_CODE = "rpc.grpc.status_code"
 """
 The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
 """
 
-RPC_JSONRPC_ERRORCODE = "rpc.jsonrpc.error_code"
+RPC_JSONRPC_ERROR_CODE = "rpc.jsonrpc.error_code"
 """
 `error.code` property of response if it is an error response.
 """
 
-RPC_JSONRPC_ERRORMESSAGE = "rpc.jsonrpc.error_message"
+RPC_JSONRPC_ERROR_MESSAGE = "rpc.jsonrpc.error_message"
 """
 `error.message` property of response if it is an error response.
 """
 
-RPC_JSONRPC_REQUESTID = "rpc.jsonrpc.request_id"
+RPC_JSONRPC_REQUEST_ID = "rpc.jsonrpc.request_id"
 """
 `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
 """
@@ -89,7 +91,7 @@ RPC_JSONRPC_VERSION = "rpc.jsonrpc.version"
 Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
 """
 
-RPC_MESSAGE_COMPRESSEDSIZE = "rpc.message.compressed_size"
+RPC_MESSAGE_COMPRESSED_SIZE = "rpc.message.compressed_size"
 """
 Compressed size of the message in bytes.
 """
@@ -105,7 +107,7 @@ RPC_MESSAGE_TYPE = "rpc.message.type"
 Whether this is a received or sent message.
 """
 
-RPC_MESSAGE_UNCOMPRESSEDSIZE = "rpc.message.uncompressed_size"
+RPC_MESSAGE_UNCOMPRESSED_SIZE = "rpc.message.uncompressed_size"
 """
 Uncompressed size of the message in bytes.
 """
@@ -134,28 +136,28 @@ class MessageTypeValues(Enum):
     RECEIVED = "RECEIVED"
 
 
-class RpcConnectrpcErrorcodeValues(Enum):
+class RpcConnectRpcErrorCodeValues(Enum):
     CANCELLED = "cancelled"
 
     UNKNOWN = "unknown"
 
-    INVALIDARGUMENT = "invalid_argument"
+    INVALID_ARGUMENT = "invalid_argument"
 
-    DEADLINEEXCEEDED = "deadline_exceeded"
+    DEADLINE_EXCEEDED = "deadline_exceeded"
 
-    NOTFOUND = "not_found"
+    NOT_FOUND = "not_found"
 
-    ALREADYEXISTS = "already_exists"
+    ALREADY_EXISTS = "already_exists"
 
-    PERMISSIONDENIED = "permission_denied"
+    PERMISSION_DENIED = "permission_denied"
 
-    RESOURCEEXHAUSTED = "resource_exhausted"
+    RESOURCE_EXHAUSTED = "resource_exhausted"
 
-    FAILEDPRECONDITION = "failed_precondition"
+    FAILED_PRECONDITION = "failed_precondition"
 
     ABORTED = "aborted"
 
-    OUTOFRANGE = "out_of_range"
+    OUT_OF_RANGE = "out_of_range"
 
     UNIMPLEMENTED = "unimplemented"
 
@@ -163,12 +165,12 @@ class RpcConnectrpcErrorcodeValues(Enum):
 
     UNAVAILABLE = "unavailable"
 
-    DATALOSS = "data_loss"
+    DATA_LOSS = "data_loss"
 
     UNAUTHENTICATED = "unauthenticated"
 
 
-class RpcGrpcStatuscodeValues(Enum):
+class RpcGrpcStatusCodeValues(Enum):
     OK = "0"
     """
     OK
@@ -184,37 +186,37 @@ class RpcGrpcStatuscodeValues(Enum):
     UNKNOWN
     """
 
-    INVALIDARGUMENT = "3"
+    INVALID_ARGUMENT = "3"
     """
     INVALID_ARGUMENT
     """
 
-    DEADLINEEXCEEDED = "4"
+    DEADLINE_EXCEEDED = "4"
     """
     DEADLINE_EXCEEDED
     """
 
-    NOTFOUND = "5"
+    NOT_FOUND = "5"
     """
     NOT_FOUND
     """
 
-    ALREADYEXISTS = "6"
+    ALREADY_EXISTS = "6"
     """
     ALREADY_EXISTS
     """
 
-    PERMISSIONDENIED = "7"
+    PERMISSION_DENIED = "7"
     """
     PERMISSION_DENIED
     """
 
-    RESOURCEEXHAUSTED = "8"
+    RESOURCE_EXHAUSTED = "8"
     """
     RESOURCE_EXHAUSTED
     """
 
-    FAILEDPRECONDITION = "9"
+    FAILED_PRECONDITION = "9"
     """
     FAILED_PRECONDITION
     """
@@ -224,7 +226,7 @@ class RpcGrpcStatuscodeValues(Enum):
     ABORTED
     """
 
-    OUTOFRANGE = "11"
+    OUT_OF_RANGE = "11"
     """
     OUT_OF_RANGE
     """
@@ -244,7 +246,7 @@ class RpcGrpcStatuscodeValues(Enum):
     UNAVAILABLE
     """
 
-    DATALOSS = "15"
+    DATA_LOSS = "15"
     """
     DATA_LOSS
     """
@@ -267,22 +269,22 @@ class RpcSystemValues(Enum):
     gRPC
     """
 
-    JAVARMI = "java_rmi"
+    JAVA_RMI = "java_rmi"
     """
     Java RMI
     """
 
-    DOTNETWCF = "dotnet_wcf"
+    DOTNET_WCF = "dotnet_wcf"
     """
     .NET WCF
     """
 
-    APACHEDUBBO = "apache_dubbo"
+    APACHE_DUBBO = "apache_dubbo"
     """
     Apache Dubbo
     """
 
-    CONNECTRPC = "connect_rpc"
+    CONNECT_RPC = "connect_rpc"
     """
     Connect RPC
     """

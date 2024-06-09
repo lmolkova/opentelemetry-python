@@ -15,71 +15,71 @@
 
 from enum import Enum
 
-GENAI_COMPLETION = "gen_ai.completion"
+GEN_AI_COMPLETION = "gen_ai.completion"
 """
 The full response received from the LLM.
 Note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 """
 
-GENAI_PROMPT = "gen_ai.prompt"
+GEN_AI_PROMPT = "gen_ai.prompt"
 """
 The full prompt sent to an LLM.
 Note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation)
 """
 
-GENAI_REQUEST_MAXTOKENS = "gen_ai.request.max_tokens"
+GEN_AI_REQUEST_MAX_TOKENS = "gen_ai.request.max_tokens"
 """
 The maximum number of tokens the LLM generates for a request.
 """
 
-GENAI_REQUEST_MODEL = "gen_ai.request.model"
+GEN_AI_REQUEST_MODEL = "gen_ai.request.model"
 """
 The name of the LLM a request is being made to.
 """
 
-GENAI_REQUEST_TEMPERATURE = "gen_ai.request.temperature"
+GEN_AI_REQUEST_TEMPERATURE = "gen_ai.request.temperature"
 """
 The temperature setting for the LLM request.
 """
 
-GENAI_REQUEST_TOPP = "gen_ai.request.top_p"
+GEN_AI_REQUEST_TOP_P = "gen_ai.request.top_p"
 """
 The top_p sampling setting for the LLM request.
 """
 
-GENAI_RESPONSE_FINISHREASONS = "gen_ai.response.finish_reasons"
+GEN_AI_RESPONSE_FINISH_REASONS = "gen_ai.response.finish_reasons"
 """
 Array of reasons the model stopped generating tokens, corresponding to each generation received.
 """
 
-GENAI_RESPONSE_ID = "gen_ai.response.id"
+GEN_AI_RESPONSE_ID = "gen_ai.response.id"
 """
 The unique identifier for the completion.
 """
 
-GENAI_RESPONSE_MODEL = "gen_ai.response.model"
+GEN_AI_RESPONSE_MODEL = "gen_ai.response.model"
 """
 The name of the LLM a response was generated from.
 """
 
-GENAI_SYSTEM = "gen_ai.system"
+GEN_AI_SYSTEM = "gen_ai.system"
 """
 The Generative AI product as identified by the client instrumentation.
 Note: The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
 """
 
-GENAI_USAGE_COMPLETIONTOKENS = "gen_ai.usage.completion_tokens"
+GEN_AI_USAGE_COMPLETION_TOKENS = "gen_ai.usage.completion_tokens"
 """
 The number of tokens used in the LLM response (completion).
 """
 
-GENAI_USAGE_PROMPTTOKENS = "gen_ai.usage.prompt_tokens"
+GEN_AI_USAGE_PROMPT_TOKENS = "gen_ai.usage.prompt_tokens"
 """
 The number of tokens used in the LLM prompt.
 """
 
 
-class GenaiSystemValues(Enum):
+class GenAiSystemValues(Enum):
     OPENAI = "openai"
     """
     OpenAI

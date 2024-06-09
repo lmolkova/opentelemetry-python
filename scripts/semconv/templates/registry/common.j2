@@ -16,9 +16,13 @@
 {% endmacro -%}
 
 {%- macro to_const_name(attr_name) -%}
-{{attr_name | upper | replace('_', '') | replace('.', '_')}}
+{{attr_name | upper | replace('.', '_')}}
 {%- endmacro %}
 
 {%- macro to_class_name(attr_name) -%}
-{{attr_name | upper | replace('_', '') | title | replace('.', '')}}
+{{attr_name | upper | title | replace('_', '') | replace('.', '')}}
+{%- endmacro %}
+
+{%- macro str_or_empty(str) -%}
+{% if str is defined and str is not none %}{{str}}{% else %}{{""}}{% endif %}
 {%- endmacro %}

@@ -15,7 +15,7 @@
 
 from enum import Enum
 
-MESSAGING_BATCH_MESSAGECOUNT = "messaging.batch.message_count"
+MESSAGING_BATCH_MESSAGE_COUNT = "messaging.batch.message_count"
 """
 The number of messages sent, received, or processed in the scope of the batching operation.
 Note: Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
@@ -24,11 +24,6 @@ Note: Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans t
 MESSAGING_CLIENT_ID = "messaging.client.id"
 """
 A unique identifier for the client that consumes or produces a message.
-"""
-
-MESSAGING_CLIENTID = "messaging.client_id"
-"""
-Deprecated: Replaced by `messaging.client.id`.
 """
 
 MESSAGING_DESTINATION_ANONYMOUS = "messaging.destination.anonymous"
@@ -59,14 +54,14 @@ MESSAGING_DESTINATION_TEMPORARY = "messaging.destination.temporary"
 A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.
 """
 
-MESSAGING_DESTINATIONPUBLISH_ANONYMOUS = (
+MESSAGING_DESTINATION_PUBLISH_ANONYMOUS = (
     "messaging.destination_publish.anonymous"
 )
 """
 A boolean that is true if the publish message destination is anonymous (could be unnamed or have auto-generated name).
 """
 
-MESSAGING_DESTINATIONPUBLISH_NAME = "messaging.destination_publish.name"
+MESSAGING_DESTINATION_PUBLISH_NAME = "messaging.destination_publish.name"
 """
 The name of the original destination the message was published to
 Note: The name SHOULD uniquely identify a specific queue, topic, or other entity within the broker. If
@@ -78,33 +73,33 @@ MESSAGING_EVENTHUBS_CONSUMER_GROUP = "messaging.eventhubs.consumer.group"
 The name of the consumer group the event consumer is associated with.
 """
 
-MESSAGING_EVENTHUBS_MESSAGE_ENQUEUEDTIME = (
+MESSAGING_EVENTHUBS_MESSAGE_ENQUEUED_TIME = (
     "messaging.eventhubs.message.enqueued_time"
 )
 """
 The UTC epoch seconds at which the message has been accepted and stored in the entity.
 """
 
-MESSAGING_GCPPUBSUB_MESSAGE_ACKDEADLINE = (
+MESSAGING_GCP_PUBSUB_MESSAGE_ACK_DEADLINE = (
     "messaging.gcp_pubsub.message.ack_deadline"
 )
 """
 The ack deadline in seconds set for the modify ack deadline request.
 """
 
-MESSAGING_GCPPUBSUB_MESSAGE_ACKID = "messaging.gcp_pubsub.message.ack_id"
+MESSAGING_GCP_PUBSUB_MESSAGE_ACK_ID = "messaging.gcp_pubsub.message.ack_id"
 """
 The ack id for a given message.
 """
 
-MESSAGING_GCPPUBSUB_MESSAGE_DELIVERYATTEMPT = (
+MESSAGING_GCP_PUBSUB_MESSAGE_DELIVERY_ATTEMPT = (
     "messaging.gcp_pubsub.message.delivery_attempt"
 )
 """
 The delivery attempt for a given message.
 """
 
-MESSAGING_GCPPUBSUB_MESSAGE_ORDERINGKEY = (
+MESSAGING_GCP_PUBSUB_MESSAGE_ORDERING_KEY = (
     "messaging.gcp_pubsub.message.ordering_key"
 )
 """
@@ -144,7 +139,7 @@ Note: This can refer to both the compressed or uncompressed body size. If both s
 body size should be used.
 """
 
-MESSAGING_MESSAGE_CONVERSATIONID = "messaging.message.conversation_id"
+MESSAGING_MESSAGE_CONVERSATION_ID = "messaging.message.conversation_id"
 """
 The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID".
 """
@@ -177,38 +172,38 @@ A string identifying the type of the messaging operation.
 Note: If a custom value is used, it MUST be of low cardinality.
 """
 
-MESSAGING_RABBITMQ_DESTINATION_ROUTINGKEY = (
+MESSAGING_RABBITMQ_DESTINATION_ROUTING_KEY = (
     "messaging.rabbitmq.destination.routing_key"
 )
 """
 RabbitMQ message routing key.
 """
 
-MESSAGING_RABBITMQ_MESSAGE_DELIVERYTAG = (
+MESSAGING_RABBITMQ_MESSAGE_DELIVERY_TAG = (
     "messaging.rabbitmq.message.delivery_tag"
 )
 """
 RabbitMQ message delivery tag
 """
 
-MESSAGING_ROCKETMQ_CLIENTGROUP = "messaging.rocketmq.client_group"
+MESSAGING_ROCKETMQ_CLIENT_GROUP = "messaging.rocketmq.client_group"
 """
 Name of the RocketMQ producer/consumer group that is handling the message. The client type is identified by the SpanKind.
 """
 
-MESSAGING_ROCKETMQ_CONSUMPTIONMODEL = "messaging.rocketmq.consumption_model"
+MESSAGING_ROCKETMQ_CONSUMPTION_MODEL = "messaging.rocketmq.consumption_model"
 """
 Model of message consumption. This only applies to consumer spans.
 """
 
-MESSAGING_ROCKETMQ_MESSAGE_DELAYTIMELEVEL = (
+MESSAGING_ROCKETMQ_MESSAGE_DELAY_TIME_LEVEL = (
     "messaging.rocketmq.message.delay_time_level"
 )
 """
 The delay time level for delay message, which determines the message delay time.
 """
 
-MESSAGING_ROCKETMQ_MESSAGE_DELIVERYTIMESTAMP = (
+MESSAGING_ROCKETMQ_MESSAGE_DELIVERY_TIMESTAMP = (
     "messaging.rocketmq.message.delivery_timestamp"
 )
 """
@@ -240,28 +235,28 @@ MESSAGING_ROCKETMQ_NAMESPACE = "messaging.rocketmq.namespace"
 Namespace of RocketMQ resources, resources in different namespaces are individual.
 """
 
-MESSAGING_SERVICEBUS_DESTINATION_SUBSCRIPTIONNAME = (
+MESSAGING_SERVICEBUS_DESTINATION_SUBSCRIPTION_NAME = (
     "messaging.servicebus.destination.subscription_name"
 )
 """
 The name of the subscription in the topic messages are received from.
 """
 
-MESSAGING_SERVICEBUS_DISPOSITIONSTATUS = (
+MESSAGING_SERVICEBUS_DISPOSITION_STATUS = (
     "messaging.servicebus.disposition_status"
 )
 """
 Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
 """
 
-MESSAGING_SERVICEBUS_MESSAGE_DELIVERYCOUNT = (
+MESSAGING_SERVICEBUS_MESSAGE_DELIVERY_COUNT = (
     "messaging.servicebus.message.delivery_count"
 )
 """
 Number of deliveries that have been attempted for this message.
 """
 
-MESSAGING_SERVICEBUS_MESSAGE_ENQUEUEDTIME = (
+MESSAGING_SERVICEBUS_MESSAGE_ENQUEUED_TIME = (
     "messaging.servicebus.message.enqueued_time"
 )
 """
@@ -302,7 +297,7 @@ class MessagingOperationTypeValues(Enum):
     """
 
 
-class MessagingRocketmqConsumptionmodelValues(Enum):
+class MessagingRocketmqConsumptionModelValues(Enum):
     CLUSTERING = "clustering"
     """
     Clustering consumption model
@@ -336,7 +331,7 @@ class MessagingRocketmqMessageTypeValues(Enum):
     """
 
 
-class MessagingServicebusDispositionstatusValues(Enum):
+class MessagingServicebusDispositionStatusValues(Enum):
     COMPLETE = "complete"
     """
     Message is completed
@@ -347,7 +342,7 @@ class MessagingServicebusDispositionstatusValues(Enum):
     Message is abandoned
     """
 
-    DEADLETTER = "dead_letter"
+    DEAD_LETTER = "dead_letter"
     """
     Message is sent to dead letter queue
     """
@@ -364,7 +359,7 @@ class MessagingSystemValues(Enum):
     Apache ActiveMQ
     """
 
-    AWSSQS = "aws_sqs"
+    AWS_SQS = "aws_sqs"
     """
     Amazon Simple Queue Service (SQS)
     """
@@ -384,7 +379,7 @@ class MessagingSystemValues(Enum):
     Azure Service Bus
     """
 
-    GCPPUBSUB = "gcp_pubsub"
+    GCP_PUBSUB = "gcp_pubsub"
     """
     Google Cloud Pub/Sub
     """

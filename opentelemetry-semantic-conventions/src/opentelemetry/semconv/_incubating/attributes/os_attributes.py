@@ -15,7 +15,7 @@
 
 from enum import Enum
 
-OS_BUILDID = "os.build_id"
+OS_BUILD_ID = "os.build_id"
 """
 Unique identifier for a particular build or compilation of the operating system.
 """
@@ -92,7 +92,7 @@ class OsTypeValues(Enum):
     SunOS, Oracle Solaris
     """
 
-    ZOS = "z_os"
+    Z_OS = "z_os"
     """
     IBM z/OS
     """
