@@ -28,7 +28,7 @@
 {%- endmacro %}
 
 {%- macro to_docstring(str, prefix) -%}
-{{str | trim('.\n') | comment_with_prefix(prefix)}}
+{{str | trim('.\n ') | comment_with_prefix(prefix)}}
 {%- endmacro %}
 
 {%- macro import_deprecated(semconv) -%}

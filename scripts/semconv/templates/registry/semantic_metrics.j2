@@ -23,15 +23,15 @@
 
 {%- macro write_docstring(metric, prefix) -%}
     {%- if c.str_or_empty(metric.deprecated)|length %}
-{{prefix}}Deprecated: {{metric.deprecated | trim('.\n') | comment_with_prefix(prefix)}}.
+{{prefix}}Deprecated: {{c.to_docstring(metric.deprecated)}}.
     {%- elif ctx.filter == "any" and metric.stability == "stable" %}
-{{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(name, '.')}}`.
+{{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(metric.metric_name, '.')}}`.
     {%- elif c.str_or_empty(metric.brief)|length %}
-{{metric.brief | trim('.\n') | comment_with_prefix(prefix)}}.
+{{prefix}}{{c.to_docstring(metric.brief)}}.
 {{prefix}}Instrument: {{ metric.instrument }}
 {{prefix}}Unit: {{ metric.unit }}
         {%- if c.str_or_empty(metric.note)|length  %}
-{{prefix}}Note: {{metric.note | trim('.\n') | comment_with_prefix(prefix)}}.
+{{prefix}}Note: {{c.to_docstring(metric.note)}}.
         {%- endif -%}
     {%- endif -%}
 {%- endmacro -%}

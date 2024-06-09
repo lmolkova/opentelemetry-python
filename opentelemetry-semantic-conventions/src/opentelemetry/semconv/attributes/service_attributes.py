@@ -13,6 +13,13 @@
 # limitations under the License.
 
 
+
+
+
+
+
+
+
 SERVICE_NAME = "service.name"
 """
 Logical name of the service.
@@ -23,3 +30,5 @@ SERVICE_VERSION = "service.version"
 """
 The version string of the service API or implementation. The format is not defined by these conventions.
 """
+
+

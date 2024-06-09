@@ -13,7 +13,12 @@
 # limitations under the License.
 
 
+
+
+
+
 from enum import Enum
+
 
 TELEMETRY_SDK_LANGUAGE = "telemetry.sdk.language"
 """
@@ -35,6 +40,7 @@ TELEMETRY_SDK_VERSION = "telemetry.sdk.version"
 """
 The version string of the telemetry SDK.
 """
+
 
 
 class TelemetrySdkLanguageValues(Enum):

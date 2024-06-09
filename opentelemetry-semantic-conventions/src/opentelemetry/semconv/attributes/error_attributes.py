@@ -13,7 +13,12 @@
 # limitations under the License.
 
 
+
+
+
+
 from enum import Enum
+
 
 ERROR_TYPE = "error.type"
 """
@@ -38,6 +43,7 @@ it's RECOMMENDED to:
 * Use a domain-specific attribute
 * Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 """
+
 
 
 class ErrorTypeValues(Enum):
