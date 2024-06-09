@@ -15,10 +15,10 @@
 
 CLIENT_ADDRESS = "client.address"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.client_attributes.CLIENT_ADDRESS`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.client_attributes.CLIENT_ADDRESS`.
 """
 
 CLIENT_PORT = "client.port"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.client_attributes.CLIENT_PORT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.client_attributes.CLIENT_PORT`.
 """

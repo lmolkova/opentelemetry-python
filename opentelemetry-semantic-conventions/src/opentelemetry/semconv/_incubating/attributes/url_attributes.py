@@ -27,12 +27,12 @@ Note: The file extension is only set if it exists, as not every url has a file e
 
 URL_FRAGMENT = "url.fragment"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_FRAGMENT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_FRAGMENT`.
 """
 
 URL_FULL = "url.full"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_FULL`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_FULL`.
 """
 
 URL_ORIGINAL = "url.original"
@@ -44,7 +44,7 @@ Note: In network monitoring, the observed URL may be a full URL, whereas in acce
 
 URL_PATH = "url.path"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_PATH`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_PATH`.
 """
 
 URL_PORT = "url.port"
@@ -54,7 +54,7 @@ Port extracted from the `url.full`
 
 URL_QUERY = "url.query"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_QUERY`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_QUERY`.
 """
 
 URL_REGISTERED_DOMAIN = "url.registered_domain"
@@ -65,7 +65,7 @@ Note: This value can be determined precisely with the [public suffix list](http:
 
 URL_SCHEME = "url.scheme"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.url_attributes.URL_SCHEME`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.url_attributes.URL_SCHEME`.
 """
 
 URL_SUBDOMAIN = "url.subdomain"

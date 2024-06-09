@@ -21,7 +21,7 @@ Note: [Example](https://www.whatsmyua.info) of extracting browser's name from or
 
 USER_AGENT_ORIGINAL = "user_agent.original"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.user_agent_attributes.USER_AGENT_ORIGINAL`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.user_agent_attributes.USER_AGENT_ORIGINAL`.
 """
 
 USER_AGENT_VERSION = "user_agent.version"

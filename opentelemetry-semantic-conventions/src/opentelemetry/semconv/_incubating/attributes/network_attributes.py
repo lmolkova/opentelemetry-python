@@ -127,42 +127,42 @@ The network IO operation direction.
 
 NETWORK_LOCAL_ADDRESS = "network.local.address"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_LOCAL_ADDRESS`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_LOCAL_ADDRESS`.
 """
 
 NETWORK_LOCAL_PORT = "network.local.port"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_LOCAL_PORT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_LOCAL_PORT`.
 """
 
 NETWORK_PEER_ADDRESS = "network.peer.address"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_PEER_ADDRESS`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_PEER_ADDRESS`.
 """
 
 NETWORK_PEER_PORT = "network.peer.port"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_PEER_PORT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_PEER_PORT`.
 """
 
 NETWORK_PROTOCOL_NAME = "network.protocol.name"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_PROTOCOL_NAME`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_PROTOCOL_NAME`.
 """
 
 NETWORK_PROTOCOL_VERSION = "network.protocol.version"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_PROTOCOL_VERSION`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_PROTOCOL_VERSION`.
 """
 
 NETWORK_TRANSPORT = "network.transport"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_TRANSPORT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_TRANSPORT`.
 """
 
 NETWORK_TYPE = "network.type"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NETWORK_TYPE`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NETWORK_TYPE`.
 """
 
 
@@ -332,32 +332,32 @@ class NetworkIoDirectionValues(Enum):
 class NetworkTransportValues(Enum):
     TCP = "tcp"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NetworkTransportValues.TCP`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.TCP`.
     """
 
     UDP = "udp"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NetworkTransportValues.UDP`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.UDP`.
     """
 
     PIPE = "pipe"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NetworkTransportValues.PIPE`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.PIPE`.
     """
 
     UNIX = "unix"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NetworkTransportValues.UNIX`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTransportValues.UNIX`.
     """
 
 
 class NetworkTypeValues(Enum):
     IPV4 = "ipv4"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NetworkTypeValues.IPV4`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues.IPV4`.
     """
 
     IPV6 = "ipv6"
     """
-    Deprecated in favor of stable :py:const:`opentelemetry.semconv.network_attributes.NetworkTypeValues.IPV6`.
+    Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues.IPV6`.
     """

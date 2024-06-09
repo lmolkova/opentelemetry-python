@@ -23,7 +23,7 @@ templates:
           | map({const_name: .[0].const_name, names: [.[]] | sort_by(.deprecated) })
           | map(.names[0]),
         output: $output + "attributes/",
-        stable_package_name: $stable_package_name,
+        stable_package_name: $stable_package_name + ".attributes",
         filter: $filter
       })
     application_mode: each
@@ -38,7 +38,7 @@ templates:
         id: .[0].group_id,
         metrics: .,
         output: $output + "metrics/",
-        stable_package_name: $stable_package_name,
+        stable_package_name: $stable_package_name + ".metrics",
         filter: $filter
       })
       | map(select( .id as $id | any( $excluded[]; . == $id) | not ))

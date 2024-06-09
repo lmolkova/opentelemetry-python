@@ -15,10 +15,10 @@
 
 SERVER_ADDRESS = "server.address"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.server_attributes.SERVER_ADDRESS`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.server_attributes.SERVER_ADDRESS`.
 """
 
 SERVER_PORT = "server.port"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.server_attributes.SERVER_PORT`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.server_attributes.SERVER_PORT`.
 """
