@@ -1,4 +1,5 @@
 # Copyright The OpenTelemetry Authors
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -14,20 +15,105 @@
 
 from opentelemetry.metrics import Histogram, Meter, UpDownCounter
 
-HTTP_SERVER_REQUEST_DURATION = "http.server.request.duration"
+HTTP_CLIENT_ACTIVE_REQUESTS = "http.client.active_requests"
 """
-Duration of HTTP server requests.
+Number of active HTTP requests.
+Instrument: updowncounter
+Unit: {request}
+"""
+
+
+def create_http_client_active_requests(meter: Meter) -> UpDownCounter:
+    """Number of active HTTP requests."""
+    return meter.create_up_down_counter(
+        name="http.client.active_requests",
+        description="Number of active HTTP requests.",
+        unit="{request}",
+    )
+
+
+HTTP_CLIENT_CONNECTION_DURATION = "http.client.connection.duration"
+"""
+The duration of the successfully established outbound HTTP connections.
 Instrument: histogram
 Unit: s
 """
 
 
-def create_http_server_request_duration(meter: Meter) -> Histogram:
-    """Duration of HTTP server requests."""
+def create_http_client_connection_duration(meter: Meter) -> Histogram:
+    """The duration of the successfully established outbound HTTP connections."""
     return meter.create_histogram(
-        name="http.server.request.duration",
-        description="Duration of HTTP server requests.",
+        name="http.client.connection.duration",
+        description="The duration of the successfully established outbound HTTP connections.",
         unit="s",
+    )
+
+
+HTTP_CLIENT_OPEN_CONNECTIONS = "http.client.open_connections"
+"""
+Number of outbound HTTP connections that are currently active or idle on the client.
+Instrument: updowncounter
+Unit: {connection}
+"""
+
+
+def create_http_client_open_connections(meter: Meter) -> UpDownCounter:
+    """Number of outbound HTTP connections that are currently active or idle on the client."""
+    return meter.create_up_down_counter(
+        name="http.client.open_connections",
+        description="Number of outbound HTTP connections that are currently active or idle on the client.",
+        unit="{connection}",
+    )
+
+
+HTTP_CLIENT_REQUEST_BODY_SIZE = "http.client.request.body.size"
+"""
+Size of HTTP client request bodies.
+Instrument: histogram
+Unit: By
+"""
+
+
+def create_http_client_request_body_size(meter: Meter) -> Histogram:
+    """Size of HTTP client request bodies."""
+    return meter.create_histogram(
+        name="http.client.request.body.size",
+        description="Size of HTTP client request bodies.",
+        unit="By",
+    )
+
+
+HTTP_CLIENT_REQUEST_DURATION = "http.client.request.duration"
+"""
+Duration of HTTP client requests.
+Instrument: histogram
+Unit: s
+"""
+
+
+def create_http_client_request_duration(meter: Meter) -> Histogram:
+    """Duration of HTTP client requests."""
+    return meter.create_histogram(
+        name="http.client.request.duration",
+        description="Duration of HTTP client requests.",
+        unit="s",
+    )
+
+
+HTTP_CLIENT_RESPONSE_BODY_SIZE = "http.client.response.body.size"
+"""
+Size of HTTP client response bodies.
+Instrument: histogram
+Unit: By
+"""
+
+
+def create_http_client_response_body_size(meter: Meter) -> Histogram:
+    """Size of HTTP client response bodies."""
+    return meter.create_histogram(
+        name="http.client.response.body.size",
+        description="Size of HTTP client response bodies.",
+        unit="By",
     )
 
 
@@ -65,6 +151,23 @@ def create_http_server_request_body_size(meter: Meter) -> Histogram:
     )
 
 
+HTTP_SERVER_REQUEST_DURATION = "http.server.request.duration"
+"""
+Duration of HTTP server requests.
+Instrument: histogram
+Unit: s
+"""
+
+
+def create_http_server_request_duration(meter: Meter) -> Histogram:
+    """Duration of HTTP server requests."""
+    return meter.create_histogram(
+        name="http.server.request.duration",
+        description="Duration of HTTP server requests.",
+        unit="s",
+    )
+
+
 HTTP_SERVER_RESPONSE_BODY_SIZE = "http.server.response.body.size"
 """
 Size of HTTP server response bodies.
@@ -79,106 +182,4 @@ def create_http_server_response_body_size(meter: Meter) -> Histogram:
         name="http.server.response.body.size",
         description="Size of HTTP server response bodies.",
         unit="By",
-    )
-
-
-HTTP_CLIENT_REQUEST_DURATION = "http.client.request.duration"
-"""
-Duration of HTTP client requests.
-Instrument: histogram
-Unit: s
-"""
-
-
-def create_http_client_request_duration(meter: Meter) -> Histogram:
-    """Duration of HTTP client requests."""
-    return meter.create_histogram(
-        name="http.client.request.duration",
-        description="Duration of HTTP client requests.",
-        unit="s",
-    )
-
-
-HTTP_CLIENT_REQUEST_BODY_SIZE = "http.client.request.body.size"
-"""
-Size of HTTP client request bodies.
-Instrument: histogram
-Unit: By
-"""
-
-
-def create_http_client_request_body_size(meter: Meter) -> Histogram:
-    """Size of HTTP client request bodies."""
-    return meter.create_histogram(
-        name="http.client.request.body.size",
-        description="Size of HTTP client request bodies.",
-        unit="By",
-    )
-
-
-HTTP_CLIENT_RESPONSE_BODY_SIZE = "http.client.response.body.size"
-"""
-Size of HTTP client response bodies.
-Instrument: histogram
-Unit: By
-"""
-
-
-def create_http_client_response_body_size(meter: Meter) -> Histogram:
-    """Size of HTTP client response bodies."""
-    return meter.create_histogram(
-        name="http.client.response.body.size",
-        description="Size of HTTP client response bodies.",
-        unit="By",
-    )
-
-
-HTTP_CLIENT_OPEN_CONNECTIONS = "http.client.open_connections"
-"""
-Number of outbound HTTP connections that are currently active or idle on the client.
-Instrument: updowncounter
-Unit: {connection}
-"""
-
-
-def create_http_client_open_connections(meter: Meter) -> UpDownCounter:
-    """Number of outbound HTTP connections that are currently active or idle on the client."""
-    return meter.create_up_down_counter(
-        name="http.client.open_connections",
-        description="Number of outbound HTTP connections that are currently active or idle on the client.",
-        unit="{connection}",
-    )
-
-
-HTTP_CLIENT_CONNECTION_DURATION = "http.client.connection.duration"
-"""
-The duration of the successfully established outbound HTTP connections.
-Instrument: histogram
-Unit: s
-"""
-
-
-def create_http_client_connection_duration(meter: Meter) -> Histogram:
-    """The duration of the successfully established outbound HTTP connections."""
-    return meter.create_histogram(
-        name="http.client.connection.duration",
-        description="The duration of the successfully established outbound HTTP connections.",
-        unit="s",
-    )
-
-
-HTTP_CLIENT_ACTIVE_REQUESTS = "http.client.active_requests"
-"""
-Number of active HTTP requests.
-Instrument: updowncounter
-Unit: {request}
-"""
-
-
-def create_http_client_active_requests(meter: Meter) -> UpDownCounter:
-    """Number of active HTTP requests."""
-    return meter.create_up_down_counter(
-        name="http.client.active_requests",
-        description="Number of active HTTP requests.",
-        unit="{request}",
     )

@@ -1,4 +1,5 @@
 # Copyright The OpenTelemetry Authors
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -20,6 +21,23 @@ from opentelemetry.metrics import (
     ObservableGauge,
     UpDownCounter,
 )
+
+PROCESS_CONTEXT_SWITCHES = "process.context_switches"
+"""
+Number of times the process has been context switched.
+Instrument: counter
+Unit: {count}
+"""
+
+
+def create_process_context_switches(meter: Meter) -> Counter:
+    """Number of times the process has been context switched."""
+    return meter.create_counter(
+        name="process.context_switches",
+        description="Number of times the process has been context switched.",
+        unit="{count}",
+    )
+
 
 PROCESS_CPU_TIME = "process.cpu.time"
 """
@@ -58,6 +76,23 @@ def create_process_cpu_utilization(
     )
 
 
+PROCESS_DISK_IO = "process.disk.io"
+"""
+Disk bytes transferred.
+Instrument: counter
+Unit: By
+"""
+
+
+def create_process_disk_io(meter: Meter) -> Counter:
+    """Disk bytes transferred."""
+    return meter.create_counter(
+        name="process.disk.io",
+        description="Disk bytes transferred.",
+        unit="By",
+    )
+
+
 PROCESS_MEMORY_USAGE = "process.memory.usage"
 """
 The amount of physical memory in use.
@@ -92,23 +127,6 @@ def create_process_memory_virtual(meter: Meter) -> UpDownCounter:
     )
 
 
-PROCESS_DISK_IO = "process.disk.io"
-"""
-Disk bytes transferred.
-Instrument: counter
-Unit: By
-"""
-
-
-def create_process_disk_io(meter: Meter) -> Counter:
-    """Disk bytes transferred."""
-    return meter.create_counter(
-        name="process.disk.io",
-        description="Disk bytes transferred.",
-        unit="By",
-    )
-
-
 PROCESS_NETWORK_IO = "process.network.io"
 """
 Network bytes transferred.
@@ -123,23 +141,6 @@ def create_process_network_io(meter: Meter) -> Counter:
         name="process.network.io",
         description="Network bytes transferred.",
         unit="By",
-    )
-
-
-PROCESS_THREAD_COUNT = "process.thread.count"
-"""
-Process threads count.
-Instrument: updowncounter
-Unit: {thread}
-"""
-
-
-def create_process_thread_count(meter: Meter) -> UpDownCounter:
-    """Process threads count."""
-    return meter.create_up_down_counter(
-        name="process.thread.count",
-        description="Process threads count.",
-        unit="{thread}",
     )
 
 
@@ -160,23 +161,6 @@ def create_process_open_file_descriptor_count(meter: Meter) -> UpDownCounter:
     )
 
 
-PROCESS_CONTEXT_SWITCHES = "process.context_switches"
-"""
-Number of times the process has been context switched.
-Instrument: counter
-Unit: {count}
-"""
-
-
-def create_process_context_switches(meter: Meter) -> Counter:
-    """Number of times the process has been context switched."""
-    return meter.create_counter(
-        name="process.context_switches",
-        description="Number of times the process has been context switched.",
-        unit="{count}",
-    )
-
-
 PROCESS_PAGING_FAULTS = "process.paging.faults"
 """
 Number of page faults the process has made.
@@ -191,4 +175,21 @@ def create_process_paging_faults(meter: Meter) -> Counter:
         name="process.paging.faults",
         description="Number of page faults the process has made.",
         unit="{fault}",
+    )
+
+
+PROCESS_THREAD_COUNT = "process.thread.count"
+"""
+Process threads count.
+Instrument: updowncounter
+Unit: {thread}
+"""
+
+
+def create_process_thread_count(meter: Meter) -> UpDownCounter:
+    """Process threads count."""
+    return meter.create_up_down_counter(
+        name="process.thread.count",
+        description="Process threads count.",
+        unit="{thread}",
     )

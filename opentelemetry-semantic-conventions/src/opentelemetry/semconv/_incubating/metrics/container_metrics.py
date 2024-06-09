@@ -1,4 +1,5 @@
 # Copyright The OpenTelemetry Authors
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -31,23 +32,6 @@ def create_container_cpu_time(meter: Meter) -> Counter:
     )
 
 
-CONTAINER_MEMORY_USAGE = "container.memory.usage"
-"""
-Memory usage of the container.
-Instrument: counter
-Unit: By
-"""
-
-
-def create_container_memory_usage(meter: Meter) -> Counter:
-    """Memory usage of the container."""
-    return meter.create_counter(
-        name="container.memory.usage",
-        description="Memory usage of the container.",
-        unit="By",
-    )
-
-
 CONTAINER_DISK_IO = "container.disk.io"
 """
 Disk bytes for the container.
@@ -61,6 +45,23 @@ def create_container_disk_io(meter: Meter) -> Counter:
     return meter.create_counter(
         name="container.disk.io",
         description="Disk bytes for the container.",
+        unit="By",
+    )
+
+
+CONTAINER_MEMORY_USAGE = "container.memory.usage"
+"""
+Memory usage of the container.
+Instrument: counter
+Unit: By
+"""
+
+
+def create_container_memory_usage(meter: Meter) -> Counter:
+    """Memory usage of the container."""
+    return meter.create_counter(
+        name="container.memory.usage",
+        description="Memory usage of the container.",
         unit="By",
     )
 

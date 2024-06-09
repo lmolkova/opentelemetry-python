@@ -36,7 +36,7 @@ templates:
       | group_by(.group_id)
       | map({
         id: .[0].group_id,
-        metrics: .,
+        metrics: . | sort_by(.metric_name),
         output: $output + "metrics/",
         stable_package_name: $stable_package_name + ".metrics",
         filter: $filter

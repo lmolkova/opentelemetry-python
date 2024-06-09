@@ -1,4 +1,5 @@
 # Copyright The OpenTelemetry Authors
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,17 +13,17 @@
 # limitations under the License.
 
 
-HTTP_SERVER_REQUEST_DURATION = "http.server.request.duration"
+HTTP_CLIENT_REQUEST_DURATION = "http.client.request.duration"
 """
-Duration of HTTP server requests.
+Duration of HTTP client requests.
 Instrument: histogram
 Unit: s
 """
 
 
-HTTP_CLIENT_REQUEST_DURATION = "http.client.request.duration"
+HTTP_SERVER_REQUEST_DURATION = "http.server.request.duration"
 """
-Duration of HTTP client requests.
+Duration of HTTP server requests.
 Instrument: histogram
 Unit: s
 """

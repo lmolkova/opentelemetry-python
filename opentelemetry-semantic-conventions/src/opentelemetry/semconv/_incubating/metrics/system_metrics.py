@@ -1,4 +1,5 @@
 # Copyright The OpenTelemetry Authors
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -20,6 +21,60 @@ from opentelemetry.metrics import (
     ObservableGauge,
     UpDownCounter,
 )
+
+SYSTEM_CPU_FREQUENCY = "system.cpu.frequency"
+"""
+Reports the current frequency of the CPU in Hz
+Instrument: gauge
+Unit: {Hz}
+"""
+
+
+def create_system_cpu_frequency(
+    meter: Meter, callback: Sequence[Callable]
+) -> ObservableGauge:
+    """Reports the current frequency of the CPU in Hz"""
+    return meter.create_observable_gauge(
+        name="system.cpu.frequency",
+        callback=callback,
+        description="Reports the current frequency of the CPU in Hz",
+        unit="{Hz}",
+    )
+
+
+SYSTEM_CPU_LOGICAL_COUNT = "system.cpu.logical.count"
+"""
+Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking
+Instrument: updowncounter
+Unit: {cpu}
+"""
+
+
+def create_system_cpu_logical_count(meter: Meter) -> UpDownCounter:
+    """Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"""
+    return meter.create_up_down_counter(
+        name="system.cpu.logical.count",
+        description="Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking",
+        unit="{cpu}",
+    )
+
+
+SYSTEM_CPU_PHYSICAL_COUNT = "system.cpu.physical.count"
+"""
+Reports the number of actual physical processor cores on the hardware
+Instrument: updowncounter
+Unit: {cpu}
+"""
+
+
+def create_system_cpu_physical_count(meter: Meter) -> UpDownCounter:
+    """Reports the number of actual physical processor cores on the hardware"""
+    return meter.create_up_down_counter(
+        name="system.cpu.physical.count",
+        description="Reports the number of actual physical processor cores on the hardware",
+        unit="{cpu}",
+    )
+
 
 SYSTEM_CPU_TIME = "system.cpu.time"
 """
@@ -58,73 +113,116 @@ def create_system_cpu_utilization(
     )
 
 
-SYSTEM_CPU_FREQUENCY = "system.cpu.frequency"
+SYSTEM_DISK_IO = "system.disk.io"
+
+
+def create_system_disk_io(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.disk.io",
+        description="none",
+        unit="By",
+    )
+
+
+SYSTEM_DISK_IO_TIME = "system.disk.io_time"
 """
-Reports the current frequency of the CPU in Hz
-Instrument: gauge
-Unit: {Hz}
+Time disk spent activated
+Instrument: counter
+Unit: s
 """
 
 
-def create_system_cpu_frequency(
+def create_system_disk_io_time(meter: Meter) -> Counter:
+    """Time disk spent activated"""
+    return meter.create_counter(
+        name="system.disk.io_time",
+        description="Time disk spent activated",
+        unit="s",
+    )
+
+
+SYSTEM_DISK_MERGED = "system.disk.merged"
+
+
+def create_system_disk_merged(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.disk.merged",
+        description="none",
+        unit="{operation}",
+    )
+
+
+SYSTEM_DISK_OPERATION_TIME = "system.disk.operation_time"
+"""
+Sum of the time each operation took to complete
+Instrument: counter
+Unit: s
+"""
+
+
+def create_system_disk_operation_time(meter: Meter) -> Counter:
+    """Sum of the time each operation took to complete"""
+    return meter.create_counter(
+        name="system.disk.operation_time",
+        description="Sum of the time each operation took to complete",
+        unit="s",
+    )
+
+
+SYSTEM_DISK_OPERATIONS = "system.disk.operations"
+
+
+def create_system_disk_operations(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.disk.operations",
+        description="none",
+        unit="{operation}",
+    )
+
+
+SYSTEM_FILESYSTEM_USAGE = "system.filesystem.usage"
+
+
+def create_system_filesystem_usage(meter: Meter) -> UpDownCounter:
+    """none"""
+    return meter.create_up_down_counter(
+        name="system.filesystem.usage",
+        description="none",
+        unit="By",
+    )
+
+
+SYSTEM_FILESYSTEM_UTILIZATION = "system.filesystem.utilization"
+
+
+def create_system_filesystem_utilization(
     meter: Meter, callback: Sequence[Callable]
 ) -> ObservableGauge:
-    """Reports the current frequency of the CPU in Hz"""
+    """none"""
     return meter.create_observable_gauge(
-        name="system.cpu.frequency",
+        name="system.filesystem.utilization",
         callback=callback,
-        description="Reports the current frequency of the CPU in Hz",
-        unit="{Hz}",
+        description="none",
+        unit="1",
     )
 
 
-SYSTEM_CPU_PHYSICAL_COUNT = "system.cpu.physical.count"
+SYSTEM_LINUX_MEMORY_AVAILABLE = "system.linux.memory.available"
 """
-Reports the number of actual physical processor cores on the hardware
-Instrument: updowncounter
-Unit: {cpu}
-"""
-
-
-def create_system_cpu_physical_count(meter: Meter) -> UpDownCounter:
-    """Reports the number of actual physical processor cores on the hardware"""
-    return meter.create_up_down_counter(
-        name="system.cpu.physical.count",
-        description="Reports the number of actual physical processor cores on the hardware",
-        unit="{cpu}",
-    )
-
-
-SYSTEM_CPU_LOGICAL_COUNT = "system.cpu.logical.count"
-"""
-Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking
-Instrument: updowncounter
-Unit: {cpu}
-"""
-
-
-def create_system_cpu_logical_count(meter: Meter) -> UpDownCounter:
-    """Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking"""
-    return meter.create_up_down_counter(
-        name="system.cpu.logical.count",
-        description="Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking",
-        unit="{cpu}",
-    )
-
-
-SYSTEM_MEMORY_USAGE = "system.memory.usage"
-"""
-Reports memory in use by state.
+An estimate of how much memory is available for starting new applications, without causing swapping
 Instrument: updowncounter
 Unit: By
 """
 
 
-def create_system_memory_usage(meter: Meter) -> UpDownCounter:
-    """Reports memory in use by state."""
+def create_system_linux_memory_available(meter: Meter) -> UpDownCounter:
+    """An estimate of how much memory is available for starting new applications, without causing swapping"""
     return meter.create_up_down_counter(
-        name="system.memory.usage",
-        description="Reports memory in use by state.",
+        name="system.linux.memory.available",
+        description="An estimate of how much memory is available for starting new applications, without causing swapping",
         unit="By",
     )
 
@@ -163,6 +261,23 @@ def create_system_memory_shared(meter: Meter) -> UpDownCounter:
     )
 
 
+SYSTEM_MEMORY_USAGE = "system.memory.usage"
+"""
+Reports memory in use by state.
+Instrument: updowncounter
+Unit: By
+"""
+
+
+def create_system_memory_usage(meter: Meter) -> UpDownCounter:
+    """Reports memory in use by state."""
+    return meter.create_up_down_counter(
+        name="system.memory.usage",
+        description="Reports memory in use by state.",
+        unit="By",
+    )
+
+
 SYSTEM_MEMORY_UTILIZATION = "system.memory.utilization"
 
 
@@ -175,6 +290,100 @@ def create_system_memory_utilization(
         callback=callback,
         description="none",
         unit="1",
+    )
+
+
+SYSTEM_NETWORK_CONNECTIONS = "system.network.connections"
+
+
+def create_system_network_connections(meter: Meter) -> UpDownCounter:
+    """none"""
+    return meter.create_up_down_counter(
+        name="system.network.connections",
+        description="none",
+        unit="{connection}",
+    )
+
+
+SYSTEM_NETWORK_DROPPED = "system.network.dropped"
+"""
+Count of packets that are dropped or discarded even though there was no error
+Instrument: counter
+Unit: {packet}
+"""
+
+
+def create_system_network_dropped(meter: Meter) -> Counter:
+    """Count of packets that are dropped or discarded even though there was no error"""
+    return meter.create_counter(
+        name="system.network.dropped",
+        description="Count of packets that are dropped or discarded even though there was no error",
+        unit="{packet}",
+    )
+
+
+SYSTEM_NETWORK_ERRORS = "system.network.errors"
+"""
+Count of network errors detected
+Instrument: counter
+Unit: {error}
+"""
+
+
+def create_system_network_errors(meter: Meter) -> Counter:
+    """Count of network errors detected"""
+    return meter.create_counter(
+        name="system.network.errors",
+        description="Count of network errors detected",
+        unit="{error}",
+    )
+
+
+SYSTEM_NETWORK_IO = "system.network.io"
+
+
+def create_system_network_io(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.network.io",
+        description="none",
+        unit="By",
+    )
+
+
+SYSTEM_NETWORK_PACKETS = "system.network.packets"
+
+
+def create_system_network_packets(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.network.packets",
+        description="none",
+        unit="{packet}",
+    )
+
+
+SYSTEM_PAGING_FAULTS = "system.paging.faults"
+
+
+def create_system_paging_faults(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.paging.faults",
+        description="none",
+        unit="{fault}",
+    )
+
+
+SYSTEM_PAGING_OPERATIONS = "system.paging.operations"
+
+
+def create_system_paging_operations(meter: Meter) -> Counter:
+    """none"""
+    return meter.create_counter(
+        name="system.paging.operations",
+        description="none",
+        unit="{operation}",
     )
 
 
@@ -210,197 +419,6 @@ def create_system_paging_utilization(
     )
 
 
-SYSTEM_PAGING_FAULTS = "system.paging.faults"
-
-
-def create_system_paging_faults(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.paging.faults",
-        description="none",
-        unit="{fault}",
-    )
-
-
-SYSTEM_PAGING_OPERATIONS = "system.paging.operations"
-
-
-def create_system_paging_operations(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.paging.operations",
-        description="none",
-        unit="{operation}",
-    )
-
-
-SYSTEM_DISK_IO = "system.disk.io"
-
-
-def create_system_disk_io(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.disk.io",
-        description="none",
-        unit="By",
-    )
-
-
-SYSTEM_DISK_OPERATIONS = "system.disk.operations"
-
-
-def create_system_disk_operations(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.disk.operations",
-        description="none",
-        unit="{operation}",
-    )
-
-
-SYSTEM_DISK_IO_TIME = "system.disk.io_time"
-"""
-Time disk spent activated
-Instrument: counter
-Unit: s
-"""
-
-
-def create_system_disk_io_time(meter: Meter) -> Counter:
-    """Time disk spent activated"""
-    return meter.create_counter(
-        name="system.disk.io_time",
-        description="Time disk spent activated",
-        unit="s",
-    )
-
-
-SYSTEM_DISK_OPERATION_TIME = "system.disk.operation_time"
-"""
-Sum of the time each operation took to complete
-Instrument: counter
-Unit: s
-"""
-
-
-def create_system_disk_operation_time(meter: Meter) -> Counter:
-    """Sum of the time each operation took to complete"""
-    return meter.create_counter(
-        name="system.disk.operation_time",
-        description="Sum of the time each operation took to complete",
-        unit="s",
-    )
-
-
-SYSTEM_DISK_MERGED = "system.disk.merged"
-
-
-def create_system_disk_merged(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.disk.merged",
-        description="none",
-        unit="{operation}",
-    )
-
-
-SYSTEM_FILESYSTEM_USAGE = "system.filesystem.usage"
-
-
-def create_system_filesystem_usage(meter: Meter) -> UpDownCounter:
-    """none"""
-    return meter.create_up_down_counter(
-        name="system.filesystem.usage",
-        description="none",
-        unit="By",
-    )
-
-
-SYSTEM_FILESYSTEM_UTILIZATION = "system.filesystem.utilization"
-
-
-def create_system_filesystem_utilization(
-    meter: Meter, callback: Sequence[Callable]
-) -> ObservableGauge:
-    """none"""
-    return meter.create_observable_gauge(
-        name="system.filesystem.utilization",
-        callback=callback,
-        description="none",
-        unit="1",
-    )
-
-
-SYSTEM_NETWORK_DROPPED = "system.network.dropped"
-"""
-Count of packets that are dropped or discarded even though there was no error
-Instrument: counter
-Unit: {packet}
-"""
-
-
-def create_system_network_dropped(meter: Meter) -> Counter:
-    """Count of packets that are dropped or discarded even though there was no error"""
-    return meter.create_counter(
-        name="system.network.dropped",
-        description="Count of packets that are dropped or discarded even though there was no error",
-        unit="{packet}",
-    )
-
-
-SYSTEM_NETWORK_PACKETS = "system.network.packets"
-
-
-def create_system_network_packets(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.network.packets",
-        description="none",
-        unit="{packet}",
-    )
-
-
-SYSTEM_NETWORK_ERRORS = "system.network.errors"
-"""
-Count of network errors detected
-Instrument: counter
-Unit: {error}
-"""
-
-
-def create_system_network_errors(meter: Meter) -> Counter:
-    """Count of network errors detected"""
-    return meter.create_counter(
-        name="system.network.errors",
-        description="Count of network errors detected",
-        unit="{error}",
-    )
-
-
-SYSTEM_NETWORK_IO = "system.network.io"
-
-
-def create_system_network_io(meter: Meter) -> Counter:
-    """none"""
-    return meter.create_counter(
-        name="system.network.io",
-        description="none",
-        unit="By",
-    )
-
-
-SYSTEM_NETWORK_CONNECTIONS = "system.network.connections"
-
-
-def create_system_network_connections(meter: Meter) -> UpDownCounter:
-    """none"""
-    return meter.create_up_down_counter(
-        name="system.network.connections",
-        description="none",
-        unit="{connection}",
-    )
-
-
 SYSTEM_PROCESS_COUNT = "system.process.count"
 """
 Total number of processes in each state
@@ -432,21 +450,4 @@ def create_system_process_created(meter: Meter) -> Counter:
         name="system.process.created",
         description="Total number of processes created over uptime of the host",
         unit="{process}",
-    )
-
-
-SYSTEM_LINUX_MEMORY_AVAILABLE = "system.linux.memory.available"
-"""
-An estimate of how much memory is available for starting new applications, without causing swapping
-Instrument: updowncounter
-Unit: By
-"""
-
-
-def create_system_linux_memory_available(meter: Meter) -> UpDownCounter:
-    """An estimate of how much memory is available for starting new applications, without causing swapping"""
-    return meter.create_up_down_counter(
-        name="system.linux.memory.available",
-        description="An estimate of how much memory is available for starting new applications, without causing swapping",
-        unit="By",
     )

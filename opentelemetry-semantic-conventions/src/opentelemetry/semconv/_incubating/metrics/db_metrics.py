@@ -1,4 +1,5 @@
 # Copyright The OpenTelemetry Authors
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -14,23 +15,6 @@
 
 from opentelemetry.metrics import Counter, Histogram, Meter, UpDownCounter
 
-DB_CLIENT_OPERATION_DURATION = "db.client.operation.duration"
-"""
-Duration of database client operations.
-Instrument: histogram
-Unit: s
-"""
-
-
-def create_db_client_operation_duration(meter: Meter) -> Histogram:
-    """Duration of database client operations."""
-    return meter.create_histogram(
-        name="db.client.operation.duration",
-        description="Duration of database client operations.",
-        unit="s",
-    )
-
-
 DB_CLIENT_CONNECTION_COUNT = "db.client.connection.count"
 """
 The number of connections that are currently in state described by the `state` attribute
@@ -45,6 +29,23 @@ def create_db_client_connection_count(meter: Meter) -> UpDownCounter:
         name="db.client.connection.count",
         description="The number of connections that are currently in state described by the `state` attribute",
         unit="{connection}",
+    )
+
+
+DB_CLIENT_CONNECTION_CREATE_TIME = "db.client.connection.create_time"
+"""
+The time it took to create a new connection
+Instrument: histogram
+Unit: s
+"""
+
+
+def create_db_client_connection_create_time(meter: Meter) -> Histogram:
+    """The time it took to create a new connection"""
+    return meter.create_histogram(
+        name="db.client.connection.create_time",
+        description="The time it took to create a new connection",
+        unit="s",
     )
 
 
@@ -135,19 +136,19 @@ def create_db_client_connection_timeouts(meter: Meter) -> Counter:
     )
 
 
-DB_CLIENT_CONNECTION_CREATE_TIME = "db.client.connection.create_time"
+DB_CLIENT_CONNECTION_USE_TIME = "db.client.connection.use_time"
 """
-The time it took to create a new connection
+The time between borrowing a connection and returning it to the pool
 Instrument: histogram
 Unit: s
 """
 
 
-def create_db_client_connection_create_time(meter: Meter) -> Histogram:
-    """The time it took to create a new connection"""
+def create_db_client_connection_use_time(meter: Meter) -> Histogram:
+    """The time between borrowing a connection and returning it to the pool"""
     return meter.create_histogram(
-        name="db.client.connection.create_time",
-        description="The time it took to create a new connection",
+        name="db.client.connection.use_time",
+        description="The time between borrowing a connection and returning it to the pool",
         unit="s",
     )
 
@@ -169,35 +170,18 @@ def create_db_client_connection_wait_time(meter: Meter) -> Histogram:
     )
 
 
-DB_CLIENT_CONNECTION_USE_TIME = "db.client.connection.use_time"
+DB_CLIENT_CONNECTIONS_CREATE_TIME = "db.client.connections.create_time"
 """
-The time between borrowing a connection and returning it to the pool
-Instrument: histogram
-Unit: s
+Deprecated: Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`.
 """
 
 
-def create_db_client_connection_use_time(meter: Meter) -> Histogram:
-    """The time between borrowing a connection and returning it to the pool"""
+def create_db_client_connections_create_time(meter: Meter) -> Histogram:
+    """Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."""
     return meter.create_histogram(
-        name="db.client.connection.use_time",
-        description="The time between borrowing a connection and returning it to the pool",
-        unit="s",
-    )
-
-
-DB_CLIENT_CONNECTIONS_USAGE = "db.client.connections.usage"
-"""
-Deprecated: Replaced by `db.client.connection.count`.
-"""
-
-
-def create_db_client_connections_usage(meter: Meter) -> UpDownCounter:
-    """Deprecated, use `db.client.connection.count` instead."""
-    return meter.create_up_down_counter(
-        name="db.client.connections.usage",
-        description="Deprecated, use `db.client.connection.count` instead.",
-        unit="{connection}",
+        name="db.client.connections.create_time",
+        description="Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`.",
+        unit="ms",
     )
 
 
@@ -280,17 +264,32 @@ def create_db_client_connections_timeouts(meter: Meter) -> Counter:
     )
 
 
-DB_CLIENT_CONNECTIONS_CREATE_TIME = "db.client.connections.create_time"
+DB_CLIENT_CONNECTIONS_USAGE = "db.client.connections.usage"
 """
-Deprecated: Replaced by `db.client.connection.create_time`. Note: the unit also changed from `ms` to `s`.
+Deprecated: Replaced by `db.client.connection.count`.
 """
 
 
-def create_db_client_connections_create_time(meter: Meter) -> Histogram:
-    """Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."""
+def create_db_client_connections_usage(meter: Meter) -> UpDownCounter:
+    """Deprecated, use `db.client.connection.count` instead."""
+    return meter.create_up_down_counter(
+        name="db.client.connections.usage",
+        description="Deprecated, use `db.client.connection.count` instead.",
+        unit="{connection}",
+    )
+
+
+DB_CLIENT_CONNECTIONS_USE_TIME = "db.client.connections.use_time"
+"""
+Deprecated: Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`.
+"""
+
+
+def create_db_client_connections_use_time(meter: Meter) -> Histogram:
+    """Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."""
     return meter.create_histogram(
-        name="db.client.connections.create_time",
-        description="Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`.",
+        name="db.client.connections.use_time",
+        description="Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`.",
         unit="ms",
     )
 
@@ -310,16 +309,18 @@ def create_db_client_connections_wait_time(meter: Meter) -> Histogram:
     )
 
 
-DB_CLIENT_CONNECTIONS_USE_TIME = "db.client.connections.use_time"
+DB_CLIENT_OPERATION_DURATION = "db.client.operation.duration"
 """
-Deprecated: Replaced by `db.client.connection.use_time`. Note: the unit also changed from `ms` to `s`.
+Duration of database client operations.
+Instrument: histogram
+Unit: s
 """
 
 
-def create_db_client_connections_use_time(meter: Meter) -> Histogram:
-    """Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."""
+def create_db_client_operation_duration(meter: Meter) -> Histogram:
+    """Duration of database client operations."""
     return meter.create_histogram(
-        name="db.client.connections.use_time",
-        description="Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`.",
-        unit="ms",
+        name="db.client.operation.duration",
+        description="Duration of database client operations.",
+        unit="s",
     )
