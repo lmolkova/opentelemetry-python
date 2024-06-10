@@ -13,7 +13,21 @@
 # limitations under the License.
 
 
-USER_AGENT_ORIGINAL = "user_agent.original"
+from enum import Enum
+
+from deprecated import deprecated
+
+STATE = "state"
 """
-Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client.
+Deprecated: Replaced by `db.client.connections.state`.
 """
+
+
+@deprecated(
+    reason="The attribute state is deprecated - Replaced by `db.client.connections.state`"
+)
+class StateValues(Enum):
+    IDLE = "idle"
+    """idle."""
+    USED = "used"
+    """used."""

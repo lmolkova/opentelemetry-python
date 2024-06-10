@@ -86,7 +86,7 @@ def create_http_client_request_body_size(meter: Meter) -> Histogram:
 
 HTTP_CLIENT_REQUEST_DURATION = "http.client.request.duration"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.metrics.http_metrics.`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.metrics.http_metrics.http.client.request.duration`.
 """
 
 
@@ -154,7 +154,7 @@ def create_http_server_request_body_size(meter: Meter) -> Histogram:
 
 HTTP_SERVER_REQUEST_DURATION = "http.server.request.duration"
 """
-Deprecated in favor of stable :py:const:`opentelemetry.semconv.metrics.http_metrics.`.
+Deprecated in favor of stable :py:const:`opentelemetry.semconv.metrics.http_metrics.http.server.request.duration`.
 """
 
 

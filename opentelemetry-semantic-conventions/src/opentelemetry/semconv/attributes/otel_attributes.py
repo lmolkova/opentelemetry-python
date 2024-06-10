@@ -13,12 +13,7 @@
 # limitations under the License.
 
 
-
-
-
-
 from enum import Enum
-
 
 OTEL_SCOPE_NAME = "otel.scope.name"
 """
@@ -39,7 +34,6 @@ OTEL_STATUS_DESCRIPTION = "otel.status_description"
 """
 Description of the Status if it has a value, otherwise not set.
 """
-
 
 
 class OtelStatusCodeValues(Enum):

@@ -13,12 +13,7 @@
 # limitations under the License.
 
 
-
-
-
-
 from enum import Enum
-
 
 HTTP_REQUEST_HEADER_TEMPLATE = "http.request.header"
 """
@@ -77,7 +72,6 @@ The matched route, that is, the path template in the format used by the respecti
 Note: MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 """
-
 
 
 class HttpRequestMethodValues(Enum):

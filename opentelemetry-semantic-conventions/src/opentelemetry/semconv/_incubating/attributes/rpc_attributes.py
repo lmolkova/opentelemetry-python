@@ -15,28 +15,6 @@
 
 from enum import Enum
 
-from deprecated import deprecated
-
-MESSAGE_COMPRESSED_SIZE = "message.compressed_size"
-"""
-Deprecated: Replaced by `rpc.message.compressed_size`.
-"""
-
-MESSAGE_ID = "message.id"
-"""
-Deprecated: Replaced by `rpc.message.id`.
-"""
-
-MESSAGE_TYPE = "message.type"
-"""
-Deprecated: Replaced by `rpc.message.type`.
-"""
-
-MESSAGE_UNCOMPRESSED_SIZE = "message.uncompressed_size"
-"""
-Deprecated: Replaced by `rpc.message.uncompressed_size`.
-"""
-
 RPC_CONNECT_RPC_ERROR_CODE = "rpc.connect_rpc.error_code"
 """
 The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
@@ -132,16 +110,6 @@ A string identifying the remoting system. See below for a list of well-known ide
 """
 
 
-@deprecated(
-    reason="The attribute message.type is deprecated - Replaced by `rpc.message.type`"
-)
-class MessageTypeValues(Enum):
-    SENT = "SENT"
-    """sent."""
-    RECEIVED = "RECEIVED"
-    """received."""
-
-
 class RpcConnectRpcErrorCodeValues(Enum):
     CANCELLED = "cancelled"
     """cancelled."""
@@ -178,39 +146,39 @@ class RpcConnectRpcErrorCodeValues(Enum):
 
 
 class RpcGrpcStatusCodeValues(Enum):
-    OK = "0"
+    OK = 0
     """OK."""
-    CANCELLED = "1"
+    CANCELLED = 1
     """CANCELLED."""
-    UNKNOWN = "2"
+    UNKNOWN = 2
     """UNKNOWN."""
-    INVALID_ARGUMENT = "3"
+    INVALID_ARGUMENT = 3
     """INVALID_ARGUMENT."""
-    DEADLINE_EXCEEDED = "4"
+    DEADLINE_EXCEEDED = 4
     """DEADLINE_EXCEEDED."""
-    NOT_FOUND = "5"
+    NOT_FOUND = 5
     """NOT_FOUND."""
-    ALREADY_EXISTS = "6"
+    ALREADY_EXISTS = 6
     """ALREADY_EXISTS."""
-    PERMISSION_DENIED = "7"
+    PERMISSION_DENIED = 7
     """PERMISSION_DENIED."""
-    RESOURCE_EXHAUSTED = "8"
+    RESOURCE_EXHAUSTED = 8
     """RESOURCE_EXHAUSTED."""
-    FAILED_PRECONDITION = "9"
+    FAILED_PRECONDITION = 9
     """FAILED_PRECONDITION."""
-    ABORTED = "10"
+    ABORTED = 10
     """ABORTED."""
-    OUT_OF_RANGE = "11"
+    OUT_OF_RANGE = 11
     """OUT_OF_RANGE."""
-    UNIMPLEMENTED = "12"
+    UNIMPLEMENTED = 12
     """UNIMPLEMENTED."""
-    INTERNAL = "13"
+    INTERNAL = 13
     """INTERNAL."""
-    UNAVAILABLE = "14"
+    UNAVAILABLE = 14
     """UNAVAILABLE."""
-    DATA_LOSS = "15"
+    DATA_LOSS = 15
     """DATA_LOSS."""
-    UNAUTHENTICATED = "16"
+    UNAUTHENTICATED = 16
     """UNAUTHENTICATED."""
 
 
@@ -227,7 +195,7 @@ class RpcSystemValues(Enum):
     JAVA_RMI = "java_rmi"
     """Java RMI."""
     DOTNET_WCF = "dotnet_wcf"
-    """NET WCF."""
+    """.NET WCF."""
     APACHE_DUBBO = "apache_dubbo"
     """Apache Dubbo."""
     CONNECT_RPC = "connect_rpc"

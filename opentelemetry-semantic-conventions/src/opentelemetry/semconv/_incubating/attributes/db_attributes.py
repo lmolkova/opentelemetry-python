@@ -15,8 +15,6 @@
 
 from enum import Enum
 
-from deprecated import deprecated
-
 DB_CASSANDRA_CONSISTENCY_LEVEL = "db.cassandra.consistency_level"
 """
 The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
@@ -214,16 +212,6 @@ DB_USER = "db.user"
 Deprecated: No replacement at this time.
 """
 
-POOL_NAME = "pool.name"
-"""
-Deprecated: Replaced by `db.client.connections.pool.name`.
-"""
-
-STATE = "state"
-"""
-Deprecated: Replaced by `db.client.connections.state`.
-"""
-
 
 class DbCassandraConsistencyLevelValues(Enum):
     ALL = "all"
@@ -402,13 +390,3 @@ class DbSystemValues(Enum):
     """Cloud Spanner."""
     TRINO = "trino"
     """Trino."""
-
-
-@deprecated(
-    reason="The attribute state is deprecated - Replaced by `db.client.connections.state`"
-)
-class StateValues(Enum):
-    IDLE = "idle"
-    """idle."""
-    USED = "used"
-    """used."""

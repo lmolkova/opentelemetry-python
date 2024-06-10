@@ -23,19 +23,18 @@
 
 {%- macro write_docstring(metric, prefix) -%}
     {%- if c.str_or_empty(metric.deprecated)|length %}
-{{prefix}}Deprecated: {{c.to_docstring(metric.deprecated)}}.
+{{prefix}}Deprecated: {{c.to_docstring(metric.deprecated, prefix)}}.
     {%- elif ctx.filter == "any" and metric.stability == "stable" %}
 {{prefix}}Deprecated in favor of stable :py:const:`{{stable_class_ref(metric.metric_name, '.')}}`.
     {%- elif c.str_or_empty(metric.brief)|length %}
-{{prefix}}{{c.to_docstring(metric.brief)}}.
+{{prefix}}{{c.to_docstring(metric.brief, prefix)}}.
 {{prefix}}Instrument: {{ metric.instrument }}
 {{prefix}}Unit: {{ metric.unit }}
         {%- if c.str_or_empty(metric.note)|length  %}
-{{prefix}}Note: {{c.to_docstring(metric.note)}}.
+{{prefix}}Note: {{c.to_docstring(metric.note, prefix)}}.
         {%- endif -%}
     {%- endif -%}
 {%- endmacro -%}
-
 
 {%- macro import_instrument_classes(metrics) -%}
   {% if ctx.filter == "any" %}
@@ -43,20 +42,14 @@ from opentelemetry.metrics import Meter
 
     {%- if ctx.metrics | selectattr("instrument", "equalto", "gauge") | list | count > 0 %}
 from typing import Callable, Sequence
-from opentelemetry.metrics import ObservableGauge
     {%- endif %}
 
-    {%- if ctx.metrics | selectattr("instrument", "equalto", "histogram") | list | count > 0 %}
-from opentelemetry.metrics import Histogram
-    {%- endif %}
-
-    {%- if ctx.metrics | selectattr("instrument", "equalto", "updowncounter") | list | count > 0 %}
-from opentelemetry.metrics import UpDownCounter
-    {%- endif %}
-
-    {%- if ctx.metrics | selectattr("instrument", "equalto", "counter") | list | count > 0 %}
-from opentelemetry.metrics import Counter
-    {%- endif %}
+    {%- set instruments = ["counter", "histogram", "gauge", "updowncounter"]-%}
+    {%- for i in instruments -%}
+        {%- if ctx.metrics | selectattr("instrument", "equalto", i) | list | count > 0 %}
+from opentelemetry.metrics import {{i | map_text("py_instrument_to_type")}}
+        {%- endif -%}
+    {%- endfor-%}
   {%- endif -%}
 {%- endmacro-%}
 

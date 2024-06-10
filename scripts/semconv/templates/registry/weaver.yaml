@@ -9,15 +9,18 @@ templates:
       .groups
       | map(select(.type == "attribute_group"))
       | map(select(.id | startswith("registry")))
-      | map({ id: .id, group_id: .id | split(".") | .[1], attributes: .attributes})
+      | map({attributes: .attributes
+          | map(.group_id= (if .name |index(".") then .name |split(".")[0] else "other" end))
+          | map(.const_name= (.name | split(".")|join("_")))
+      })
+      | [.[].attributes[] ]
       | group_by(.group_id)
-      | map({ id: .[0].group_id, attributes: [.[].attributes[]] |  map(select(if $filter == "any" then true else .stability == $filter end)) | sort_by(.id)})
+      | map({ id: .[0].group_id, attributes: [.[]] |  map(select(if $filter == "any" then true else .stability == $filter end)) | sort_by(.name)})
       | map(select( .id as $id | any( $excluded[]; . == $id) | not ))
       | map(select(.attributes | length > 0))
       | map({
         id: .id,
         attributes: .attributes
-          | map(. + {const_name: .name | split(".")|join("_")})
           | map(if has("deprecated") then . else . + {"deprecated": null} end)
           | group_by(.const_name)
           | map({const_name: .[0].const_name, names: [.[]] | sort_by(.deprecated) })

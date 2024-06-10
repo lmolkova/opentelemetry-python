@@ -13,12 +13,7 @@
 # limitations under the License.
 
 
-
-
-
-
 from enum import Enum
-
 
 NETWORK_LOCAL_ADDRESS = "network.local.address"
 """
@@ -69,7 +64,6 @@ Note: The value SHOULD be normalized to lowercase.
 """
 
 
-
 class NetworkTransportValues(Enum):
     TCP = "tcp"
     """TCP."""
@@ -79,6 +73,7 @@ class NetworkTransportValues(Enum):
     """Named or anonymous pipe."""
     UNIX = "unix"
     """Unix domain socket."""
+
 
 class NetworkTypeValues(Enum):
     IPV4 = "ipv4"
