@@ -5,7 +5,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="${SCRIPT_DIR}/../../"
 
 # freeze the spec version to make SemanticAttributes generation reproducible
-SEMCONV_VERSION=v1.25.0
+SEMCONV_VERSION=v1.26.0
 OTEL_SEMCONV_GEN_IMG_VERSION=0.24.0
 INCUBATING_DIR=_incubating
 cd ${SCRIPT_DIR}
@@ -39,7 +39,7 @@ generate() {
     -v ${SCRIPT_DIR}/semantic-conventions/model:/source \
     -v ${SCRIPT_DIR}/templates:/templates \
     -v ${ROOT_DIR}/opentelemetry-semantic-conventions/src/opentelemetry/semconv/:/output \
-    otel/semconvgen:$OTEL_SEMCONV_GEN_IMG_VERSION \
+    library/semconvgen2 \
     -f /source \
     --continue-on-validation-errors \
     code \

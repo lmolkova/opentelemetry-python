@@ -71,6 +71,27 @@ RPC_JSONRPC_VERSION = "rpc.jsonrpc.version"
 Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
 """
 
+RPC_MESSAGE_COMPRESSED_SIZE = "rpc.message.compressed_size"
+"""
+Compressed size of the message in bytes.
+"""
+
+RPC_MESSAGE_ID = "rpc.message.id"
+"""
+MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
+Note: This way we guarantee that the values will be consistent between different implementations.
+"""
+
+RPC_MESSAGE_TYPE = "rpc.message.type"
+"""
+Whether this is a received or sent message.
+"""
+
+RPC_MESSAGE_UNCOMPRESSED_SIZE = "rpc.message.uncompressed_size"
+"""
+Uncompressed size of the message in bytes.
+"""
+
 RPC_METHOD = "rpc.method"
 """
 The name of the (logical) method being called, must be equal to the $method part in the span name.
@@ -159,6 +180,13 @@ class RpcGrpcStatusCodeValues(Enum):
     """DATA_LOSS."""
     UNAUTHENTICATED = 16
     """UNAUTHENTICATED."""
+
+
+class RpcMessageTypeValues(Enum):
+    SENT = "SENT"
+    """sent."""
+    RECEIVED = "RECEIVED"
+    """received."""
 
 
 class RpcSystemValues(Enum):

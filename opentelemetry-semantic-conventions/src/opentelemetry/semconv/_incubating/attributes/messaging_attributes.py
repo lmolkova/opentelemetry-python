@@ -21,7 +21,7 @@ The number of messages sent, received, or processed in the scope of the batching
 Note: Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 """
 
-MESSAGING_CLIENT_ID = "messaging.client_id"
+MESSAGING_CLIENT_ID = "messaging.client.id"
 """
 A unique identifier for the client that consumes or produces a message.
 """
@@ -78,6 +78,25 @@ MESSAGING_EVENTHUBS_MESSAGE_ENQUEUED_TIME = (
 )
 """
 The UTC epoch seconds at which the message has been accepted and stored in the entity.
+"""
+
+MESSAGING_GCP_PUBSUB_MESSAGE_ACK_DEADLINE = (
+    "messaging.gcp_pubsub.message.ack_deadline"
+)
+"""
+The ack deadline in seconds set for the modify ack deadline request.
+"""
+
+MESSAGING_GCP_PUBSUB_MESSAGE_ACK_ID = "messaging.gcp_pubsub.message.ack_id"
+"""
+The ack id for a given message.
+"""
+
+MESSAGING_GCP_PUBSUB_MESSAGE_DELIVERY_ATTEMPT = (
+    "messaging.gcp_pubsub.message.delivery_attempt"
+)
+"""
+The delivery attempt for a given message.
 """
 
 MESSAGING_GCP_PUBSUB_MESSAGE_ORDERING_KEY = (
@@ -139,7 +158,17 @@ A value used by the messaging system as an identifier for the message, represent
 
 MESSAGING_OPERATION = "messaging.operation"
 """
-A string identifying the kind of messaging operation.
+Deprecated: Replaced by `messaging.operation.type`.
+"""
+
+MESSAGING_OPERATION_NAME = "messaging.operation.name"
+"""
+The system-specific name of the messaging operation.
+"""
+
+MESSAGING_OPERATION_TYPE = "messaging.operation.type"
+"""
+A string identifying the type of the messaging operation.
 Note: If a custom value is used, it MUST be of low cardinality.
 """
 
@@ -236,11 +265,12 @@ The UTC epoch seconds at which the message has been accepted and stored in the e
 
 MESSAGING_SYSTEM = "messaging.system"
 """
-An identifier for the messaging system being used. See below for a list of well-known identifiers.
+The messaging system as identified by the client instrumentation.
+Note: The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 """
 
 
-class MessagingOperationValues(Enum):
+class MessagingOperationTypeValues(Enum):
     PUBLISH = "publish"
     """One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created."""
     CREATE = "create"

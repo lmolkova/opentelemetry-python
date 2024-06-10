@@ -15,28 +15,32 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 MESSAGE_COMPRESSED_SIZE = "message.compressed_size"
 """
-Compressed size of the message in bytes.
+Deprecated: Replaced by `rpc.message.compressed_size`.
 """
 
 MESSAGE_ID = "message.id"
 """
-MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
-Note: This way we guarantee that the values will be consistent between different implementations.
+Deprecated: Replaced by `rpc.message.id`.
 """
 
 MESSAGE_TYPE = "message.type"
 """
-Whether this is a received or sent message.
+Deprecated: Replaced by `rpc.message.type`.
 """
 
 MESSAGE_UNCOMPRESSED_SIZE = "message.uncompressed_size"
 """
-Uncompressed size of the message in bytes.
+Deprecated: Replaced by `rpc.message.uncompressed_size`.
 """
 
 
+@deprecated(
+    reason="The attribute message.type is deprecated - Replaced by `rpc.message.type`"
+)
 class MessageTypeValues(Enum):
     SENT = "SENT"
     """sent."""

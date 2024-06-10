@@ -17,6 +17,11 @@ from enum import Enum
 
 from deprecated import deprecated
 
+HTTP_CLIENT_IP = "http.client_ip"
+"""
+Deprecated: Replaced by `client.address`.
+"""
+
 HTTP_CONNECTION_STATE = "http.connection.state"
 """
 State of the HTTP connection in the HTTP connection pool.
@@ -25,6 +30,11 @@ State of the HTTP connection in the HTTP connection pool.
 HTTP_FLAVOR = "http.flavor"
 """
 Deprecated: Replaced by `network.protocol.name`.
+"""
+
+HTTP_HOST = "http.host"
+"""
+Deprecated: Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage.
 """
 
 HTTP_METHOD = "http.method"
@@ -67,6 +77,13 @@ HTTP_REQUEST_CONTENT_LENGTH = "http.request_content_length"
 Deprecated: Replaced by `http.request.header.content-length`.
 """
 
+HTTP_REQUEST_CONTENT_LENGTH_UNCOMPRESSED = (
+    "http.request_content_length_uncompressed"
+)
+"""
+Deprecated: Replaced by `http.request.body.size`.
+"""
+
 HTTP_RESPONSE_BODY_SIZE = "http.response.body.size"
 """
 The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
@@ -92,6 +109,13 @@ HTTP_RESPONSE_CONTENT_LENGTH = "http.response_content_length"
 Deprecated: Replaced by `http.response.header.content-length`.
 """
 
+HTTP_RESPONSE_CONTENT_LENGTH_UNCOMPRESSED = (
+    "http.response_content_length_uncompressed"
+)
+"""
+Deprecated: Replace by `http.response.body.size`.
+"""
+
 HTTP_ROUTE = "http.route"
 """
 Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_attributes.HTTP_ROUTE`.
@@ -100,6 +124,11 @@ Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.http_a
 HTTP_SCHEME = "http.scheme"
 """
 Deprecated: Replaced by `url.scheme` instead.
+"""
+
+HTTP_SERVER_NAME = "http.server_name"
+"""
+Deprecated: Replaced by `server.address`.
 """
 
 HTTP_STATUS_CODE = "http.status_code"

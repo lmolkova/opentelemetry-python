@@ -15,12 +15,17 @@
 
 from enum import Enum
 
+from deprecated import deprecated
+
 STATE = "state"
 """
-The state of a connection in the pool.
+Deprecated: Replaced by `db.client.connections.state`.
 """
 
 
+@deprecated(
+    reason="The attribute state is deprecated - Replaced by `db.client.connections.state`"
+)
 class StateValues(Enum):
     IDLE = "idle"
     """idle."""
