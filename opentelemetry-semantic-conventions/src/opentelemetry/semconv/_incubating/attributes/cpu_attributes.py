@@ -12,19 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from enum import Enum
 from typing import Final
 
-ENDUSER_ID: Final = "enduser.id"
+CPU_MODE: Final = "cpu.mode"
 """
-Deprecated: Replaced by `user.id` attribute.
-"""
-
-ENDUSER_ROLE: Final = "enduser.role"
-"""
-Deprecated: Replaced by `user.roles` attribute.
+The mode of the CPU.
 """
 
-ENDUSER_SCOPE: Final = "enduser.scope"
-"""
-Deprecated: Removed.
-"""
+
+class CpuModeValues(Enum):
+    USER: Final = "user"
+    """user."""
+    SYSTEM: Final = "system"
+    """system."""
+    NICE: Final = "nice"
+    """nice."""
+    IDLE: Final = "idle"
+    """idle."""
+    IOWAIT: Final = "iowait"
+    """iowait."""
+    INTERRUPT: Final = "interrupt"
+    """interrupt."""
+    STEAL: Final = "steal"
+    """steal."""
+    KERNEL: Final = "kernel"
+    """kernel."""

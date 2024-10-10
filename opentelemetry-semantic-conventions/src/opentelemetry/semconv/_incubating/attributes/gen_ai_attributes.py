@@ -17,34 +17,84 @@ from typing import Final
 
 GEN_AI_COMPLETION: Final = "gen_ai.completion"
 """
-The full response received from the LLM.
-Note: It's RECOMMENDED to format completions as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation).
+Deprecated: Removed, no replacement at this time.
+"""
+
+GEN_AI_OPENAI_REQUEST_RESPONSE_FORMAT: Final = (
+    "gen_ai.openai.request.response_format"
+)
+"""
+The response format that is requested.
+"""
+
+GEN_AI_OPENAI_REQUEST_SEED: Final = "gen_ai.openai.request.seed"
+"""
+Requests with same seed value more likely to return same result.
+"""
+
+GEN_AI_OPENAI_REQUEST_SERVICE_TIER: Final = (
+    "gen_ai.openai.request.service_tier"
+)
+"""
+The service tier requested. May be a specific tier, detault, or auto.
+"""
+
+GEN_AI_OPENAI_RESPONSE_SERVICE_TIER: Final = (
+    "gen_ai.openai.response.service_tier"
+)
+"""
+The service tier used for the response.
+"""
+
+GEN_AI_OPERATION_NAME: Final = "gen_ai.operation.name"
+"""
+The name of the operation being performed.
+Note: If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 """
 
 GEN_AI_PROMPT: Final = "gen_ai.prompt"
 """
-The full prompt sent to an LLM.
-Note: It's RECOMMENDED to format prompts as JSON string matching [OpenAI messages format](https://platform.openai.com/docs/guides/text-generation).
+Deprecated: Removed, no replacement at this time.
+"""
+
+GEN_AI_REQUEST_FREQUENCY_PENALTY: Final = "gen_ai.request.frequency_penalty"
+"""
+The frequency penalty setting for the GenAI request.
 """
 
 GEN_AI_REQUEST_MAX_TOKENS: Final = "gen_ai.request.max_tokens"
 """
-The maximum number of tokens the LLM generates for a request.
+The maximum number of tokens the model generates for a request.
 """
 
 GEN_AI_REQUEST_MODEL: Final = "gen_ai.request.model"
 """
-The name of the LLM a request is being made to.
+The name of the GenAI model a request is being made to.
+"""
+
+GEN_AI_REQUEST_PRESENCE_PENALTY: Final = "gen_ai.request.presence_penalty"
+"""
+The presence penalty setting for the GenAI request.
+"""
+
+GEN_AI_REQUEST_STOP_SEQUENCES: Final = "gen_ai.request.stop_sequences"
+"""
+List of sequences that the model will use to stop generating further tokens.
 """
 
 GEN_AI_REQUEST_TEMPERATURE: Final = "gen_ai.request.temperature"
 """
-The temperature setting for the LLM request.
+The temperature setting for the GenAI request.
+"""
+
+GEN_AI_REQUEST_TOP_K: Final = "gen_ai.request.top_k"
+"""
+The top_k sampling setting for the GenAI request.
 """
 
 GEN_AI_REQUEST_TOP_P: Final = "gen_ai.request.top_p"
 """
-The top_p sampling setting for the LLM request.
+The top_p sampling setting for the GenAI request.
 """
 
 GEN_AI_RESPONSE_FINISH_REASONS: Final = "gen_ai.response.finish_reasons"
@@ -59,26 +109,85 @@ The unique identifier for the completion.
 
 GEN_AI_RESPONSE_MODEL: Final = "gen_ai.response.model"
 """
-The name of the LLM a response was generated from.
+The name of the model that generated the response.
 """
 
 GEN_AI_SYSTEM: Final = "gen_ai.system"
 """
-The Generative AI product as identified by the client instrumentation.
-Note: The actual GenAI product may differ from the one identified by the client. For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system` is set to `openai` based on the instrumentation's best knowledge.
+The Generative AI product as identified by the client or server instrumentation.
+Note: The `gen_ai.system` describes a family of GenAI models with specific model identified
+    by `gen_ai.request.model` and `gen_ai.response.model` attributes.
+
+    The actual GenAI product may differ from the one identified by the client.
+    For example, when using OpenAI client libraries to communicate with Mistral, the `gen_ai.system`
+    is set to `openai` based on the instrumentation's best knowledge.
+
+    For custom model, a custom friendly name SHOULD be used.
+    If none of these options apply, the `gen_ai.system` SHOULD be set to `_OTHER`.
+"""
+
+GEN_AI_TOKEN_TYPE: Final = "gen_ai.token.type"
+"""
+The type of token being counted.
 """
 
 GEN_AI_USAGE_COMPLETION_TOKENS: Final = "gen_ai.usage.completion_tokens"
 """
-The number of tokens used in the LLM response (completion).
+Deprecated: Replaced by `gen_ai.usage.output_tokens` attribute.
+"""
+
+GEN_AI_USAGE_INPUT_TOKENS: Final = "gen_ai.usage.input_tokens"
+"""
+The number of tokens used in the GenAI input (prompt).
+"""
+
+GEN_AI_USAGE_OUTPUT_TOKENS: Final = "gen_ai.usage.output_tokens"
+"""
+The number of tokens used in the GenAI response (completion).
 """
 
 GEN_AI_USAGE_PROMPT_TOKENS: Final = "gen_ai.usage.prompt_tokens"
 """
-The number of tokens used in the LLM prompt.
+Deprecated: Replaced by `gen_ai.usage.input_tokens` attribute.
 """
+
+
+class GenAiOpenaiRequestResponseFormatValues(Enum):
+    TEXT: Final = "text"
+    """Text response format."""
+    JSON_OBJECT: Final = "json_object"
+    """JSON object response format."""
+    JSON_SCHEMA: Final = "json_schema"
+    """JSON schema response format."""
+
+
+class GenAiOpenaiRequestServiceTierValues(Enum):
+    AUTO: Final = "auto"
+    """The system will utilize scale tier credits until they are exhausted."""
+    DEFAULT: Final = "default"
+    """The system will utilize the default scale tier."""
+
+
+class GenAiOperationNameValues(Enum):
+    CHAT: Final = "chat"
+    """Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)."""
+    TEXT_COMPLETION: Final = "text_completion"
+    """Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)."""
 
 
 class GenAiSystemValues(Enum):
     OPENAI: Final = "openai"
     """OpenAI."""
+    VERTEX_AI: Final = "vertex_ai"
+    """Vertex AI."""
+    ANTHROPIC: Final = "anthropic"
+    """Anthropic."""
+    COHERE: Final = "cohere"
+    """Cohere."""
+
+
+class GenAiTokenTypeValues(Enum):
+    INPUT: Final = "input"
+    """Input tokens (prompt, input, etc.)."""
+    COMPLETION: Final = "output"
+    """Output tokens (completion, response, etc.)."""

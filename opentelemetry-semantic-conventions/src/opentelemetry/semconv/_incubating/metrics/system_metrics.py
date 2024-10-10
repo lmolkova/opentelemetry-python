@@ -168,6 +168,23 @@ def create_system_disk_io_time(meter: Meter) -> Counter:
     )
 
 
+SYSTEM_DISK_LIMIT: Final = "system.disk.limit"
+"""
+The total storage capacity of the disk
+Instrument: updowncounter
+Unit: By
+"""
+
+
+def create_system_disk_limit(meter: Meter) -> UpDownCounter:
+    """The total storage capacity of the disk"""
+    return meter.create_up_down_counter(
+        name=SYSTEM_DISK_LIMIT,
+        description="The total storage capacity of the disk",
+        unit="By",
+    )
+
+
 SYSTEM_DISK_MERGED: Final = "system.disk.merged"
 """
 Instrument: counter
@@ -219,17 +236,38 @@ def create_system_disk_operations(meter: Meter) -> Counter:
     )
 
 
-SYSTEM_FILESYSTEM_USAGE: Final = "system.filesystem.usage"
+SYSTEM_FILESYSTEM_LIMIT: Final = "system.filesystem.limit"
 """
+The total storage capacity of the filesystem
 Instrument: updowncounter
 Unit: By
 """
 
 
+def create_system_filesystem_limit(meter: Meter) -> UpDownCounter:
+    """The total storage capacity of the filesystem"""
+    return meter.create_up_down_counter(
+        name=SYSTEM_FILESYSTEM_LIMIT,
+        description="The total storage capacity of the filesystem",
+        unit="By",
+    )
+
+
+SYSTEM_FILESYSTEM_USAGE: Final = "system.filesystem.usage"
+"""
+Reports a filesystem's space usage across different states
+Instrument: updowncounter
+Unit: By
+Note: The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
+    SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
+"""
+
+
 def create_system_filesystem_usage(meter: Meter) -> UpDownCounter:
+    """Reports a filesystem's space usage across different states"""
     return meter.create_up_down_counter(
         name=SYSTEM_FILESYSTEM_USAGE,
-        description="",
+        description="Reports a filesystem's space usage across different states.",
         unit="By",
     )
 
@@ -270,6 +308,26 @@ def create_system_linux_memory_available(meter: Meter) -> UpDownCounter:
     return meter.create_up_down_counter(
         name=SYSTEM_LINUX_MEMORY_AVAILABLE,
         description="An estimate of how much memory is available for starting new applications, without causing swapping",
+        unit="By",
+    )
+
+
+SYSTEM_LINUX_MEMORY_SLAB_USAGE: Final = "system.linux.memory.slab.usage"
+"""
+Reports the memory used by the Linux kernel for managing caches of frequently used objects
+Instrument: updowncounter
+Unit: By
+Note: The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
+    Note that the total slab memory is not constant and may vary over time.
+    See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics) and `Slab` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
+"""
+
+
+def create_system_linux_memory_slab_usage(meter: Meter) -> UpDownCounter:
+    """Reports the memory used by the Linux kernel for managing caches of frequently used objects"""
+    return meter.create_up_down_counter(
+        name=SYSTEM_LINUX_MEMORY_SLAB_USAGE,
+        description="Reports the memory used by the Linux kernel for managing caches of frequently used objects.",
         unit="By",
     )
 

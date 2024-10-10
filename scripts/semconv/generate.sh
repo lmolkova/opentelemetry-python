@@ -6,7 +6,7 @@ ROOT_DIR="${SCRIPT_DIR}/../../"
 
 # freeze the spec version to make SemanticAttributes generation reproducible
 SEMCONV_VERSION=1.26.0
-SEMCONV_VERSION_TAG=v$SEMCONV_VERSION
+SEMCONV_VERSION_TAG=MSNev/DeviceEventYaml
 OTEL_SEMCONV_GEN_IMG_VERSION=0.25.0
 INCUBATING_DIR=_incubating
 cd ${SCRIPT_DIR}
@@ -16,7 +16,7 @@ mkdir semantic-conventions
 cd semantic-conventions
 
 git init
-git remote add origin https://github.com/open-telemetry/semantic-conventions.git
+git remote add origin https://github.com/MSNev/semantic-conventions.git
 git fetch origin "$SEMCONV_VERSION_TAG"
 git reset --hard FETCH_HEAD
 cd ${SCRIPT_DIR}

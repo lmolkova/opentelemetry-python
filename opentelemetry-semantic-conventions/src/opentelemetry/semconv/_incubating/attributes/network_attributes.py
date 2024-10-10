@@ -168,6 +168,8 @@ class NetworkTransportValues(Enum):
     """Named or anonymous pipe."""
     UNIX: Final = "unix"
     """Unix domain socket."""
+    QUIC: Final = "quic"
+    """QUIC."""
 
 
 @deprecated(reason="Deprecated in favor of stable :py:const:`opentelemetry.semconv.attributes.network_attributes.NetworkTypeValues`.")  # type: ignore
