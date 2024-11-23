@@ -183,6 +183,7 @@ class LogRecord(APILogRecord):
         resource: Optional[Resource] = None,
         attributes: Optional[Attributes] = None,
         limits: Optional[LogLimits] = _UnsetLogLimits,
+        instrumentation_scope: Optional[InstrumentationScope] = None,
     ):
         super().__init__(
             **{
@@ -211,6 +212,7 @@ class LogRecord(APILogRecord):
                 LogDroppedAttributesWarning,
                 stacklevel=2,
             )
+        self.instrumentation_scope = instrumentation_scope
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, LogRecord):
@@ -252,18 +254,6 @@ class LogRecord(APILogRecord):
         return 0
 
 
-class LogData:
-    """Readable LogRecord data plus associated InstrumentationLibrary."""
-
-    def __init__(
-        self,
-        log_record: LogRecord,
-        instrumentation_scope: InstrumentationScope,
-    ):
-        self.log_record = log_record
-        self.instrumentation_scope = instrumentation_scope
-
-
 class LogRecordProcessor(abc.ABC):
     """Interface to hook the log record emitting action.
 
@@ -273,8 +263,8 @@ class LogRecordProcessor(abc.ABC):
     """
 
     @abc.abstractmethod
-    def emit(self, log_data: LogData):
-        """Emits the `LogData`"""
+    def on_emit(self, log_record: LogRecord):
+        """Emits the `LogRecord`"""
 
     @abc.abstractmethod
     def shutdown(self):
@@ -313,13 +303,13 @@ class SynchronousMultiLogRecordProcessor(LogRecordProcessor):
     def add_log_record_processor(
         self, log_record_processor: LogRecordProcessor
     ) -> None:
-        """Adds a Logprocessor to the list of log processors handled by this instance"""
+        """Adds a LogRecordProcessor to the list of log processors handled by this instance"""
         with self._lock:
             self._log_record_processors += (log_record_processor,)
 
-    def emit(self, log_data: LogData) -> None:
+    def on_emit(self, log_record: LogRecord) -> None:
         for lp in self._log_record_processors:
-            lp.emit(log_data)
+            lp.on_emit(log_record)
 
     def shutdown(self) -> None:
         """Shutdown the log processors one by one"""
@@ -391,8 +381,8 @@ class ConcurrentMultiLogRecordProcessor(LogRecordProcessor):
         for future in futures:
             future.result()
 
-    def emit(self, log_data: LogData):
-        self._submit_and_wait(lambda lp: lp.emit, log_data)
+    def on_emit(self, log_record: LogRecord):
+        self._submit_and_wait(lambda lp: lp.on_emit, log_record)
 
     def shutdown(self):
         self._submit_and_wait(lambda lp: lp.shutdown)
@@ -479,6 +469,7 @@ class LoggingHandler(logging.Handler):
         }
 
         # Add standard code attributes for logs.
+        # TODO: this should not be there by default - code namespace is not stable in semantic conventions.
         attributes[SpanAttributes.CODE_FILEPATH] = record.pathname
         attributes[SpanAttributes.CODE_FUNCTION] = record.funcName
         attributes[SpanAttributes.CODE_LINENO] = record.lineno
@@ -567,6 +558,7 @@ class LoggingHandler(logging.Handler):
             body=body,
             resource=logger.resource,
             attributes=attributes,
+            instrumentation_scope=logger._instrumentation_scope,
         )
 
     def emit(self, record: logging.LogRecord) -> None:
@@ -614,11 +606,8 @@ class Logger(APILogger):
         return self._resource
 
     def emit(self, record: LogRecord):
-        """Emits the :class:`LogData` by associating :class:`LogRecord`
-        and instrumentation info.
-        """
-        log_data = LogData(record, self._instrumentation_scope)
-        self._multi_log_record_processor.emit(log_data)
+        """Emits the :class:`LogRecord` to the log processors."""
+        self._multi_log_record_processor.on_emit(record)
 
 
 class LoggerProvider(APILoggerProvider):
@@ -720,6 +709,8 @@ class LoggerProvider(APILoggerProvider):
         if self._at_exit_handler is not None:
             atexit.unregister(self._at_exit_handler)
             self._at_exit_handler = None
+        # TODO
+        # self._disabled = True
 
     def force_flush(self, timeout_millis: int = 30000) -> bool:
         """Force flush the log processors.

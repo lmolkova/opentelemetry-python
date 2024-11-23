@@ -52,7 +52,7 @@ from opentelemetry.proto.logs.v1.logs_pb2 import ResourceLogs, ScopeLogs
 from opentelemetry.proto.resource.v1.resource_pb2 import (
     Resource as OTLPResource,
 )
-from opentelemetry.sdk._logs import LogData, LogRecord
+from opentelemetry.sdk._logs import LogRecord
 from opentelemetry.sdk._logs.export import LogExportResult
 from opentelemetry.sdk.environment_variables import (
     OTEL_EXPORTER_OTLP_LOGS_CERTIFICATE,
@@ -126,79 +126,69 @@ class TestOTLPLogExporter(TestCase):
 
         self.server.start()
 
-        self.log_data_1 = LogData(
-            log_record=LogRecord(
-                timestamp=int(time.time() * 1e9),
-                trace_id=2604504634922341076776623263868986797,
-                span_id=5213367945872657620,
-                trace_flags=TraceFlags(0x01),
-                severity_text="WARNING",
-                severity_number=SeverityNumber.WARN,
-                body="Zhengzhou, We have a heaviest rains in 1000 years",
-                resource=SDKResource({"key": "value"}),
-                attributes={"a": 1, "b": "c"},
-            ),
+        self.log_record_1 = LogRecord(
+            timestamp=int(time.time() * 1e9),
+            trace_id=2604504634922341076776623263868986797,
+            span_id=5213367945872657620,
+            trace_flags=TraceFlags(0x01),
+            severity_text="WARNING",
+            severity_number=SeverityNumber.WARN,
+            body="Zhengzhou, We have a heaviest rains in 1000 years",
+            resource=SDKResource({"key": "value"}),
+            attributes={"a": 1, "b": "c"},
             instrumentation_scope=InstrumentationScope(
                 "first_name", "first_version"
             ),
         )
-        self.log_data_2 = LogData(
-            log_record=LogRecord(
-                timestamp=int(time.time() * 1e9),
-                trace_id=2604504634922341076776623263868986799,
-                span_id=5213367945872657623,
-                trace_flags=TraceFlags(0x01),
-                severity_text="INFO",
-                severity_number=SeverityNumber.INFO2,
-                body="Sydney, Opera House is closed",
-                resource=SDKResource({"key": "value"}),
-                attributes={"custom_attr": [1, 2, 3]},
-            ),
+        self.log_record_2 = LogRecord(
+            timestamp=int(time.time() * 1e9),
+            trace_id=2604504634922341076776623263868986799,
+            span_id=5213367945872657623,
+            trace_flags=TraceFlags(0x01),
+            severity_text="INFO",
+            severity_number=SeverityNumber.INFO2,
+            body="Sydney, Opera House is closed",
+            resource=SDKResource({"key": "value"}),
+            attributes={"custom_attr": [1, 2, 3]},
             instrumentation_scope=InstrumentationScope(
                 "second_name", "second_version"
             ),
         )
-        self.log_data_3 = LogData(
-            log_record=LogRecord(
-                timestamp=int(time.time() * 1e9),
-                trace_id=2604504634922341076776623263868986800,
-                span_id=5213367945872657628,
-                trace_flags=TraceFlags(0x01),
-                severity_text="ERROR",
-                severity_number=SeverityNumber.WARN,
-                body="Mumbai, Boil water before drinking",
-                resource=SDKResource({"service": "myapp"}),
-            ),
+        self.log_record_3 = LogRecord(
+            timestamp=int(time.time() * 1e9),
+            trace_id=2604504634922341076776623263868986800,
+            span_id=5213367945872657628,
+            trace_flags=TraceFlags(0x01),
+            severity_text="ERROR",
+            severity_number=SeverityNumber.WARN,
+            body="Mumbai, Boil water before drinking",
+            resource=SDKResource({"service": "myapp"}),
             instrumentation_scope=InstrumentationScope(
                 "third_name", "third_version"
             ),
         )
-        self.log_data_4 = LogData(
-            log_record=LogRecord(
-                timestamp=int(time.time() * 1e9),
-                trace_id=0,
-                span_id=5213367945872657629,
-                trace_flags=TraceFlags(0x01),
-                severity_text="ERROR",
-                severity_number=SeverityNumber.WARN,
-                body="Invalid trace id check",
-                resource=SDKResource({"service": "myapp"}),
-            ),
+        self.log_record_4 = LogRecord(
+            timestamp=int(time.time() * 1e9),
+            trace_id=0,
+            span_id=5213367945872657629,
+            trace_flags=TraceFlags(0x01),
+            severity_text="ERROR",
+            severity_number=SeverityNumber.WARN,
+            body="Invalid trace id check",
+            resource=SDKResource({"service": "myapp"}),
             instrumentation_scope=InstrumentationScope(
                 "fourth_name", "fourth_version"
             ),
         )
-        self.log_data_5 = LogData(
-            log_record=LogRecord(
-                timestamp=int(time.time() * 1e9),
-                trace_id=2604504634922341076776623263868986801,
-                span_id=0,
-                trace_flags=TraceFlags(0x01),
-                severity_text="ERROR",
-                severity_number=SeverityNumber.WARN,
-                body="Invalid span id check",
-                resource=SDKResource({"service": "myapp"}),
-            ),
+        self.log_record_5 = LogRecord(
+            timestamp=int(time.time() * 1e9),
+            trace_id=2604504634922341076776623263868986801,
+            span_id=0,
+            trace_flags=TraceFlags(0x01),
+            severity_text="ERROR",
+            severity_number=SeverityNumber.WARN,
+            body="Invalid span id check",
+            resource=SDKResource({"service": "myapp"}),
             instrumentation_scope=InstrumentationScope(
                 "fifth_name", "fifth_version"
             ),
@@ -400,7 +390,7 @@ class TestOTLPLogExporter(TestCase):
             LogsServiceServicerUNAVAILABLE(), self.server
         )
         self.assertEqual(
-            self.exporter.export([self.log_data_1]), LogExportResult.FAILURE
+            self.exporter.export([self.log_record_1]), LogExportResult.FAILURE
         )
         mock_sleep.assert_called_with(0.01)
 
@@ -415,7 +405,7 @@ class TestOTLPLogExporter(TestCase):
             LogsServiceServicerUNAVAILABLEDelay(), self.server
         )
         self.assertEqual(
-            self.exporter.export([self.log_data_1]), LogExportResult.FAILURE
+            self.exporter.export([self.log_record_1]), LogExportResult.FAILURE
         )
         mock_sleep.assert_called_with(0.01)
 
@@ -424,7 +414,7 @@ class TestOTLPLogExporter(TestCase):
             LogsServiceServicerSUCCESS(), self.server
         )
         self.assertEqual(
-            self.exporter.export([self.log_data_1]), LogExportResult.SUCCESS
+            self.exporter.export([self.log_record_1]), LogExportResult.SUCCESS
         )
 
     def test_failure(self):
@@ -432,12 +422,12 @@ class TestOTLPLogExporter(TestCase):
             LogsServiceServicerALREADY_EXISTS(), self.server
         )
         self.assertEqual(
-            self.exporter.export([self.log_data_1]), LogExportResult.FAILURE
+            self.exporter.export([self.log_record_1]), LogExportResult.FAILURE
         )
 
-    def export_log_and_deserialize(self, log_data):
+    def export_log_and_deserialize(self, log_record):
         # pylint: disable=protected-access
-        translated_data = self.exporter._translate_data([log_data])
+        translated_data = self.exporter._translate_data([log_record])
         request_dict = MessageToDict(translated_data)
         log_records = (
             request_dict.get("resourceLogs")[0]
@@ -447,7 +437,7 @@ class TestOTLPLogExporter(TestCase):
         return log_records
 
     def test_exported_log_without_trace_id(self):
-        log_records = self.export_log_and_deserialize(self.log_data_4)
+        log_records = self.export_log_and_deserialize(self.log_record_4)
         if log_records:
             log_record = log_records[0]
             self.assertIn("spanId", log_record)
@@ -460,7 +450,7 @@ class TestOTLPLogExporter(TestCase):
             self.fail("No log records found")
 
     def test_exported_log_without_span_id(self):
-        log_records = self.export_log_and_deserialize(self.log_data_5)
+        log_records = self.export_log_and_deserialize(self.log_record_5)
         if log_records:
             log_record = log_records[0]
             self.assertIn("traceId", log_record)
@@ -472,7 +462,7 @@ class TestOTLPLogExporter(TestCase):
         else:
             self.fail("No log records found")
 
-    def test_translate_log_data(self):
+    def test_translate_log_record(self):
         expected = ExportLogsServiceRequest(
             resource_logs=[
                 ResourceLogs(
@@ -491,9 +481,9 @@ class TestOTLPLogExporter(TestCase):
                             log_records=[
                                 PB2LogRecord(
                                     # pylint: disable=no-member
-                                    time_unix_nano=self.log_data_1.log_record.timestamp,
-                                    observed_time_unix_nano=self.log_data_1.log_record.observed_timestamp,
-                                    severity_number=self.log_data_1.log_record.severity_number.value,
+                                    time_unix_nano=self.log_record_1.timestamp,
+                                    observed_time_unix_nano=self.log_record_1.observed_timestamp,
+                                    severity_number=self.log_record_1.severity_number.value,
                                     severity_text="WARNING",
                                     span_id=int.to_bytes(
                                         5213367945872657620, 8, "big"
@@ -517,7 +507,7 @@ class TestOTLPLogExporter(TestCase):
                                         ),
                                     ],
                                     flags=int(
-                                        self.log_data_1.log_record.trace_flags
+                                        self.log_record_1.trace_flags
                                     ),
                                 )
                             ],
@@ -529,7 +519,7 @@ class TestOTLPLogExporter(TestCase):
 
         # pylint: disable=protected-access
         self.assertEqual(
-            expected, self.exporter._translate_data([self.log_data_1])
+            expected, self.exporter._translate_data([self.log_record_1])
         )
 
     def test_translate_multiple_logs(self):
@@ -551,9 +541,9 @@ class TestOTLPLogExporter(TestCase):
                             log_records=[
                                 PB2LogRecord(
                                     # pylint: disable=no-member
-                                    time_unix_nano=self.log_data_1.log_record.timestamp,
-                                    observed_time_unix_nano=self.log_data_1.log_record.observed_timestamp,
-                                    severity_number=self.log_data_1.log_record.severity_number.value,
+                                    time_unix_nano=self.log_record_1.timestamp,
+                                    observed_time_unix_nano=self.log_record_1.observed_timestamp,
+                                    severity_number=self.log_record_1.severity_number.value,
                                     severity_text="WARNING",
                                     span_id=int.to_bytes(
                                         5213367945872657620, 8, "big"
@@ -577,7 +567,7 @@ class TestOTLPLogExporter(TestCase):
                                         ),
                                     ],
                                     flags=int(
-                                        self.log_data_1.log_record.trace_flags
+                                        self.log_record_1.trace_flags
                                     ),
                                 )
                             ],
@@ -589,9 +579,9 @@ class TestOTLPLogExporter(TestCase):
                             log_records=[
                                 PB2LogRecord(
                                     # pylint: disable=no-member
-                                    time_unix_nano=self.log_data_2.log_record.timestamp,
-                                    observed_time_unix_nano=self.log_data_2.log_record.observed_timestamp,
-                                    severity_number=self.log_data_2.log_record.severity_number.value,
+                                    time_unix_nano=self.log_record_2.timestamp,
+                                    observed_time_unix_nano=self.log_record_2.observed_timestamp,
+                                    severity_number=self.log_record_2.severity_number.value,
                                     severity_text="INFO",
                                     span_id=int.to_bytes(
                                         5213367945872657623, 8, "big"
@@ -611,7 +601,7 @@ class TestOTLPLogExporter(TestCase):
                                         ),
                                     ],
                                     flags=int(
-                                        self.log_data_2.log_record.trace_flags
+                                        self.log_record_2.trace_flags
                                     ),
                                 )
                             ],
@@ -635,9 +625,9 @@ class TestOTLPLogExporter(TestCase):
                             log_records=[
                                 PB2LogRecord(
                                     # pylint: disable=no-member
-                                    time_unix_nano=self.log_data_3.log_record.timestamp,
-                                    observed_time_unix_nano=self.log_data_3.log_record.observed_timestamp,
-                                    severity_number=self.log_data_3.log_record.severity_number.value,
+                                    time_unix_nano=self.log_record_3.timestamp,
+                                    observed_time_unix_nano=self.log_record_3.observed_timestamp,
+                                    severity_number=self.log_record_3.severity_number.value,
                                     severity_text="ERROR",
                                     span_id=int.to_bytes(
                                         5213367945872657628, 8, "big"
@@ -652,7 +642,7 @@ class TestOTLPLogExporter(TestCase):
                                     ),
                                     attributes=[],
                                     flags=int(
-                                        self.log_data_3.log_record.trace_flags
+                                        self.log_record_3.trace_flags
                                     ),
                                 )
                             ],
@@ -666,6 +656,6 @@ class TestOTLPLogExporter(TestCase):
         self.assertEqual(
             expected,
             self.exporter._translate_data(
-                [self.log_data_1, self.log_data_2, self.log_data_3]
+                [self.log_record_1, self.log_record_2, self.log_record_3]
             ),
         )

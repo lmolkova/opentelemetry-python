@@ -158,22 +158,19 @@ class LoggerProvider(ABC):
         name: str,
         version: Optional[str] = None,
         schema_url: Optional[str] = None,
-        attributes: Optional[Attributes] = None,
+        attributes: Optional[
+            Attributes
+        ] = None,  # TODO: attributes should support AnyValue
     ) -> Logger:
         """Returns a `Logger` for use by the given instrumentation library.
-
-        For any two calls it is undefined whether the same or different
-        `Logger` instances are returned, even for different library names.
 
         This function may return different `Logger` types (e.g. a no-op logger
         vs. a functional logger).
 
         Args:
-            name: The name of the instrumenting module.
-                ``__name__`` may not be used as this can result in
-                different logger names if the loggers are in different files.
-                It is better to use a fixed string that can be imported where
-                needed and used consistently as the name of the logger.
+            name: The name of the instrumenting module, package, module or class.
+                For log sources which define a logger name (e.g. `logging.Logger.name`)
+                the Logger Name should be recorded as the instrumentation scope name.
 
                 This should *not* be the name of the module that is
                 instrumented but the name of the module doing the instrumentation.
@@ -185,6 +182,9 @@ class LoggerProvider(ABC):
                 ``importlib.metadata.version(instrumenting_library_name)``.
 
             schema_url: Optional. Specifies the Schema URL of the emitted telemetry.
+
+            attributes: Optional. Instrumentation scope attributes to be associated
+                with the logger.
         """
 
 

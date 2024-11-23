@@ -158,6 +158,7 @@ class TestEventLoggerProvider(unittest.TestCase):
                 "foo": "bar",
                 "event.name": "test_event",
             },
+            instrumentation_scope=event_logger._logger._instrumentation_scope,
         )
         logger_mock_inst.emit.assert_called_once_with(log_record_mock_inst)
 

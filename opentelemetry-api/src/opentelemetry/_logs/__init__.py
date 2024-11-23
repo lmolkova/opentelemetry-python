@@ -45,6 +45,7 @@ from opentelemetry._logs._internal import (
 )
 from opentelemetry._logs.severity import SeverityNumber, std_to_otel
 
+# TODO: do we need to expose `std_to_otel`? If so, let's pick a better name for it
 __all__ = [
     "Logger",
     "LoggerProvider",

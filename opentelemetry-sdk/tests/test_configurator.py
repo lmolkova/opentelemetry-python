@@ -104,20 +104,21 @@ class DummyMeterProvider(MeterProvider):
 
 
 class DummyLogger:
-    def __init__(self, name, resource, processor):
+    def __init__(self, name, resource, processor, instrumentation_scope=None):
         self.name = name
         self.resource = resource
+        self._instrumentation_scope = instrumentation_scope
         self.processor = processor
 
     def emit(self, record):
-        self.processor.emit(record)
+        self.processor.on_emit(record)
 
 
 class DummyLogRecordProcessor:
     def __init__(self, exporter):
         self.exporter = exporter
 
-    def emit(self, record):
+    def on_emit(self, record):
         self.exporter.export([record])
 
     def force_flush(self, time):

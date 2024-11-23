@@ -61,6 +61,7 @@ class EventLogger(APIEventLogger):
             body=event.body,
             resource=getattr(self._logger, "resource", None),
             attributes=event.attributes,
+            instrumentation_scope=self._logger._instrumentation_scope,
         )
         self._logger.emit(log_record)
 
